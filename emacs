@@ -1,74 +1,41 @@
-;;;Copied from Neil Dantam, some modifications
+;; -*-lisp-*-
 
 (add-to-list 'load-path "~/.emacs.d")
 
 (require 'cl)
-;(require 'w3m-load)
-
-
-;(add-to-list 'vc-handled-backends 'Git)
-
 
 ;;;;;;;;;;;;
 ;;  DEFS  ;;
 ;;;;;;;;;;;;
 
-(defun all (args)
-  (cond
-   ((null args) t)
-   ((car args) (all (cdr args)))
-   (t nil)))
+;; (defun all (args)
+;;   (cond
+;;    ((null args) t)
+;;    ((car args) (all (cdr args)))
+;;    (t nil)))
 
-(defun any (args)
-  (cond
-   ((null args) nil)
-   ((car args) t)
-   (t (all (cdr args)))))
+;; (defun any (args)
+;;   (cond
+;;    ((null args) nil)
+;;    ((car args) t)
+;;    (t (all (cdr args)))))
 
-(defmacro when-host (name &rest forms)
-  (declare (indent 1))
-  `(when ,(if (atom name)
-              `(string= (system-name) ,name)
-            `(any (mapcar (lambda (name) 
-                            (string= (system-name) name))
-                          (quote ,name))))
-     ,@forms))
+;; (defmacro when-host (name &rest forms)
+;;   (declare (indent 1))
+;;   `(when ,(if (atom name)
+;;               `(string= (system-name) ,name)
+;;             `(any (mapcar (lambda (name) 
+;;                             (string= (system-name) name))
+;;                           (quote ,name))))
+;;      ,@forms))
 
-;;;;;;;;;;;;;;;;
-;;  SEMANTIC  ;;
-;;;;;;;;;;;;;;;;
-;(setq semantic-load-turn-everything-on t)
-;(require 'semantic-load)
-;(require 'semantic-ia)
-;(add-hook 'c-mode-common-hook 
-;          (lambda ()
-;            (define-key c-mode-base-map (kbd "\C-c TAB") 
-;                        'semantic-complete-analyze-inline)
-;            (define-key c-mode-base-map (kbd "\C-c m") 
-;                        'semantic-ia-complete-symbol-menu)))
-
-;; Semantic projects
-
-;(when-host "daneel"
-;  (setq semanticdb-project-roots 
-;        (list "~/cc/sparky/src")))
-
-
-;(semantic-load-enable-code-helpers)
-
-;(setq semantic-load-turn-useful-things-on t)
 
 
 ;;;;;;;;;;;;;;;;;;;
 ;;  GLOBAL KEYS  ;;
 ;;;;;;;;;;;;;;;;;;;
 (global-set-key "\C-c\k" 'compile)
-(global-set-key "\C-c\C-c" 'comment-region)
-(global-set-key "\C-c\M-c" 'uncomment-region)
-(global-set-key "\C-c#" 'server-start)
-(global-set-key "\C-cbe" (lambda () (interactive) 
-                           (switch-to-buffer "*eshell*")))
-(global-set-key "\C-xvp" 'vc-update)
+;; (global-set-key "\C-xvp" 'vc-update)
 
 ;;;;;;;;;;
 ;; MISC ;;
@@ -79,6 +46,7 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (set-scroll-bar-mode nil)
+(iswitchb-mode)
 
 
 
@@ -93,28 +61,15 @@
 ;;  FONT  ;;
 ;;;;;;;;;;;;
 
-;; (cond ((or (eq window-system 'x) (eq window-system 'w32))
-;;        (set-face-background 'region                   "#555555")
-;;        (set-face-foreground 'modeline             "white")
-;;        (set-face-background 'modeline             "#333333")
-;;        (set-background-color "black")
-;;        (add-to-list 'default-frame-alist '(background-color . "black"))
-;;        (set-foreground-color "green")
-;;        (add-to-list 'default-frame-alist '(foreground-color . "green"))
-;;        (set-cursor-color "green"))
-;;       ((eq window-system 'pc))
-;;       ((eq window-system 'nil)
-
-       (set-face-background 'region                   "#555555")
-       (set-face-foreground 'modeline             "#FFFFFF")
-       (set-face-background 'modeline             "#333333")
-       (set-background-color "black")
-       (add-to-list 'default-frame-alist '(background-color . "black"))
-       (set-foreground-color "green")
-       (add-to-list 'default-frame-alist '(foreground-color . "green"))
-       (set-cursor-color "green")
-
-       ;; ))
+;; 256-color terminals mean we can actually use real colors!
+(set-face-background 'region                   "#555555")
+(set-face-foreground 'modeline             "#FFFFFF")
+(set-face-background 'modeline             "#333333")
+(set-background-color "black")
+(add-to-list 'default-frame-alist '(background-color . "black"))
+(set-foreground-color "green")
+(add-to-list 'default-frame-alist '(foreground-color . "green"))
+(set-cursor-color "green")
 
 
 (set-face-attribute 'default nil :height 100)
@@ -132,36 +87,24 @@
 (add-hook 'c-mode-common-hook 
           (lambda ()
             (c-set-style "bsd")
-            (setq c-basic-offset 4))) ; I've written to much java, 
-                                        ; but then so have many other people...u 
+            (setq c-basic-offset 4))) ; I've written too much java, 
+                                        ; but then so have many other people...
 ;(setq c-mode-common-hook nil)
-
-
-
-;;;;;;;;;;;;;;
-;;  PYTHON  ;;
-;;;;;;;;;;;;;;
-;(push "~/src/elisp/python-mode" load-path)
-;(load "~/src/elisp/python-mode/python-mode.el")
-;(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
-;(setq interpreter-mode-alist (cons '("python" . python-mode)
-;				   			interpreter-mode-alist))
-;(autoload 'python-mode "python-mode" "Python editing mode." t)
-
 
 
 
 ;;;;;;;;;;;;
 ;;  TEXT  ;;
 ;;;;;;;;;;;;
-(setq-default ispell-program-name "C:\\Program Files (x86)\\Aspell\\bin\\aspell.exe")
+;; (setq-default ispell-program-name "C:\\Program Files (x86)\\Aspell\\bin\\aspell.exe")
 (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
-;; (add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
 
 
 ;;;;;;;;;;;;
 ;; SLIME  ;;
 ;;;;;;;;;;;;
+
 
 
 (add-to-list 'load-path "/home/saul/src/slime/slime")
@@ -255,8 +198,6 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
-
-(setq org-agenda-files (list "/media/sharepart/configs/org/school.org"))
 
 
 
@@ -355,6 +296,7 @@
 (setq erc-nickserv-passwords
       `(("mibbit"        (("vebyast" . ,mibbit-nickone-pass)))
         ("foonetic"      (("vebyast" . ,foonetic-nickone-pass)))))
+
 (add-hook 'erc-after-connect            ;use passwords to autoconnect
           '(lambda (SERVER NICK)
              (cond
@@ -418,7 +360,7 @@
  '(js2-basic-offset 2)
  '(js2-bounce-indent-flag nil)
  '(js2-mirror-mode nil)
- '(show-paren-mode t nil (paren))
+ '(org-agenda-files (quote ("/media/sharepart/data/school/2011/summer/patent/patent_draft.org" "/media/sharepart/configs/org/general.org" "/media/sharepart/configs/org/research.org"))) '(show-paren-mode t nil (paren))
  '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "evince") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s"))))
  '(transient-mark-mode t))
 
