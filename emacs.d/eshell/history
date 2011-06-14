@@ -1,0 +1,5 @@
+cd /media/host/
+ls
+cd data/
+sudo mount.vboxsf data /media/host/data/
+exit
