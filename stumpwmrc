@@ -178,6 +178,7 @@
                        :dont-close t)
   (echo-string (current-screen) "Starting swank."))
 
+;; don't autoload swank in case it's a security risk
 
 
 
@@ -186,7 +187,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(run-shell-command "emacs --daemon")
-(grename "EMACS")
+(run-shell-command "emacs --daemon")	;boot up an emacs daemon at startup
+(grename "EMACS")			;create properly labeled virtual desktops
 (gnewbg "IRC")
 (gnewbg "TERMINAL")

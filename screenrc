@@ -8,13 +8,11 @@ term screen-256color
 # set the initial title of windows to ''
 shelltitle ''
 
-# If we lose connection, detach. I think that they occasionaly change the
-# default on the CoC terminal machines, so I made it explicit.
+# If we lose connection, detach.
 autodetach on
 
-# Turn off any startup message, not that there is one.
+# Turn off any startup message
 startup_message off
-
 
 # These two lines are a bit of voodoo that give me a neato little
 # display status bar at the bottom of the screen, which shows the currently
@@ -33,14 +31,14 @@ defscrollback 1024
 # Set the default escape and meta keys so that they don't conflict with emacs.
 escape ^Oo
 
-# Remove the binding for Ctrl-A k so we don't kill things accidentally.
-# the only way to kill is to go Ctrl-A :kill now. Better, yes?
+# Remove the binding for Ctrl-o k so we don't kill things accidentally.
+# the only way to kill is to go Ctrl-o :kill now. Better, yes?
 bind K
 bind k
 bind ^k
 bind ^K
 
-# Now we rebind Ctrl-A space to "window list" instead of "next window"
+# Now we rebind Ctrl-o space to "window list" instead of "next window"
 bind ' ' windowlist -b
 
 # This should let bash mess with the xterm title from inside screen
