@@ -1,6 +1,7 @@
 ############################################################################
 ############################# Bash RC file #################################
 ############################################################################
+
 # Mostly by whoever wrote the default debian/ubuntu bashrc, but a few tweaks
 # and additions by Saul Reynolds-Haertle.
 
@@ -9,14 +10,12 @@
 [ -z "$PS1" ] && return
 
 
-
-
-
 ############################################################################
 ####################### Environment Variable setup #########################
 ############################################################################
 # setup editor variable
 export EDITOR="vim"
+export VISUAL="vim"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
@@ -35,11 +34,6 @@ shopt -s checkwinsize
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# add the android sdk to my path
-export PATH=${PATH}:/usr/share/android-sdk-linux_86/tools
-
-
 
 
 
@@ -68,11 +62,6 @@ screen*)
 	export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
 
     export TERM=screen-256color
-;;
-gnome*)
-	#leave the gnome terminal alone. It does its own stuff.
-    #If, that is, gnome-terminal identified itself as something other than
-    #an xterm...
 ;;
 esac
 
@@ -118,21 +107,10 @@ alias octave='octave -q'
 
 
 ############################################################################
-### Clojure
-
-export CLOJURE_EXT=~/.clojure
-export PATH=${PATH}:~/opt/clojure-contrib/launchers/bash
-alias clj=clj-env-dir
-export PATH=${PATH}:~/opt/leiningen
-
-
-############################################################################
-######## Uhhhh, I'm not really sure, but it was in the default rc. #########
+####################### Upgrade bash completion ############################
 ############################################################################
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# enable programmable completion features.
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
