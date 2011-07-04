@@ -101,7 +101,7 @@ alias lal='ls -al'
 alias lla='ls -al'
 
 # Some these are just plain weird, but I like them.
-alias irssi='su -c vebyast irssi'
+#alias irssi='su -c vebyast irssi'
 alias octave='octave -q'
 
 
