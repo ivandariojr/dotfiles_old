@@ -36,6 +36,8 @@
 (define-key *root-map* (kbd "e") 
   "exec emacsclient -nc")
 
+(define-key *root-map* (kbd "x")
+  "exec")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Startup stuff                                                                  ;;
@@ -204,7 +206,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-(run-shell-command "emacs --daemon")	;boot up an emacs daemon at startup
-(grename "EMACS")			;create properly labeled virtual desktops
-(gnewbg "IRC")
-(gnewbg "TERMINAL")
+;; (run-shell-command "emacs --daemon")	;boot up an emacs daemon at startup
+;; (grename "EMACS")			;create properly labeled virtual desktops
+;; (gnewbg "IRC")
+;; (gnewbg "TERMINAL")
