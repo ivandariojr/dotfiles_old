@@ -47,22 +47,33 @@ shopt -s checkwinsize
 # If we're in an xterm, change the colors and stuff. Otherwise leave them
 # as is.
 case "$TERM" in
-xterm*)
-	# Color the primary prompt, and set it to something useful and short.
-	export PS1="\[\e[31m\][\u@\h \W]\$\[\e[0m\] "
-	# attempt to change the xterm title.
-	export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
-	
-	export TERM=xterm-256color
-;;
-screen*)
-	# Color the primary prompt, and set it to something useful and short.
-	export PS1="\[\e[31m\][\u@\h \W]\$\[\e[0m\] "
-	# attempt to change the xterm title.
-	export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
+    xterm*)
+        # Color the primary prompt, and set it to something useful and short.
+        #                command                      color   part
+        export     PS1="\[\e[1;31m\]["              # red     [
+        export PS1=$PS1"\[\e[1;32m\]\u@\h"          # green   user@host
+        export PS1=$PS1"\[\e[1;36m\] \W"            # blue    directory
+        export PS1=$PS1"\[\e[1;31m\]]$\["           # red     ]$
+        export PS1=$PS1"\e[0;0m\] "                 # white   _
+	    # export PS1="\[\e[31m\][\u@\h \W]\$\[\e[0m\] "
 
-    export TERM=screen-256color
-;;
+    	# attempt to change the xterm title.
+	    export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
+	    export TERM=xterm-256color
+        ;;
+    screen*)
+        #                command                      color   part
+        export     PS1="\[\e[1;31m\]["              # red     [
+        export PS1=$PS1"\[\e[1;32m\]\u@\h"          # green   user@host
+        export PS1=$PS1"\[\e[1;36m\] \W"            # blue    directory
+        export PS1=$PS1"\[\e[1;31m\]]$\["           # red     ]$
+        export PS1=$PS1"\e[0;0m\] "                 # white   _
+	    # export PS1="\[\e[31m\][\u@\h \W]\$\[\e[0m\] "
+
+    	# attempt to change the xterm title.
+	    export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
+        export TERM=screen-256color
+        ;;
 esac
 
 
