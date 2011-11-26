@@ -49,10 +49,12 @@ shopt -s checkwinsize
 case "$TERM" in
     xterm*)
         # Color the primary prompt, and set it to something useful and short.
-        #                command                      color   part
+        #                command                    # color   part
         export     PS1="\[\e[1;31m\]["              # red     [
-        export PS1=$PS1"\[\e[1;32m\]\u@\h"          # green   user@host
-        export PS1=$PS1"\[\e[1;36m\] \W"            # blue    directory
+        export PS1=$PS1"\[\e[1;32m\]\u"             # green   user
+        export PS1=$PS1"\[\e[1;32m\]@"              # blue    @
+        export PS1=$PS1"\[\e[1;32m\]\h"             # green   hostname
+        export PS1=$PS1"\[\e[1;34m\] \W"            # cyan    directory
         export PS1=$PS1"\[\e[1;31m\]]$\["           # red     ]$
         export PS1=$PS1"\e[0;0m\] "                 # white   _
 	    # export PS1="\[\e[31m\][\u@\h \W]\$\[\e[0m\] "
