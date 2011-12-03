@@ -1,4 +1,4 @@
-test=( bashrc emacs emacs.d stumpwmrc screenrc )
+test=( bashrc emacs emacs.d stumpwmrc screenrc tmux.conf )
 
 for (( i = 0 ; i < ${#test} - 1 ; i++ ))
 do
