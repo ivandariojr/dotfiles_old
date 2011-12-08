@@ -2,7 +2,7 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-(require 'cl)
+(require 'cl)                           ;require common lisp
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -88,7 +88,7 @@
 (load "package.el")
 (add-to-list 'package-archives          ;Add the marmalade repo to package.el
              '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
+(package-initialize)                    ;load everything
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -129,7 +129,7 @@
 (add-to-list 'default-frame-alist '(background-color . "black"))
 (set-foreground-color "green")
 (add-to-list 'default-frame-alist '(foreground-color . "green"))
-(set-cursor-color "green")
+;; (set-cursor-color "green")
 
 
 (set-face-attribute 'default nil :height 100)
