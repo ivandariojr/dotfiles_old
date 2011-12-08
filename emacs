@@ -38,16 +38,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                         ;;
-;;  GLOBAL KEYS                                                            ;;
-;;                                                                         ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(global-set-key "\C-c\k" 'compile)
-;; (global-set-key "\C-xvp" 'vc-update)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                         ;;
 ;;  MISCELLANEOUS SETTINGS                                                 ;;
 ;;                                                                         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -68,6 +58,23 @@
 (setq split-width-threshold 80)         ;split over-under only if
                                         ;splitting left-right would
                                         ;make the window too thin.
+
+;; use wmctrl to set fullscreen
+(defun switch-full-screen ()
+  (interactive)
+  (shell-command "wmctrl -r :ACTIVE: -btoggle,fullscreen"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                                         ;;
+;;  GLOBAL KEYS                                                            ;;
+;;                                                                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(global-set-key "\C-c\k" 'compile)
+;; (global-set-key "\C-xvp" 'vc-update)
+(global-set-key [f11] 'switch-full-screen)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -166,61 +173,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                         ;;
-;;  SLIME                                                                  ;;
-;;                                                                         ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
-
-(add-to-list 'load-path "/home/saul/src/slime/slime")
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
-(setq common-lisp-hyperspec-root "file:/home/saul/documents/source/hyperspec/")
-
-(eval-after-load "slime"
-  '(progn
-     (setq slime-lisp-implementations '((sbcl ("/usr/local/bin/sbcl"))))
-     (slime-setup '(slime-asdf
-                    slime-autodoc
-                    slime-editing-commands
-                    slime-fancy-inspector
-                    slime-fontifying-fu
-                    slime-fuzzy
-                    slime-indentation
-                    slime-mdot-fu
-                    slime-package-fu
-                    slime-references
-                    slime-repl
-                    slime-sbcl-exts
-                    slime-scratch
-                    slime-xref-browser))
-     (slime-autodoc-mode)
-     (setq slime-complete-symbol*-fancy t
-           slime-complete-sumbol-function 'slime-fuzzy-complete-symbol)))
-
-
-(require 'slime)
-(slime-setup)
-
-
-(add-hook 'slime-mode-hook
-          (lambda ()
-            (local-set-key "C-c C-c" slime-eval-buffer)
-            (local-set-key "C-c d" slime-eval-buffer)
-            (local-set-key "C-c C-d" slime-eval-defun)
-            (local-set-key "C-c r" slime-eval-region)
-            (local-set-key "C-c C-r" slime-eval-region)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                         ;;
 ;;  ARDUINO                                                                ;;
 ;;                                                                         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load "arduino-mode.el")
-(push '("\\.pde$" . arduino-mode) auto-mode-alist)
+;; Takes nearly half a second to load. What in the world is it doing?
+;; (load "arduino-mode.el")
+;; (push '("\\.pde$" . arduino-mode) auto-mode-alist)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -233,7 +193,6 @@
 (push '("\\.sbclrc$" . lisp-mode)  auto-mode-alist )
 (push '("\\.asdf-install$" . lisp-mode) auto-mode-alist )
 (push '("\\.asd$" . lisp-mode) auto-mode-alist )
-
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -506,6 +465,54 @@
 
 (require 'projectile)
 (projectile-global-mode) ;; to enable in all buffers
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                                         ;;
+;;  SLIME                                                                  ;;
+;;                                                                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(add-to-list 'load-path "/home/saul/src/slime/slime")
+(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(setq common-lisp-hyperspec-root "file:/home/saul/documents/source/hyperspec/")
+
+(eval-after-load "slime"
+  '(progn
+     (setq slime-lisp-implementations '((sbcl ("/usr/local/bin/sbcl"))))
+     (slime-setup '(slime-asdf
+                    slime-autodoc
+                    slime-editing-commands
+                    slime-fancy-inspector
+                    slime-fontifying-fu
+                    slime-fuzzy
+                    slime-indentation
+                    slime-mdot-fu
+                    slime-package-fu
+                    slime-references
+                    slime-repl
+                    slime-sbcl-exts
+                    slime-scratch
+                    slime-xref-browser))
+     (slime-autodoc-mode)
+     (setq slime-complete-symbol*-fancy t
+           slime-complete-sumbol-function 'slime-fuzzy-complete-symbol)))
+
+
+;; (require 'slime)
+;; (slime-setup)
+
+
+(add-hook 'slime-mode-hook
+          (lambda ()
+            (local-set-key "C-c C-c" slime-eval-buffer)
+            (local-set-key "C-c d" slime-eval-buffer)
+            (local-set-key "C-c C-d" slime-eval-defun)
+            (local-set-key "C-c r" slime-eval-region)
+            (local-set-key "C-c C-r" slime-eval-region)))
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
