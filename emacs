@@ -75,6 +75,7 @@
 (global-set-key "\C-c\k" 'compile)
 ;; (global-set-key "\C-xvp" 'vc-update)
 (global-set-key [f11] 'switch-full-screen)
+(global-set-key [(control meta ?r)] 'remember)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -293,7 +294,15 @@
 ;; (setq org-pretty-entities)
 
 (setq org-todo-keywords
-      '((sequence "TODO" "|" "DONE" "WILL-NOT-DO")))
+      '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "WILL-NOT-DO")))
+
+(org-remember-insinuate)
+
+
+
+
+;; custom-set vars that I want to turn into setqs to maintain organization
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -543,11 +552,26 @@
  '(erc-modules (quote (button completion fill irccontrols log match menu netsplit noncommands readonly ring scrolltobottom services stamp track)))
  '(erc-nickserv-alist (quote ((Foonetic "NickServ!services@foonetic.net" "This nickname is registered and protected\\.  If it is your nickname, type /msg NickServ IDENTIFY password\\.  Otherwise, please choose a different nickname\\." "NickServ" "IDENTIFY" nil nil) (Ars nil nil "Census" "IDENTIFY" nil nil) (Austnet "NickOP!service@austnet.org" "/msg\\s-NickOP@austnet.org\\s-identify\\s-<password>" "nickop@austnet.org" "identify" nil nil) (Azzurra "NickServ!service@azzurra.org" "/ns\\s-IDENTIFY\\s-password" "NickServ" "IDENTIFY" nil nil) (BitlBee nil nil "&bitlbee" "identify" nil nil) (BRASnet "NickServ!services@brasnet.org" "/NickServ\\s-IDENTIFY\\s-senha" "NickServ" "IDENTIFY" nil "") (DALnet "NickServ!service@dal.net" "/msg\\s-NickServ@services.dal.net\\s-IDENTIFY\\s-<password>" "NickServ@services.dal.net" "IDENTIFY" nil nil) (freenode "NickServ!NickServ@services." "/msg\\s-NickServ\\s-IDENTIFY\\s-<password>" "NickServ" "IDENTIFY" nil nil) (GalaxyNet "NS!nickserv@galaxynet.org" "Please\\s-change\\s-nicks\\s-or\\s-authenticate." "NS@services.galaxynet.org" "AUTH" t nil) (iip "Trent@anon.iip" "type\\s-/squery\\s-Trent\\s-identify\\s-<password>" "Trent@anon.iip" "IDENTIFY" nil "SQUERY") (OFTC "NickServ!services@services.oftc.net" "type\\s-/msg\\s-NickServ\\s-IDENTIFY\\s-password." "NickServ" "IDENTIFY" nil nil) (QuakeNet nil nil "Q@CServe.quakenet.org" "auth" t nil) (SlashNET "NickServ!services@services.slashnet.org" "/msg\\s-NickServ\\s-IDENTIFY\\s-password" "NickServ@services.slashnet.org" "IDENTIFY" nil nil))))
  '(global-font-lock-mode t nil (font-lock))
- '(ispell-program-name "/usr/bin/aspell" t)
+ '(ispell-program-name "/usr/bin/aspell")
+ '(org-agenda-files (quote ("~/org/todo.org")))
+ '(org-default-notes-file "~/org/notes.org")
+ '(org-agenda-skip-deadline-if-done t)
+ '(org-agenda-skip-scheduled-if-done t)
+ '(org-agenda-ndays 21)
+ '(org-agenda-warning-days 14)
+ '(org-agenda-show-all-dates t)
+ '(org-agenda-start-on-weekday nil)
+ '(org-reverse-note-order t)
+ '(org-remember-store-without-prompt t)
+ '(org-remember-templates
+   (quote (("todo" ?t "* TODO %?\n  %u" "~/org/todo.org" "Tasks")
+           ("info" ?i "* %?\n  %u" "~/org/notes.org" "Info"))))
+ '(remember-annotation-functions (quote (org-remember-annotation)))
+ '(remember-handler-functions (quote (org-remember-handler)))
  '(js2-basic-offset 2)
  '(js2-bounce-indent-flag nil)
  '(js2-mirror-mode nil)
- '(org-agenda-files (quote ("/media/sharepart/data/school/2011/summer/patent/patent_draft.org" "/media/sharepart/configs/org/general.org" "/media/sharepart/configs/org/research.org"))) '(show-paren-mode t nil (paren))
+ '(show-paren-mode t nil (paren))
  '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "evince") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s"))))
  '(transient-mark-mode t))
 
