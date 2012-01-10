@@ -634,7 +634,7 @@ Close the frame when teh capture is committed or cancelled."
   %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* TODO %?
   %u" :prepend t))))
  '(org-default-notes-file "~/org/notes.org")
- '(org-priority-faces (quote ((65 . "red") (66 . "orange") (67 . "yellow"))))
+ '(org-priority-faces (quote ((65 . "red") (66 . "yellow") (67 . "blue"))))
  '(org-remember-store-without-prompt t)
  '(org-remember-templates (quote (("todo" 116 "* TODO %?
   %u" "~/org/todo.org" "Uncategorized" nil) ("idea" 105 "* TODO %?
