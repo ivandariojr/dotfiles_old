@@ -5,7 +5,6 @@
 # Mostly by whoever wrote the default debian/ubuntu bashrc, but a few tweaks
 # and additions by Saul Reynolds-Haertle.
 
-
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
@@ -80,9 +79,6 @@ esac
 
 
 
-
-
-
 ############################################################################
 ################################ Aliases ###################################
 ############################################################################
@@ -127,3 +123,12 @@ alias octave='octave -q'
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+
+############################################################################
+######################## Emacs Local Variables #############################
+############################################################################
+
+# Local Variables:
+# mode: sh
+# End:
