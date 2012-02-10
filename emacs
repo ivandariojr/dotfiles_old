@@ -386,7 +386,21 @@ Close the frame when teh capture is committed or cancelled."
   (org-capture)
   )
 
+;; function to publish a popup appointment warning
+;; zenity --list --title="Appointment\\!" --text="Apppointment in 30 minutes\!" --column="Remind me in..." "Not implemented"
 
+(defun saul-display-appointment-notification (message)
+  (interactive "sMessage: ")
+  (shell-command-to-string
+   (concat
+    "zenity --list --title=\"Appointment Reminder\" --text="
+    message
+    " --column=\"Sleep for...\" \"Not implemented\"")))
+
+
+;; rename count-words to wc since that's easier to type and already known
+(defalias 'wc 'count-words)
+ 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
