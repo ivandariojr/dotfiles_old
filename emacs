@@ -64,6 +64,9 @@
   (interactive)
   (shell-command "wmctrl -r :ACTIVE: -btoggle,fullscreen"))
 
+;; add stuff to dired
+(load "dired+.el")
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -364,9 +367,24 @@ Close the frame when teh capture is committed or cancelled."
              ))
 
 
-;; (org-remember-insinuate)
+(defadvice org-capture-finalize (after delete-capture-frame activate)
+  "Advise capture-finalize to close the frame if it is the capture frame"
+  (if (equal "capture" (frame-parameter nil 'name))
+      (delete-frame)))
 
-;; custom-set vars that I want to turn into setqs to maintain organization
+(defadvice org-capture-destroy (after delete-capture-frame activate)
+  "Advise capture-destroy to close the frame if it is the rememeber frame"
+  (if (equal "capture" (frame-parameter nil 'name))
+      (delete-frame)))
+
+(defun make-capture-frame ()
+  "Create a new frame and run org-capture."
+  (interactive)
+  (make-frame '((name . "capture")))
+  (select-frame-by-name "capture")
+  (delete-other-windows)
+  (org-capture)
+  )
 
 
 
@@ -441,13 +459,13 @@ Close the frame when teh capture is committed or cancelled."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-hook 'server-switch-hook
-	  (lambda nil
-	    (let ((server-buf (current-buffer)))
-	      (bury-buffer)
-	      (switch-to-buffer-other-frame server-buf))))
-(add-hook 'server-done-hook 'delete-frame)
-(add-hook 'server-done-hook (lambda nil (kill-buffer nil)))
+;; (add-hook 'server-switch-hook
+;; 	  (lambda nil
+;; 	    (let ((server-buf (current-buffer)))
+;; 	      (bury-buffer)
+;; 	      (switch-to-buffer-other-frame server-buf))))
+;; (add-hook 'server-done-hook 'delete-frame)
+;; (add-hook 'server-done-hook (lambda nil (kill-buffer nil)))
 
 ;(server-start)
 
@@ -602,6 +620,7 @@ Close the frame when teh capture is committed or cancelled."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "black" :foreground "green" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
  '(slime-highlight-edits-face ((((class color) (background dark)) (:background "#333")))))
 
 
@@ -628,10 +647,12 @@ Close the frame when teh capture is committed or cancelled."
  '(org-agenda-skip-scheduled-if-done t)
  '(org-agenda-start-on-weekday nil)
  '(org-agenda-warning-days 14)
- '(org-capture-templates (quote (("t" "todo" entry (file+headline "~/org/todo.org" "Uncategorized") "* TODO %?
+ '(org-capture-templates (quote (("s" "school todo" entry (file+headline "~/org/todo.org" "School") "* TODO %?
+  %u" :prepend t) ("t" "todo" entry (file+headline "~/org/todo.org" "Uncategorized") "* TODO %?
   %u" :prepend t) ("i" "idea" entry (file+headline "~/org/todo.org" "Ideas") "* TODO %?
   %u" :prepend t) ("p" "project" entry (file+headline "~/org/todo.org" "Projects") "* TODO %?
   %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* TODO %?
+  %u" :prepend t) ("n" "Note" entry (file+headline "~/org/notes/notes.org" "Uncategorized") "* %?
   %u" :prepend t))))
  '(org-default-notes-file "~/org/notes.org")
  '(org-priority-faces (quote ((65 . "red") (66 . "yellow") (67 . "blue"))))
@@ -662,3 +683,4 @@ Close the frame when teh capture is committed or cancelled."
 ;(eshell)
 (put 'downcase-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
