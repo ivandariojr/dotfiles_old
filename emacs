@@ -298,12 +298,31 @@
 
 (org-remember-insinuate)
 
+(setq appt-message-warning-time 30)     ; 30-minute warning on appointments
+(setq appt-display-mode-line t)         ; display warning in modeline
+ 
+(appt-activate 1)                       ; activate appt
+(display-time)                          ; turn on time display
 
 
+;; update appt every time we refresh our agenda
+(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
 
-;; custom-set vars that I want to turn into setqs to maintain organization
+;; function to publish a popup appointment warning
+;; zenity --list --title="Appointment\\!" --text="Apppointment in 30 minutes\!" --column="Remind me in..." "Not implemented"
+
+(defun saul-display-appointment-notification (message)
+  (interactive "sMessage: ")
+  (shell-command-to-string
+   (concat
+    "zenity --list --title=\"Appointment Reminder\" --text="
+    message
+    " --column=\"Sleep for...\" \"Not implemented\"")))
 
 
+;; rename count-words to wc since that's easier to type and already known
+(defalias 'wc 'count-words)
+  
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
