@@ -1,4 +1,4 @@
-;; -*-lisp-*-
+; -*-lisp-*-
 
 (add-to-list 'load-path "~/.emacs.d")
 
@@ -68,6 +68,63 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                         ;;
+;;  FUNCTIONS                                                              ;;
+;;                                                                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+
+;; Taken from http://www.emacswiki.org/emacs/TrampMode
+(defvar find-file-root-prefix (if (featurep 'xemacs) "/[sudo/root@localhost]" "/sudo:root@localhost:" )
+  "*The filename prefix used to open a file with `ca-find-file-root'.")
+
+(defvar ca-find-file-root-history nil
+  "History list for files found using `ca-find-file-root'.")
+
+(defvar ca-find-file-root-hook nil
+  "Normal hook for functions to run after finding a \"root\" file.")
+
+(defun find-file-root ()
+  "*Open a file as the root user.
+   Prepends `ca-find-file-root-prefix' to the selected file name so that it
+   maybe accessed via the corresponding tramp method."
+
+  (interactive)
+  (require 'tramp)
+  (let* ( ;; We bind the variable `file-name-history' locally so we can
+         ;; use a separate history list for "root" files.
+         (file-name-history ca-find-file-root-history)
+         (name (or buffer-file-name default-directory))
+         (tramp (and (tramp-tramp-file-p name)
+                     (tramp-dissect-file-name name)))
+         path dir file)
+
+    ;; If called from a "root" file, we need to fix up the path.
+    (when tramp
+      (setq path (tramp-file-name-localname tramp)
+            dir (file-name-directory path)))
+
+    (when (setq file (read-file-name "Find file (UID = 0): " dir path))
+      (find-file (concat find-file-root-prefix file))
+      ;; If this all succeeded save our new history list.
+      (setq ca-find-file-root-history file-name-history)
+      ;; allow some user customization
+      (run-hooks 'ca-find-file-root-hook))))
+
+(defun saul-org-archive-done-tasks ()
+  (interactive)
+  (org-map-entries 'org-archive-subtree "/DONE" 'file))
+
+(defun saul-org-capture-window ()
+  "Creates a frame and invokes org-capture in that frame.
+Close the frame when teh capture is committed or cancelled."
+  (make-frame)
+  (org-capture))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                                         ;;
 ;;  GLOBAL KEYS                                                            ;;
 ;;                                                                         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -75,8 +132,9 @@
 (global-set-key "\C-c\k" 'compile)
 ;; (global-set-key "\C-xvp" 'vc-update)
 (global-set-key [f11] 'switch-full-screen)
-(global-set-key [(control meta ?r)] 'remember)
-
+;; (global-set-key [(control ?c) (control ?r)] 'remember)
+;; (global-set-key [(control ?c) (control ?n)] )
+(global-set-key [f5] 'org-capture)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -260,7 +318,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq-default tab-width 8)
 
 
 
@@ -288,25 +346,27 @@
 
 (require 'org-install)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-c\C-a" 'org-agenda)
+(global-set-key [f6] 'org-agenda-list)
 (setq org-log-done t)
 ;; (setq org-pretty-entities)
 
+;; (setq org-default-notes-file (concat org-directory "/todo.org"))
+
 (setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "WILL-NOT-DO")))
+      '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "WILL-NOT-DO" "REVISIT-LATER")))
 
-(org-remember-insinuate)
-
-(setq appt-message-warning-time 30)     ; 30-minute warning on appointments
-(setq appt-display-mode-line t)         ; display warning in modeline
- 
-(appt-activate 1)                       ; activate appt
-(display-time)                          ; turn on time display
+(add-hook 'org-mode-hook
+          '(lambda()
+             (local-set-key "\C-c\C-r" 'org-capture)
+             ))
 
 
-;; update appt every time we refresh our agenda
-(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
+;; (org-remember-insinuate)
+
+;; custom-set vars that I want to turn into setqs to maintain organization
 
 ;; function to publish a popup appointment warning
 ;; zenity --list --title="Appointment\\!" --text="Apppointment in 30 minutes\!" --column="Remind me in..." "Not implemented"
@@ -322,7 +382,7 @@
 
 ;; rename count-words to wc since that's easier to type and already known
 (defalias 'wc 'count-words)
-  
+ 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -439,18 +499,18 @@
                     (when (eq major-mode 'erc-mode)
                       (setq erc-fill-column (- (window-width w) 2)))))))))
 
-(load "~/.irc.el")              ;load passwords
-(setq erc-nickserv-passwords
-      `(("mibbit"        (("vebyast" . ,mibbit-nickone-pass)))
-        ("foonetic"      (("vebyast" . ,foonetic-nickone-pass)))))
+;(load "~/.irc.el")              ;load passwords
+;(setq erc-nickserv-passwords
+      ;`(("mibbit"        (("vebyast" . ,mibbit-nickone-pass)))
+        ;("foonetic"      (("vebyast" . ,foonetic-nickone-pass)))))
 
-(add-hook 'erc-after-connect            ;use passwords to autoconnect
-          '(lambda (SERVER NICK)
-             (cond
-              ((string-match "mibbit.net" SERVER)
-               (erc-message "PRIVMSG" (concat "nickserv identify " mibbit-nickone-pass)))
-              ((string-match "foonetic.net" SERVER)
-               (erc-message "PRIVMSG" (concat "nickserv identify " foonetic-nickone-pass))))))
+;(add-hook 'erc-after-connect            ;use passwords to autoconnect
+          ;'(lambda (SERVER NICK)
+             ;(cond
+              ;((string-match "mibbit.net" SERVER)
+               ;(erc-message "PRIVMSG" (concat "nickserv identify " mibbit-nickone-pass)))
+              ;((string-match "foonetic.net" SERVER)
+               ;(erc-message "PRIVMSG" (concat "nickserv identify " foonetic-nickone-pass))))))
 
 (load "~/.emacs.d/erc-highlight-nicknames.el") ; turn on nick coloring
 (add-hook 'erc-join-hook 'erc-highlight-nicknames-enable)
@@ -572,24 +632,32 @@
  '(erc-nickserv-alist (quote ((Foonetic "NickServ!services@foonetic.net" "This nickname is registered and protected\\.  If it is your nickname, type /msg NickServ IDENTIFY password\\.  Otherwise, please choose a different nickname\\." "NickServ" "IDENTIFY" nil nil) (Ars nil nil "Census" "IDENTIFY" nil nil) (Austnet "NickOP!service@austnet.org" "/msg\\s-NickOP@austnet.org\\s-identify\\s-<password>" "nickop@austnet.org" "identify" nil nil) (Azzurra "NickServ!service@azzurra.org" "/ns\\s-IDENTIFY\\s-password" "NickServ" "IDENTIFY" nil nil) (BitlBee nil nil "&bitlbee" "identify" nil nil) (BRASnet "NickServ!services@brasnet.org" "/NickServ\\s-IDENTIFY\\s-senha" "NickServ" "IDENTIFY" nil "") (DALnet "NickServ!service@dal.net" "/msg\\s-NickServ@services.dal.net\\s-IDENTIFY\\s-<password>" "NickServ@services.dal.net" "IDENTIFY" nil nil) (freenode "NickServ!NickServ@services." "/msg\\s-NickServ\\s-IDENTIFY\\s-<password>" "NickServ" "IDENTIFY" nil nil) (GalaxyNet "NS!nickserv@galaxynet.org" "Please\\s-change\\s-nicks\\s-or\\s-authenticate." "NS@services.galaxynet.org" "AUTH" t nil) (iip "Trent@anon.iip" "type\\s-/squery\\s-Trent\\s-identify\\s-<password>" "Trent@anon.iip" "IDENTIFY" nil "SQUERY") (OFTC "NickServ!services@services.oftc.net" "type\\s-/msg\\s-NickServ\\s-IDENTIFY\\s-password." "NickServ" "IDENTIFY" nil nil) (QuakeNet nil nil "Q@CServe.quakenet.org" "auth" t nil) (SlashNET "NickServ!services@services.slashnet.org" "/msg\\s-NickServ\\s-IDENTIFY\\s-password" "NickServ@services.slashnet.org" "IDENTIFY" nil nil))))
  '(global-font-lock-mode t nil (font-lock))
  '(ispell-program-name "/usr/bin/aspell")
- '(org-agenda-files (quote ("~/org/todo.org")))
- '(org-default-notes-file "~/org/notes.org")
- '(org-agenda-skip-deadline-if-done t)
- '(org-agenda-skip-scheduled-if-done t)
- '(org-agenda-ndays 21)
- '(org-agenda-warning-days 14)
- '(org-agenda-show-all-dates t)
- '(org-agenda-start-on-weekday nil)
- '(org-reverse-note-order t)
- '(org-remember-store-without-prompt t)
- '(org-remember-templates
-   (quote (("todo" ?t "* TODO %?\n  %u" "~/org/todo.org" "Tasks")
-           ("info" ?i "* %?\n  %u" "~/org/notes.org" "Info"))))
- '(remember-annotation-functions (quote (org-remember-annotation)))
- '(remember-handler-functions (quote (org-remember-handler)))
  '(js2-basic-offset 2)
  '(js2-bounce-indent-flag nil)
  '(js2-mirror-mode nil)
+ '(org-agenda-files (quote ("~/org/todo.org")))
+ '(org-agenda-ndays 21)
+ '(org-agenda-show-all-dates t)
+ '(org-agenda-skip-deadline-if-done t)
+ '(org-agenda-skip-scheduled-if-done t)
+ '(org-agenda-start-on-weekday nil)
+ '(org-agenda-warning-days 14)
+ '(org-capture-templates (quote (("t" "todo" entry (file+headline "~/org/todo.org" "Uncategorized") "* TODO %?
+  %u" :prepend t) ("i" "idea" entry (file+headline "~/org/todo.org" "Ideas") "* TODO %?
+  %u" :prepend t) ("p" "project" entry (file+headline "~/org/todo.org" "Projects") "* TODO %?
+  %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* TODO %?
+  %u" :prepend t))))
+ '(org-default-notes-file "~/org/notes.org")
+ '(org-priority-faces (quote ((65 . "red") (66 . "yellow") (67 . "blue"))))
+ '(org-remember-store-without-prompt t)
+ '(org-remember-templates (quote (("todo" 116 "* TODO %?
+  %u" "~/org/todo.org" "Uncategorized" nil) ("idea" 105 "* TODO %?
+  %u" "~/org/todo.org" "Ideas" nil) ("project" 112 "* TODO %?
+  %u" "~/org/todo.org" "Projects" nil) ("to-read" 114 "* TODO %?
+  %u" "~/org/readinglist.org" "Uncategorized" nil))))
+ '(org-reverse-note-order t)
+ '(remember-annotation-functions (quote (org-remember-annotation)))
+ '(remember-handler-functions (quote (org-remember-handler)))
  '(show-paren-mode t nil (paren))
  '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "evince") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s"))))
  '(transient-mark-mode t))
