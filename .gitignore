@@ -1,3 +1,6 @@
 emacs.d/auto-save-list/*
 emacs.d/elpa/*
-/emacs.d/url/cookies
+emacs.d/url/cookies
+emacs.d/bookmarks
+emacs.d/.org-id-locations
+emacs.d/tramp
