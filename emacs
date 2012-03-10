@@ -698,3 +698,4 @@ Close the frame when teh capture is committed or cancelled."
 (put 'downcase-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
