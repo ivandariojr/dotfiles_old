@@ -51,7 +51,7 @@ case "$TERM" in
         #                command                    # color   part
         export     PS1="\[\e[1;31m\]["              # red     [
         export PS1=$PS1"\[\e[1;32m\]\u"             # green   user
-        export PS1=$PS1"\[\e[1;32m\]@"              # blue    @
+        export PS1=$PS1"\[\e[1;32m\]@"              # green   @
         export PS1=$PS1"\[\e[1;32m\]\h"             # green   hostname
         export PS1=$PS1"\[\e[1;34m\] \W"            # cyan    directory
         export PS1=$PS1"\[\e[1;31m\]]$\["           # red     ]$
@@ -113,7 +113,13 @@ alias lla='ls -al'
 #alias irssi='su -c vebyast irssi'
 alias octave='octave -q'
 
+# display a recursive tree view of the filesystem
+alias t='tree'
+alias tp='tree -p'
 
+# working with acls
+alias ga='getfacl'
+alias sa='setfacl'
 
 ############################################################################
 ####################### Upgrade bash completion ############################
