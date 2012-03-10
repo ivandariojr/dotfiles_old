@@ -1,5 +1,5 @@
 # define the standard shell to be bash
-shell -/bin/bash
+#shell -/bin/bash
 deflogin off
 
 # set our term to support 256 colors

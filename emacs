@@ -142,6 +142,75 @@ Close the frame when teh capture is committed or cancelled."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;                                                                         ;;
+;;  CEDET                                                                  ;;
+;;                                                                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; Load CEDET.
+;; See cedet/common/cedet.info for configuration details.
+;; IMPORTANT: For Emacs >= 23.2, you must place this *before* any
+;; CEDET component (including EIEIO) gets activated by another
+;; package (Gnus, auth-source, ...).
+(load-file "/home/saul/src/cedet/common/cedet.el")
+
+;; Enable EDE (Project Management) features
+(global-ede-mode 1)
+
+;; Enable EDE for a pre-existing C++ project
+;; (ede-cpp-root-project "NAME" :file "~/myproject/Makefile")
+
+
+;; Enabling Semantic (code-parsing, smart completion) features
+;; Select one of the following:
+
+;; * This enables the database and idle reparse engines
+;;(semantic-load-enable-minimum-features)
+
+;; * This enables some tools useful for coding, such as summary mode
+;;   imenu support, and the semantic navigator
+;; (semantic-load-enable-code-helpers)
+
+;; * This enables even more coding tools such as intellisense mode
+;;   decoration mode, and stickyfunc mode (plus regular code helpers)
+(semantic-load-enable-gaudy-code-helpers)
+
+;; semantic-ia's intellisense is the entire reason for using this
+(require 'semantic-ia)
+(require 'semantic-gcc)
+
+;; setting up semantic-ia
+(defun my-cedet-hooks ()
+  (local-set-key [(control return)] 'semantic-ia-complete-symbol))
+(add-hook 'c-mode-common-hook 'my-cedet-hooks)
+ 
+(global-set-key "\C-cj" 'semantic-ia-fast-jump)
+(global-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+(global-set-key "\C-c>" 'semantic-complete-analyze-inline)
+
+
+(defun my-c-mode-cedet-hooks ()
+  (local-set-key "." 'semantic-complete-self-insert)
+  (local-set-key ">" 'semantic-complete-self-insert))
+(add-hook 'c-mode-common-hook 'my-c-mode-cedet-hooks)
+
+
+;; * This enables the use of Exuberent ctags if you have it installed.
+;;   If you use C++ templates or boost, you should NOT enable it.
+;; (semantic-load-enable-all-exuberent-ctags-support)
+;;   Or, use one of these two types of support.
+;;   Add support for new languges only via ctags.
+;; (semantic-load-enable-primary-exuberent-ctags-support)
+;;   Add support for using ctags as a backup parser.
+;; (semantic-load-enable-secondary-exuberent-ctags-support)
+
+;; Enable SRecode (Template management) minor-mode.
+;; (global-srecode-minor-mode 1)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                                         ;;
 ;;  PACKAGES                                                               ;;
 ;;                                                                         ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -170,9 +239,9 @@ Close the frame when teh capture is committed or cancelled."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path "~/.emacs.d/smart-tab/")
-(require 'smart-tab)
-(global-smart-tab-mode 1)
+;; (add-to-list 'load-path "~/.emacs.d/smart-tab/")
+;; (require 'smart-tab)
+;; (global-smart-tab-mode 1)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -569,8 +638,8 @@ Close the frame when teh capture is committed or cancelled."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'projectile)
-(projectile-global-mode) ;; to enable in all buffers
+;; (require 'projectile)
+;; (projectile-global-mode) ;; to enable in all buffers
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -646,6 +715,7 @@ Close the frame when teh capture is committed or cancelled."
  '(case-fold-search t)
  '(current-language-environment "English")
  '(default-input-method "rfc1345")
+ '(ede-project-directories (quote ("/home/saul/src/random/src" "/home/saul/src/random/include" "/home/saul/src/random")))
  '(erc-format-nick-function (quote erc-format-@nick))
  '(erc-modules (quote (button completion fill irccontrols log match menu netsplit noncommands readonly ring scrolltobottom services stamp track)))
  '(erc-nickserv-alist (quote ((Foonetic "NickServ!services@foonetic.net" "This nickname is registered and protected\\.  If it is your nickname, type /msg NickServ IDENTIFY password\\.  Otherwise, please choose a different nickname\\." "NickServ" "IDENTIFY" nil nil) (Ars nil nil "Census" "IDENTIFY" nil nil) (Austnet "NickOP!service@austnet.org" "/msg\\s-NickOP@austnet.org\\s-identify\\s-<password>" "nickop@austnet.org" "identify" nil nil) (Azzurra "NickServ!service@azzurra.org" "/ns\\s-IDENTIFY\\s-password" "NickServ" "IDENTIFY" nil nil) (BitlBee nil nil "&bitlbee" "identify" nil nil) (BRASnet "NickServ!services@brasnet.org" "/NickServ\\s-IDENTIFY\\s-senha" "NickServ" "IDENTIFY" nil "") (DALnet "NickServ!service@dal.net" "/msg\\s-NickServ@services.dal.net\\s-IDENTIFY\\s-<password>" "NickServ@services.dal.net" "IDENTIFY" nil nil) (freenode "NickServ!NickServ@services." "/msg\\s-NickServ\\s-IDENTIFY\\s-<password>" "NickServ" "IDENTIFY" nil nil) (GalaxyNet "NS!nickserv@galaxynet.org" "Please\\s-change\\s-nicks\\s-or\\s-authenticate." "NS@services.galaxynet.org" "AUTH" t nil) (iip "Trent@anon.iip" "type\\s-/squery\\s-Trent\\s-identify\\s-<password>" "Trent@anon.iip" "IDENTIFY" nil "SQUERY") (OFTC "NickServ!services@services.oftc.net" "type\\s-/msg\\s-NickServ\\s-IDENTIFY\\s-password." "NickServ" "IDENTIFY" nil nil) (QuakeNet nil nil "Q@CServe.quakenet.org" "auth" t nil) (SlashNET "NickServ!services@services.slashnet.org" "/msg\\s-NickServ\\s-IDENTIFY\\s-password" "NickServ@services.slashnet.org" "IDENTIFY" nil nil))))
