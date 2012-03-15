@@ -69,6 +69,9 @@ SAVEHIST=10000
 # don't change into a directory unless I tell you to!
 unsetopt autocd
 
+# don't autocorrect. just autcomplete.
+unsetopt correct_all
+
 ###############################################################################
 ########################### Colors and Display ################################
 ###############################################################################
