@@ -72,6 +72,9 @@ unsetopt autocd
 # don't autocorrect. just autcomplete.
 unsetopt correct_all
 
+# for gitolite
+PATH=/home/saul/bin:$PATH
+
 ###############################################################################
 ########################### Colors and Display ################################
 ###############################################################################
