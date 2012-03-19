@@ -49,6 +49,9 @@ bindkey -e
 export EDITOR="vim"
 export VISUAL="vim"
 
+# colors!
+export TERM='xterm-256color'
+
 # Don't duplicate history lines.
 setopt hist_ignore_all_dups
 
