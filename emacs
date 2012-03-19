@@ -258,8 +258,8 @@ Close the frame when teh capture is committed or cancelled."
 (set-face-background 'modeline             "#333333")
 (set-background-color "black")
 (add-to-list 'default-frame-alist '(background-color . "black"))
-(set-foreground-color "green")
-(add-to-list 'default-frame-alist '(foreground-color . "green"))
+(set-foreground-color "white")
+(add-to-list 'default-frame-alist '(foreground-color . "white"))
 ;; (set-cursor-color "green")
 
 
