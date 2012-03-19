@@ -252,22 +252,23 @@ Close the frame when teh capture is committed or cancelled."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; 256-color terminals mean we can actually use real colors!
-(set-face-background 'region                   "#555555")
-(set-face-foreground 'modeline             "#FFFFFF")
-(set-face-background 'modeline             "#333333")
-(set-background-color "black")
-(add-to-list 'default-frame-alist '(background-color . "black"))
-(set-foreground-color "white")
-(add-to-list 'default-frame-alist '(foreground-color . "white"))
-;; (set-cursor-color "green")
+;; ;; 256-color terminals mean we can actually use real colors!
+;; (set-face-background 'region                   "#555555")
+;; (set-face-foreground 'modeline             "#FFFFFF")
+;; (set-face-background 'modeline             "#333333")
+;; (set-background-color "black")
+;; (add-to-list 'default-frame-alist '(background-color . "black"))
+;; (set-foreground-color "white")
+;; (add-to-list 'default-frame-alist '(foreground-color . "white"))
+;; ;; (set-cursor-color "green")
 
 
 (set-face-attribute 'default nil :height 100)
-(mouse-wheel-mode t)
+(mouse-wheel-mode nil)
 (add-to-list 'default-frame-alist '(background-mode . dark)) ;dark background, so bright colors everywhere
 (global-font-lock-mode t)
 (setq font-lock-maximum-decoration t)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -703,8 +704,8 @@ Close the frame when teh capture is committed or cancelled."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "black" :foreground "green" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 110 :width normal :foundry "unknown" :family "Ubuntu Mono"))))
- '(slime-highlight-edits-face ((((class color) (background dark)) (:background "#333")))))
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "fixed"))))
+ '(slime-highlight-edits-face ((((class color) (background dark)) (:background "#333"))) t))
 
 
 (custom-set-variables
@@ -714,6 +715,7 @@ Close the frame when teh capture is committed or cancelled."
  ;; If there is more than one, they won't work right.
  '(case-fold-search t)
  '(current-language-environment "English")
+ '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(default-input-method "rfc1345")
  '(ede-project-directories (quote ("/home/saul/src/random/src" "/home/saul/src/random/include" "/home/saul/src/random")))
  '(erc-format-nick-function (quote erc-format-@nick))
@@ -750,6 +752,8 @@ Close the frame when teh capture is committed or cancelled."
  '(remember-annotation-functions (quote (org-remember-annotation)))
  '(remember-handler-functions (quote (org-remember-handler)))
  '(show-paren-mode t nil (paren))
+ '(solarized-italic nil)
+ '(solarized-termcolors 256)
  '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "evince") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s"))))
  '(transient-mark-mode t))
 
@@ -769,3 +773,6 @@ Close the frame when teh capture is committed or cancelled."
 (put 'scroll-left 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+
+
+(color-theme-solarized-dark)
