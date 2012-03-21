@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/zsh -xv
 ###############################################################################
 ######################### oh-my-zsh Configuration #############################
 ###############################################################################
@@ -9,7 +9,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="saulrh"
+# ZSH_THEME="saulrh"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -86,7 +86,7 @@ PATH=/home/saul/bin:$PATH
 # make ls more friendly with lesspipe
 #  note that we're using the pipe option, so we don't get nice %-progress
 #  indicators.
-eval "$(lesspipe)"
+export LESSOPEN="|lesspipe %s"
 
 # random aliases
 alias la='ls -a'
@@ -105,9 +105,83 @@ compdef _getfacl ga=getfacl
 compdef _setfacl sa=setfacl
 
 ###############################################################################
+#################################### prompt ###################################
+###############################################################################
+
+# turn on command substitution in the prompt!
+# Also parameter expansion and artihmetic expansion, but we don't use those.
+setopt promptsubst
+
+###############################################################################
+
+# normal:
+# [user@host dir]$
+# {red}[{green}user@host {blue}dir{red}]$
+
+# with clean git repo:
+# [user@host dir (green git)]$
+# {red}[{green}user@host {blue}dir {blue}({green}git{blue}){red}]$
+
+# with dirty git repo:
+# [user@host dir (yellow git)]$
+# {red}[{green}user@host {blue}dir {blue}({yellow}git{blue}){red}]$
+
+###############################################################################
+
+# gets the name of the current branch
+# saves result as a var
+git_branch()
+{
+    git_branch_string="$(git symbolic-ref HEAD 2>/dev/null)"
+    git_branch_string="${git_branch_string##*/}"
+    git_branch_string="${git_branch_string:-no branch}"
+}
+
+# gets whether the current worktree has changes
+# changes color of the branch name
+git_dirty()
+{
+    if [[ -n "$(git status -s --ignore-submodules=dirty --porcelain 2> /dev/null)" ]]; then
+        git_dirty_string="%{$fg[yellow]%}"
+    else
+        git_dirty_string="%{$fg[green]%}"
+    fi
+}
+
+git_prompt() {
+    if [[ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]];
+    then
+        git_prompt_string="%{$fg_bold[blue]%} ("$git_dirty_string$git_branch_string"%{$fg_bold[blue]%})"
+    else
+        unset git_prompt_string
+    fi
+}
+
+# now, update our variables whenever we change directory. 
+function chpwd()
+{
+    git_branch
+    git_dirty
+    git_prompt
+}
+chpwd
+
+#              command                    # color   part
+PROMPT="%{$fg_bold[red]%}["               # red     [
+PROMPT=$PROMPT"%{$fg_bold[green]%}%n"     # green   user
+PROMPT=$PROMPT"%{$fg_bold[green]%}@"      # green   @
+PROMPT=$PROMPT"%{$fg_bold[green]%}%m"     # green   host
+PROMPT=$PROMPT"%{$fg_bold[blue]%} %1~"    # blue     dir
+PROMPT=$PROMPT'$git_prompt_string'        # *        (git)
+PROMPT=$PROMPT"%{$fg_bold[red]%}]$ "      # red     ]$
+PROMPT=$PROMPT"%{$reset_color%}"          # reset   _
+
+
+###############################################################################
 ########################## emacs editing things ###############################
 ###############################################################################
 
 # Local Variables:
 # mode: sh
 # End:
+
