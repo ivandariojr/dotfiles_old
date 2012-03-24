@@ -88,7 +88,7 @@ PATH=/home/saul/bin:$PATH
 #  indicators.
 export LESSOPEN="|lesspipe %s"
 
-# random aliases
+# make ls easier to type
 alias la='ls -a'
 alias ll='ls -l'
 alias lal='ls -al'
@@ -103,6 +103,9 @@ alias ga='getfacl'
 alias sa='setfacl'
 compdef _getfacl ga=getfacl
 compdef _setfacl sa=setfacl
+
+# call this to update the git vars in our command line
+alias gup='chpwd'
 
 ###############################################################################
 #################################### prompt ###################################
