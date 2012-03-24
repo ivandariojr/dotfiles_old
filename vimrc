@@ -11,10 +11,14 @@ set nocompatible
 
 " do backups
 set backup
-set backupdir=~/.vim/backup
+set backupdir=~/.vim/backup//
+
+" do undo files
+set undofile 
+set undodir=~/.vim/undo//
 
 " do swap files
-set directory=~/.vim/tmp
+set dir=~/.vim/swap//,/var/tmp//,/tmp//,.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -68,6 +72,3 @@ set backspace=indent,eol,start
 
 " tell vim that we're using a really fast terminal
 set ttyfast 
-
-" store undo information between sessions
-set undofile 
