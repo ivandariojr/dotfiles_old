@@ -33,9 +33,9 @@ set scrolloff=3
 " use a visual bell instead of beeping
 set visualbell
 
-" show line numbers to the left - 4 characters, relative offset
+" show line numbers to the left - 3 characters, relative offset
 set number " show line numbers to the left
-set numberwidth=4
+set numberwidth=3
 set relativenumber
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
