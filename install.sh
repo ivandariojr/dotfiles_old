@@ -1,6 +1,6 @@
 #!/bin/bash
 
-test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'zshrc')
+test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'vim' 'zshrc')
 
 [[ ! -e "$HOME/old-dotfiles" ]] && mkdir "$HOME/old-dotfiles"
 
