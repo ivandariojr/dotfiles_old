@@ -30,20 +30,8 @@ syntax enable
 " always show at least three lines before and after the cursor
 set scrolloff=3
 
-" show "insert", "visual", or "overwrite" in status line
-set showmode
-
-" show partial command in status line
-set showcmd 
-
 " use a visual bell instead of beeping
 set visualbell
-
-" show buffer position in status line
-set ruler 
-
-" always show status line
-set laststatus=2 
 
 " show line numbers to the left - 4 characters, relative offset
 set number " show line numbers to the left
