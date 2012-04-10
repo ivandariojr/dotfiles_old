@@ -46,8 +46,8 @@ source $ZSH/oh-my-zsh.sh
 bindkey -e
 
 # set up editor variables - use vim for quick stuff, basically
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="emacsclient -t"
+export VISUAL="emacsclient -t"
 
 # colors!
 export TERM='xterm-256color'
