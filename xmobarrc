@@ -1,0 +1,16 @@
+Config {
+  position = TopW L 90,
+  commands = [ Run Weather "KATL" ["-t"," <tempC>C","-L","10","-H","24","--normal","yellow","--high","red","--low","lightblue"] 36000,
+               Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10,
+               Run Memory ["-t","Mem: <usedratio>%"] 10,
+               Run Swap [] 10,
+               Run Date "%a %b %_d %l:%M" "date" 10,
+               -- Run Battery ["-L", "15","-H","50","-m","blue","-l","red","-h","gray","-p","blue"] 60,
+               Run Battery ["-t","Batt:<left>", "-p", "3", "--", "--Low","15","--High","50","--high", "green","--normal", "blue", "--low", "red"] 60,
+               -- Run Battery [] 60,
+               Run StdinReader
+             ],
+  sepChar = "%",
+  alignSep = "}{",
+  template = " %StdinReader% }{ %cpu% | %battery% | %memory% * %swap%  <fc=#ee9a00>%date%</fc> | %KATL%"
+  }
