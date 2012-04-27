@@ -137,8 +137,9 @@
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-c\C-a" 'org-agenda)
-(global-set-key [f6] 'org-agenda-list)
 (global-set-key [f5] 'org-capture)
+(global-set-key [f6] 'org-agenda-list)
+(global-set-key [f7] 'org-todo-list)
 (setq org-log-done t)
 
 (setq org-todo-keywords
