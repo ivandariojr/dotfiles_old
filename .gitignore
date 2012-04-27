@@ -5,3 +5,4 @@ emacs.d/session*
 emacs.d/url/cookies
 emacs.d/.org-id-locations
 emacs.d/tramp
+/emacs.d/bookmarks
