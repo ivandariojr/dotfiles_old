@@ -197,6 +197,13 @@
 (add-hook 'erc-join-hook 'erc-highlight-nicknames-enable)
           
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Git ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Produce syntax highlighting in git commit mode
+(require 'git-commit)
+;; (load "~/.emacs.d/magit-commit.el")
 
 
 
