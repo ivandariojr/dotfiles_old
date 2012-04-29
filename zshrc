@@ -48,6 +48,7 @@ bindkey -e
 # set up editor variables - use vim for quick stuff, basically
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -t"
+export ALTERNATE_EDITOR="vim"
 
 # colors!
 export TERM='xterm-256color'
