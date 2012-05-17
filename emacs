@@ -368,11 +368,12 @@
  '(org-agenda-warning-days 14)
  '(org-capture-templates (quote (("s" "school todo" entry (file+headline "~/org/todo.org" "School") "* TODO %?
   %u" :prepend t) ("t" "todo" entry (file+headline "~/org/todo.org" "Uncategorized") "* TODO %?
-  %u" :prepend t) ("i" "idea" entry (file+headline "~/org/todo.org" "Ideas") "* TODO %?
+  %u" :prepend t) ("i" "idea" entry (file+headline "~/org/todo.org" "Ideas") "* %?
   %u" :prepend t) ("p" "project" entry (file+headline "~/org/todo.org" "Projects") "* TODO %?
-  %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* TODO %?
-  %u" :prepend t) ("n" "Note" entry (file+headline "~/org/notes/notes.org" "Uncategorized") "* %?
-  %u" :prepend t))))
+  %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* TODO %?" :prepend t) ("n" "Note" entry (file+headline "~/org/notes/notes.org" "Uncategorized") "* %?
+  %u" :prepend t) ("w" "Wait" entry (file+headline "~/org/todo.org" "Wait") "* TODO %?
+  SCHEDULED: <%(org-read-date nil nil \"+24h\")>
+  %u"))))
  '(org-default-notes-file "~/org/notes.org")
  '(org-priority-faces (quote ((65 . "red") (66 . "yellow") (67 . "blue"))))
  '(org-remember-store-without-prompt t)
