@@ -143,7 +143,7 @@
 (setq org-log-done t)
 
 (setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "|" "DONE" "WILL-NOT-DO" "REVISIT-LATER")))
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "WILL-NOT-DO" "REVISIT-LATER")))
 
 (defadvice org-capture-finalize (after delete-capture-frame activate)
   "Advise capture-finalize to close the frame if it is the capture frame"
