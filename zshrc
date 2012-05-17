@@ -45,7 +45,7 @@ source $ZSH/oh-my-zsh.sh
 # explicitly state otherwise.
 bindkey -e
 
-# set up editor variables - use vim for quick stuff, basically
+# set up editor variables
 export EDITOR="emacsclient -t"
 export VISUAL="emacsclient -t"
 export ALTERNATE_EDITOR="vim"
