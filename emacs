@@ -217,7 +217,7 @@
 
 (load "~/.emacs.d/erc-highlight-nicknames.el") ; turn on nick coloring
 (add-hook 'erc-join-hook 'erc-highlight-nicknames-enable)
-          
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Git ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
