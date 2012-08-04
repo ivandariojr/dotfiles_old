@@ -177,6 +177,26 @@
   (if (equal "capture" (frame-parameter nil 'name))
       (delete-frame)))
 
+(setq diary-file "~/org/diary")
+(appt-activate)
+(setq appt-message-warning-time 30)
+
+(defun saul-notification-send (title msg &optional icon sound)
+  "Show a popup if we're on X, otherwise echo it; TITLE is the title
+  of the message, MSG is the content. Optionally provide a SOUND that
+  will be played and an ICON that will be displayed."
+  (interactive)
+  (when sound (shell-command
+               (concat "mplayer --really-quite " sound " 2> /dev/null")))
+  (if (eq window-system 'x)
+      ;; visual version
+      (shell-command (concat "notify-send "
+                             (if icon (concat "-i " icon) "")
+                             " '" title "' '" msg "'"))
+    ;; text-only version
+    (message (concat title ": " msg))))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs IRC Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
