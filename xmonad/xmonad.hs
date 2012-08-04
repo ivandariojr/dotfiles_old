@@ -14,7 +14,7 @@ main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar"
   xmonad $ defaultConfig { 
-    workspaces = ["ff1", "term", "emacs", "4", "5", "keepas", "im", "email", "ff2"],
+    workspaces = ["ff1", "term", "emacs", "4", "5", "kpass", "im", "email", "ff2"],
     focusFollowsMouse = False,
     borderWidth = 2,
     terminal = "terminator",
