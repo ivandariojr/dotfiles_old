@@ -177,10 +177,6 @@
   (if (equal "capture" (frame-parameter nil 'name))
       (delete-frame)))
 
-(setq diary-file "~/org/diary")
-(appt-activate)
-(setq appt-message-warning-time 30)
-
 (defun saul-notification-send (title msg &optional icon sound)
   "Show a popup if we're on X, otherwise echo it; TITLE is the title
   of the message, MSG is the content. Optionally provide a SOUND that
@@ -195,6 +191,24 @@
                              " '" title "' '" msg "'"))
     ;; text-only version
     (message (concat title ": " msg))))
+
+;; set up the appoinment notification facility
+(setq
+ appt-message-warning-time 30           ;warn 30 min in advance
+ appt-display-mode-line t
+ appt-display-format 'window
+ diary-file "~/org/diary")
+(appt-activate 1)
+
+;; update appt every time we open our agenda
+(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
+
+;; and hook our display notifier into the system
+(defun saul-appt-display (min-to-app new-time msg)
+  (saul-notification-send (format "Appointment in %s minutes" min-to-app) msg
+                          "/usr/share/icons/gnome/scalable/status/appoinment-soon-symbolic.png"
+                          "/usr/share/sounds/ubuntu/stereo/message.ogg"))
+(setq appt-disp-window-function (function saul-appt-display))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
