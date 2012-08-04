@@ -121,65 +121,6 @@ frame when org-capture is done."
     (message (concat title ": " msg))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org-mobile ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; update everything on startup
-(org-mobile-pull)
-(org-mobile-push)
-
-(defvar org-mobile-push-timer nil
-  "Timer that `org-mobile-push-timer' used to reschedule itself, or nil.")
-
-;; this function waits until Emacs has been idle for n seconds and
-;; then pushes. This means that if you queue up a giant batch of
-;; changes all at once (for example, hitting C-x C-s on your agenda
-;; list to save all org files), only one push is made.
-(defun org-mobile-push-with-delay (secs)
-  (when org-mobile-push-timer
-    (cancel-timer org-mobile-push-timer))
-  (setq org-mobile-push-timer
-        (run-with-idle-timer
-         (* 1 secs) nil 'org-mobile-push)))
-
-(defun install-file-monitor (file secs)
-  (run-with-timer
-   0 secs
-   (lambda (f p)
-     (unless (< p (second (time-since (elt (file-attributes f) 5))))
-       (org-mobile-pull)))
-   file secs))
-
-;; whenever we save an org-mode file, wait thirty seconds, and if no
-;; more changes have been made, push them to the 
-(add-hook 'after-save-hook 
-          (lambda () 
-            (when (eq major-mode 'org-mode)
-              (dolist (file (org-mobile-files-alist))
-                (if (string= (expand-file-name (car file)) (buffer-file-name))
-                    (org-mobile-push-with-delay 30))))))
-
-;; Blindly push once a day in case our org-mode files are edited from
-;; outside emacs
-(run-at-time
- "00:05" (* 60 60 24)
- '(lambda () (org-mobile-push-with-delay 1)))
-
-;; install a file monitor that checks for new changes to pull every
-;; fifteen seconds
-(install-file-monitor (file-truename
-                       (concat
-                        (file-name-as-directory org-mobile-directory)
-                        org-mobile-capture-file))
-                      15)
-
-;; Blindly pull every 5 minutes in case there are problems with
-;; timestamping (i.e. dropbox bugs)
-(run-with-timer
- 0 (* 5 60)
- 'org-mobile-pull)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org-babel ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
