@@ -376,7 +376,7 @@
  ;; If there is more than one, they won't work right.
  '(case-fold-search t)
  '(current-language-environment "English")
- '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(custom-safe-themes (quote ("501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" "7b4a6cbd00303fc53c2d486dfdbe76543e1491118eba6adc349205dbf0f7063a" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(default-input-method "rfc1345")
  '(erc-format-nick-function (quote erc-format-@nick))
  '(erc-modules (quote (button completion fill irccontrols log match menu netsplit noncommands readonly ring scrolltobottom services stamp track)))
@@ -405,6 +405,7 @@
   %u" "~/org/readinglist.org" "Uncategorized" nil))))
  '(org-reverse-note-order t)
  '(show-paren-mode t nil (paren))
+ '(solarized-degrade nil)
  '(solarized-italic nil)
  '(solarized-termcolors 256)
  '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "evince") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s"))))
@@ -425,5 +426,5 @@
 ;;; enabled commands
 (put 'downcase-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
-(put 'dired-find-alternate-file 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
