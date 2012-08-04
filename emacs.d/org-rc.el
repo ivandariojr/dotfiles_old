@@ -14,7 +14,7 @@
 
 ;; this has to happen early, so we do it manually instead of having
 ;; customize do it
-(setq org-mobile-directory "~/Dropbox/mobileorg")
+(setq org-mobile-directory "~/.mobileorg")
 
 ;; load org-mode for .org files
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
