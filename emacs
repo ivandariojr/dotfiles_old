@@ -187,7 +187,7 @@
   will be played and an ICON that will be displayed."
   (interactive)
   (when sound (shell-command
-               (concat "mplayer --really-quite " sound " 2> /dev/null")))
+               (concat "mplayer --really-quiet " sound " 2> /dev/null")))
   (if (eq window-system 'x)
       ;; visual version
       (shell-command (concat "notify-send "
