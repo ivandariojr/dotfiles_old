@@ -190,6 +190,10 @@
   (if (equal "capture" (frame-parameter nil 'name))
       (delete-frame)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; appt-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun saul-notification-send (title msg &optional icon sound)
   "Show a popup if we're on X, otherwise echo it; TITLE is the title
   of the message, MSG is the content. Optionally provide a SOUND that
