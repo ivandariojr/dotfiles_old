@@ -10,7 +10,9 @@
 ;; First, load up some packages
 (require 'package)
 (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)                    ;load everything
 
 
@@ -68,11 +70,31 @@
 ;; tell emacs how to read ansi terminal colors
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+;; load up solarized from the ~/src directory where we've cloned the
+;; appropriate repo
+(add-to-list 'custom-theme-load-path "~/src/emacs-color-theme-solarized" t)
+
+(add-hook 'server-visit-hook
+          '(lambda ()
+             (load-theme 'solarized-dark)))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keybindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key "\C-c\k" 'compile)
+(global-set-key (kbd "C-c k") 'compile)
+
+;; I give up - we'll just reload the theme manually whenever we need to
+(global-set-key (kbd "C-c C-l") 
+                (lambda ()
+                  (interactive)
+                  (load-theme 'solarized-dark)))
+
+
+
+
+
 
 
 
@@ -155,6 +177,40 @@
   (if (equal "capture" (frame-parameter nil 'name))
       (delete-frame)))
 
+(defun saul-notification-send (title msg &optional icon sound)
+  "Show a popup if we're on X, otherwise echo it; TITLE is the title
+  of the message, MSG is the content. Optionally provide a SOUND that
+  will be played and an ICON that will be displayed."
+  (interactive)
+  (when sound (shell-command
+               (concat "mplayer --really-quiet " sound " 2> /dev/null")))
+  (if (eq window-system 'x)
+      ;; visual version
+      (shell-command (concat "notify-send "
+                             (if icon (concat "-i " icon) "")
+                             " '" title "' '" msg "'"))
+    ;; text-only version
+    (message (concat title ": " msg))))
+
+;; set up the appoinment notification facility
+(setq
+ appt-message-warning-time 30           ;warn 30 min in advance
+ appt-display-mode-line t
+ appt-display-format 'window
+ diary-file "~/org/diary")
+(appt-activate 1)
+
+;; update appt every time we open our agenda
+(add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
+
+;; and hook our display notifier into the system
+(defun saul-appt-display (min-to-app new-time msg)
+  (saul-notification-send (format "Appointment in %s minutes" min-to-app) msg
+                          "/usr/share/icons/gnome/scalable/status/appoinment-soon-symbolic.png"
+                          "/usr/share/sounds/ubuntu/stereo/message.ogg"))
+(setq appt-disp-window-function (function saul-appt-display))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Emacs IRC Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -195,7 +251,7 @@
 
 (load "~/.emacs.d/erc-highlight-nicknames.el") ; turn on nick coloring
 (add-hook 'erc-join-hook 'erc-highlight-nicknames-enable)
-          
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Git ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -354,7 +410,7 @@
  ;; If there is more than one, they won't work right.
  '(case-fold-search t)
  '(current-language-environment "English")
- '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(custom-safe-themes (quote ("501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" "7b4a6cbd00303fc53c2d486dfdbe76543e1491118eba6adc349205dbf0f7063a" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(default-input-method "rfc1345")
  '(erc-format-nick-function (quote erc-format-@nick))
  '(erc-modules (quote (button completion fill irccontrols log match menu netsplit noncommands readonly ring scrolltobottom services stamp track)))
@@ -384,6 +440,7 @@
   %u" "~/org/readinglist.org" "Uncategorized" nil))))
  '(org-reverse-note-order t)
  '(show-paren-mode t nil (paren))
+ '(solarized-degrade nil)
  '(solarized-italic nil)
  '(solarized-termcolors 256)
  '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "evince") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s"))))
@@ -398,11 +455,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(color-theme-solarized-dark)
+;; (color-theme-solarized-dark)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; enabled commands
 (put 'downcase-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
-(put 'dired-find-alternate-file 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)

@@ -7,3 +7,5 @@ emacs.d/.org-id-locations
 emacs.d/tramp
 /emacs.d/bookmarks
 *.o
+emacs.d/eshell/lastdir
+emacs.d/eshell/history
