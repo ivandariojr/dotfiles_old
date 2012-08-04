@@ -5,7 +5,8 @@ emacs.d/session*
 emacs.d/url/cookies
 emacs.d/.org-id-locations
 emacs.d/tramp
-/emacs.d/bookmarks
-*.o
+emacs.d/bookmarks
+xmonad/xmonad.o
+xmonad/xmonad-x86_64-linux
 emacs.d/eshell/lastdir
 emacs.d/eshell/history
