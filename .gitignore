@@ -6,3 +6,5 @@ emacs.d/url/cookies
 emacs.d/.org-id-locations
 emacs.d/tramp
 /emacs.d/bookmarks
+emacs.d/eshell/lastdir
+emacs.d/eshell/history
