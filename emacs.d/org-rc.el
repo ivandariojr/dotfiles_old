@@ -23,7 +23,9 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c C-a") 'org-agenda)
-(global-set-key [f8] 'org-todo-list)
+(global-set-key [f5] 'org-capture)
+(global-set-key [f6] 'org-agenda-list)
+(global-set-key [f7] 'org-todo-list)
 
 ;; add an annotation with the time when we change something's todo
 ;; state
