@@ -90,18 +90,17 @@
           '(lambda ()
              (load-theme 'solarized-dark)))
 
+;; I give up. I'll just reload the theme manually whenever I need to.
+(global-set-key (kbd "C-c C-l") 
+                (lambda ()
+                  (interactive)
+                  (load-theme 'solarized-dark)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keybindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key (kbd "C-c k") 'compile)
-
-;; I give up - we'll just reload the theme manually whenever we need to
-(global-set-key (kbd "C-c C-l") 
-                (lambda ()
-                  (interactive)
-                  (load-theme 'solarized-dark)))
 
 
 
