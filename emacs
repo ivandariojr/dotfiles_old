@@ -394,7 +394,6 @@
   SCHEDULED: <%(org-read-date nil nil \"+24h\")>
   %u"))))
  '(org-default-notes-file "~/org/notes.org")
- '(org-mobile-directory "~/Dropbox/mobileorg")
  '(org-mobile-files (quote (org-agenda-files "~/org/readinglist.org")))
  '(org-priority-faces (quote ((65 . "red") (66 . "yellow") (67 . "blue"))))
  '(org-remember-store-without-prompt t)
