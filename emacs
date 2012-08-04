@@ -70,11 +70,31 @@
 ;; tell emacs how to read ansi terminal colors
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
+;; load up solarized from the ~/src directory where we've cloned the
+;; appropriate repo
+(add-to-list 'custom-theme-load-path "~/src/emacs-color-theme-solarized" t)
+
+(add-hook 'server-visit-hook
+          '(lambda ()
+             (load-theme 'solarized-dark)))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; keybindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(global-set-key "\C-c\k" 'compile)
+(global-set-key (kbd "C-c k") 'compile)
+
+;; I give up - we'll just reload the theme manually whenever we need to
+(global-set-key (kbd "C-c C-l") 
+                (lambda ()
+                  (interactive)
+                  (load-theme 'solarized-dark)))
+
+
+
+
+
 
 
 
