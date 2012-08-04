@@ -35,9 +35,8 @@
 
 (setq make-backup-files nil)            ;no backups to clutter things up
 (setq inhibit-startup-message t)        ;don't put up the splash page
-(iswitchb-mode)                         ;better buffer-switching
 
-;; global settings for tabs
+;; global settings for tabs - use spaces!
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 8)
 
@@ -135,14 +134,19 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; emacs-helm ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; improves buffer-switching, autocomplete, and a lot of
-;; other things
+;; improves buffer-switching, autocomplete, and a lot of other things.
 
 (add-to-list 'load-path "~/src/emacs-helm")
 (require 'helm-config)
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c C-h") 'helm-mini)
+(helm-mode 1)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; iswitchb ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; improves buffer-switching
+;; (iswitchb-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
