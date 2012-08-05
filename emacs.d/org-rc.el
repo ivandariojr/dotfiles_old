@@ -99,13 +99,17 @@ frame when org-capture is done."
 ;; update appt every time we open our agenda
 (add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
 
-;; hook appt into the operating system's notification system. On sane
-;; OSs, this will display a popup and play a chime.
+;; hook appt into the operating system's notification system. This
+;; will provide a series of notifications that start at
+;; appt-message-warning-time minutes before the appointment and go at
+;; two-ish-minute intervals until the appt actually happens.
+(setq appt-disp-window-function (function saul-appt-display))
+
+;; on sane OSs, this will display a popup and play a chime.
 (defun saul-appt-display (min-to-app new-time msg)
   (saul-notification-send (format "Appointment in %s minutes" min-to-app) msg
                           "/usr/share/icons/gnome/scalable/status/appoinment-soon-symbolic.png"
                           "/usr/share/sounds/ubuntu/stereo/message.ogg"))
-(setq appt-disp-window-function (function saul-appt-display))
 
 (defun saul-notification-send (title msg &optional icon sound)
   "Show a popup if we're on X, otherwise echo it; TITLE is the title
