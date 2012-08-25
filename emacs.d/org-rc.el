@@ -8,9 +8,37 @@
 
 (require 'org-install)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; diary ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; define this first to avoid issues on startup
+(defun saul-diary-on-day-of-week-in-block (left right days)
+  "Returns true if the date is on one of the given days of the
+week and later than the left date and before the right date. All
+dates are given in the usual org-diary list of (month day
+year). Days is a list of day numbers in the week, as usual with
+diary functions."
+  (let ((left-t (encode-time 1 1 1 (second left) (first left) (third left)))
+        (right-t (encode-time 3 3 3 (second right) (first right) (third right)))
+        (date-t (encode-time 2 2 2 (second date) (first date) (third date))))
+    (if (and (time-less-p left-t date-t)
+             (time-less-p date-t right-t)
+             (time-less-p left-t right-t)
+             (memq (calendar-day-of-week date) days))
+        t)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; org-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; add some extra todo keywords
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "WILL-NOT-DO")
+        (sequence "IDEA" "WORKING" "|" "TOO-HARD" "FEASIBLE" "FINISHED")
+        (sequence "RECOMMENDED" "ON-HOLD" "|" "READ")))
 
 ;; this has to happen early, so we do it manually instead of having
 ;; customize do it
@@ -31,14 +59,10 @@
 ;; state
 (setq org-log-done t)
 
-;; add some extra todo keywords
-(setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "WILL-NOT-DO" "REVISIT-LATER")))
-
 (defun my-org-agenda-other-frame ()
   "Raise a frame with an org-agenda-list buffer in it.
 
-Doesn't clean up after itself, but because you're using
+Doesn't clean up after itself properly, but because you're using
 emacs--daemon and invoking this function with emacsclient -e
 \"(moaof)\", you can just roll your fingers over C-x C-c to close
 the frame when you're done."
@@ -90,7 +114,7 @@ frame when org-capture is done."
 
 ;; set up the appoinment notification facility and activate it
 (setq
- appt-message-warning-time 30           ;warn 45 min in advance - time to get anywhere on campus
+ appt-message-warning-time 45 ;warn 45 min in advance - time to get anywhere on campus
  appt-display-mode-line t
  appt-display-format 'window
  diary-file "~/org/diary")
@@ -139,4 +163,3 @@ frame when org-capture is done."
    (octave . t)
    (emacs-lisp . t)
    (lisp . t)))
-

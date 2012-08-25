@@ -91,7 +91,7 @@
              (load-theme 'solarized-dark)))
 
 ;; I give up. I'll just reload the theme manually whenever I need to.
-(global-set-key (kbd "C-c C-l") 
+(global-set-key (kbd "C-z") 
                 (lambda ()
                   (interactive)
                   (load-theme 'solarized-dark)))
@@ -176,15 +176,6 @@
 ;; Emacs IRC Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq erc-auto-query 'frame) ; on PM, open in new frame.
-
-(add-hook 'erc-after-connect ; same behavior for notices
-          (lambda (server nick)
-            (add-hook 'erc-server-NOTICE-hook 'erc-auto-query)))
-
-(require 'erc-match)                    ; highlight on nick said
-(setq erc-keywords '("vebyast"))
-
 ; change fill width when the window changes size
 (make-variable-buffer-local 'erc-fill-column)
 (add-hook 'window-configuration-change-hook 
@@ -197,22 +188,7 @@
                     (when (eq major-mode 'erc-mode)
                       (setq erc-fill-column (- (window-width w) 2)))))))))
 
-;(load "~/.irc.el")              ;load passwords
-;(setq erc-nickserv-passwords
-      ;`(("mibbit"        (("vebyast" . ,mibbit-nickone-pass)))
-        ;("foonetic"      (("vebyast" . ,foonetic-nickone-pass)))))
-
-;(add-hook 'erc-after-connect            ;use passwords to autoconnect
-          ;'(lambda (SERVER NICK)
-             ;(cond
-              ;((string-match "mibbit.net" SERVER)
-               ;(erc-message "PRIVMSG" (concat "nickserv identify " mibbit-nickone-pass)))
-              ;((string-match "foonetic.net" SERVER)
-               ;(erc-message "PRIVMSG" (concat "nickserv identify " foonetic-nickone-pass))))))
-
-(load "~/.emacs.d/erc-highlight-nicknames.el") ; turn on nick coloring
-(add-hook 'erc-join-hook 'erc-highlight-nicknames-enable)
-
+(load "~/.irc.el")              ;load passwords
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Git ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -360,7 +336,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 113 :width normal :foundry "misc" :family "fixed"))))
+ '(default ((t (:inherit nil :stipple nil :background "#002b36" :foreground "#839496" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "misc" :family "fixed"))))
  '(slime-highlight-edits-face ((((class color) (background dark)) (:background "#333"))) t))
 
 
@@ -373,11 +349,26 @@
  '(current-language-environment "English")
  '(custom-safe-themes (quote ("501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" "7b4a6cbd00303fc53c2d486dfdbe76543e1491118eba6adc349205dbf0f7063a" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(default-input-method "rfc1345")
+ '(erc-auto-query (quote window))
+ '(erc-beep-match-types (quote (current-nick)))
  '(erc-format-nick-function (quote erc-format-@nick))
- '(erc-modules (quote (button completion fill irccontrols log match menu netsplit noncommands readonly ring scrolltobottom services stamp track)))
- '(erc-nickserv-alist (quote ((Foonetic "NickServ!services@foonetic.net" "This nickname is registered and protected\\.  If it is your nickname, type /msg NickServ IDENTIFY password\\.  Otherwise, please choose a different nickname\\." "NickServ" "IDENTIFY" nil nil) (Ars nil nil "Census" "IDENTIFY" nil nil) (Austnet "NickOP!service@austnet.org" "/msg\\s-NickOP@austnet.org\\s-identify\\s-<password>" "nickop@austnet.org" "identify" nil nil) (Azzurra "NickServ!service@azzurra.org" "/ns\\s-IDENTIFY\\s-password" "NickServ" "IDENTIFY" nil nil) (BitlBee nil nil "&bitlbee" "identify" nil nil) (BRASnet "NickServ!services@brasnet.org" "/NickServ\\s-IDENTIFY\\s-senha" "NickServ" "IDENTIFY" nil "") (DALnet "NickServ!service@dal.net" "/msg\\s-NickServ@services.dal.net\\s-IDENTIFY\\s-<password>" "NickServ@services.dal.net" "IDENTIFY" nil nil) (freenode "NickServ!NickServ@services." "/msg\\s-NickServ\\s-IDENTIFY\\s-<password>" "NickServ" "IDENTIFY" nil nil) (GalaxyNet "NS!nickserv@galaxynet.org" "Please\\s-change\\s-nicks\\s-or\\s-authenticate." "NS@services.galaxynet.org" "AUTH" t nil) (iip "Trent@anon.iip" "type\\s-/squery\\s-Trent\\s-identify\\s-<password>" "Trent@anon.iip" "IDENTIFY" nil "SQUERY") (OFTC "NickServ!services@services.oftc.net" "type\\s-/msg\\s-NickServ\\s-IDENTIFY\\s-password." "NickServ" "IDENTIFY" nil nil) (QuakeNet nil nil "Q@CServe.quakenet.org" "auth" t nil) (SlashNET "NickServ!services@services.slashnet.org" "/msg\\s-NickServ\\s-IDENTIFY\\s-password" "NickServ@services.slashnet.org" "IDENTIFY" nil nil))))
+ '(erc-highlight-nicknames-mode t)
+ '(erc-identd-mode nil)
+ '(erc-match-mode t)
+ '(erc-modules (quote (button completion fill irccontrols log match menu netsplit networks noncommands readonly ring scrolltobottom services stamp track truncate notifications highlight-nicknames)))
+ '(erc-nick "Vebyast")
+ '(erc-nickserv-alist (quote ((Mibbit "NickServ!services@mibbit.net" "" "" "" nil nil nil) (Foonetic "NickServ@services.foonetic.net" "/msg[:space:]*NickServ[:space:]*identify[:space:]*<password>" "NickServ" "identify" nil nil nil) (Ars nil nil "Census" "IDENTIFY" nil nil nil) (Austnet "NickOP!service@austnet.org" "/msg\\s-NickOP@austnet.org\\s-identify\\s-<password>" "nickop@austnet.org" "identify" nil nil nil) (Azzurra "NickServ!service@azzurra.org" "/ns\\s-IDENTIFY\\s-password" "NickServ" "IDENTIFY" nil nil nil) (BitlBee nil nil "&bitlbee" "identify" nil nil nil) (BRASnet "NickServ!services@brasnet.org" "/NickServ\\s-IDENTIFY\\s-senha" "NickServ" "IDENTIFY" nil "" nil) (DALnet "NickServ!service@dal.net" "/msg\\s-NickServ@services.dal.net\\s-IDENTIFY\\s-<password>" "NickServ@services.dal.net" "IDENTIFY" nil nil nil) (freenode "NickServ!NickServ@services." "/msg\\s-NickServ\\s-IDENTIFY\\s-<password>" "NickServ" "IDENTIFY" nil nil nil) (GalaxyNet "NS!nickserv@galaxynet.org" "Please\\s-change\\s-nicks\\s-or\\s-authenticate." "NS@services.galaxynet.org" "AUTH" t nil nil) (iip "Trent@anon.iip" "type\\s-/squery\\s-Trent\\s-identify\\s-<password>" "Trent@anon.iip" "IDENTIFY" nil "SQUERY" nil) (OFTC "NickServ!services@services.oftc.net" "type\\s-/msg\\s-NickServ\\s-IDENTIFY\\s-password." "NickServ" "IDENTIFY" nil nil nil) (QuakeNet nil nil "Q@CServe.quakenet.org" "auth" t nil nil) (SlashNET "NickServ!services@services.slashnet.org" "/msg\\s-NickServ\\s-IDENTIFY\\s-password" "NickServ@services.slashnet.org" "IDENTIFY" nil nil nil))))
+ '(erc-nickserv-identify-mode (quote both))
+ '(erc-notifications-mode t)
+ '(erc-paranoid t)
+ '(erc-prompt-for-nickserv-password nil)
+ '(erc-server-reconnect-attempts 0)
+ '(erc-text-matched-hook (quote (erc-log-matches erc-beep-on-match)))
+ '(erc-truncate-mode t)
+ '(erc-user-full-name "Vebyast Kranm")
+ '(erc-verbose-server-ping nil)
  '(helm-ff-auto-update-initial-value nil)
- '(org-agenda-files (quote ("~/org/todo.org" "~/org/from-mobile.org")))
+ '(org-agenda-files (quote ("~/org/todo.org" "~/.mobileorg/from-mobile.org")))
  '(org-agenda-include-diary t)
  '(org-agenda-ndays 21)
  '(org-agenda-show-all-dates t)
@@ -387,12 +378,12 @@
  '(org-agenda-warning-days 14)
  '(org-capture-templates (quote (("s" "school todo" entry (file+headline "~/org/todo.org" "School") "* TODO %?
   %u" :prepend t) ("t" "todo" entry (file+headline "~/org/todo.org" "Uncategorized") "* TODO %?
-  %u" :prepend t) ("i" "idea" entry (file+headline "~/org/todo.org" "Ideas") "* %?
+  %u" :prepend t) ("i" "idea" entry (file+headline "~/org/ideas.org" "Ideas") "* IDEA %?
   %u" :prepend t) ("p" "project" entry (file+headline "~/org/todo.org" "Projects") "* TODO %?
-  %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* TODO %?" :prepend t) ("n" "Note" entry (file+headline "~/org/notes/notes.org" "Uncategorized") "* %?
+  %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* RECOMMENDED %?" :prepend t) ("n" "Note" entry (file+headline "~/org/notes/notes.org" "Uncategorized") "* %?
   %u" :prepend t) ("w" "Wait" entry (file+headline "~/org/todo.org" "Wait") "* TODO %?
   SCHEDULED: <%(org-read-date nil nil \"+24h\")>
-  %u"))))
+  %u") ("b" "To buy at store" entry (file "~/org/shopping-list.org") "* %?"))))
  '(org-default-notes-file "~/org/notes.org")
  '(org-mobile-files (quote (org-agenda-files "~/org/readinglist.org")))
  '(org-priority-faces (quote ((65 . "red") (66 . "yellow") (67 . "blue"))))
