@@ -46,8 +46,8 @@ source $ZSH/oh-my-zsh.sh
 bindkey -e
 
 # set up editor variables
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -t"
+export EDITOR="emacsclient -t -a \"\""
+export VISUAL="emacsclient -t -a \"\""
 export ALTERNATE_EDITOR="vim"
 
 # colors!
