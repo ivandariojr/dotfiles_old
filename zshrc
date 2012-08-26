@@ -80,6 +80,10 @@ unsetopt correct_all
 # for gitolite
 PATH=/home/saul/bin:$PATH
 
+# for python virtualenvs
+WORKON_HOME=~/.python-virtualenvs
+source virtualenvwrapper.sh
+
 ###############################################################################
 ########################### Colors and Display ################################
 ###############################################################################
