@@ -192,7 +192,6 @@ function chpwd()
 
 # start with git status enabled
 DO_ZSH_GIT=""
-chpwd
 
 #              command                    # color   part
 PROMPT="%{$fg_bold[red]%}["               # red     [
