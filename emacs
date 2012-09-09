@@ -274,33 +274,33 @@
 ;; common lisp  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;(add-to-list 'load-path "/home/saul/src/slime/slime")
-(setq inferior-lisp-program "/usr/local/bin/sbcl")
+(add-to-list 'load-path "/home/saul/src/slime/slime")
 ;;(setq common-lisp-hyperspec-root "file:/home/saul/documents/source/hyperspec/")
 
 (eval-after-load "slime"
   '(progn
-     (setq slime-lisp-implementations '((sbcl ("/usr/local/bin/sbcl"))))
-     (slime-setup '(slime-asdf
-                    slime-autodoc
-                    slime-editing-commands
-                    slime-fancy-inspector
-                    slime-fontifying-fu
-                    slime-fuzzy
+     (setq slime-lisp-implementations '((sbcl ("/usr/bin/sbcl"))))
+     (slime-setup '(;slime-asdf
+                    ;slime-autodoc
+                    ;slime-editing-commands
+                    slime-fancy
+                    ;slime-fontifying-fu
+                    ;slime-fuzzy
                     slime-indentation
                     slime-mdot-fu
-                    slime-package-fu
-                    slime-references
+                    ;slime-package-fu
+                    ;slime-references
                     slime-repl
                     slime-sbcl-exts
-                    slime-scratch
-                    slime-xref-browser))
+                    ;slime-scratch
+                    ;slime-xref-browser
+                    ))
      (slime-autodoc-mode)
      (setq slime-complete-symbol*-fancy t
            slime-complete-sumbol-function 'slime-fuzzy-complete-symbol)))
 
-;; (require 'slime)
-;; (slime-setup)
+(require 'slime)
+(slime-setup)
 
 (add-hook 'slime-mode-hook
           (lambda ()
@@ -367,6 +367,7 @@
  '(erc-truncate-mode t)
  '(erc-user-full-name "Vebyast Kranm")
  '(erc-verbose-server-ping nil)
+ '(gdb-many-windows t)
  '(helm-ff-auto-update-initial-value nil)
  '(org-agenda-files (quote ("~/org/todo.org" "~/.mobileorg/from-mobile.org")))
  '(org-agenda-include-diary t)
@@ -378,7 +379,8 @@
  '(org-agenda-warning-days 14)
  '(org-capture-templates (quote (("s" "school todo" entry (file+headline "~/org/todo.org" "School") "* TODO %?
   %u" :prepend t) ("t" "todo" entry (file+headline "~/org/todo.org" "Uncategorized") "* TODO %?
-  %u" :prepend t) ("i" "idea" entry (file+headline "~/org/ideas.org" "Ideas") "* IDEA %?
+  %u" :prepend t) ("m" "Money Todo" entry (file+headline "~/org/todo.org" "Money") "* TODO %?
+  %u") ("i" "idea" entry (file+headline "~/org/ideas.org" "Ideas") "* IDEA %?
   %u" :prepend t) ("p" "project" entry (file+headline "~/org/todo.org" "Projects") "* TODO %?
   %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* RECOMMENDED %?" :prepend t) ("n" "Note" entry (file+headline "~/org/notes/notes.org" "Uncategorized") "* %?
   %u" :prepend t) ("w" "Wait" entry (file+headline "~/org/todo.org" "Wait") "* TODO %?
