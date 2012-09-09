@@ -172,14 +172,33 @@ git_prompt() {
     fi
 }
 
+function toggle_git()
+{
+    if [ -z "$DO_ZSH_GIT" ] ;
+    then
+        echo "Will not include git status in prompt"
+        DO_ZSH_GIT="foo"
+    else
+        echo "Will include git status in prompt"
+        DO_ZSH_GIT=""
+    fi
+}
+
 # now, update our variables whenever we change directory. 
 function chpwd()
 {
-    git_branch
-    git_dirty
-    git_prompt
+    if [ -z "$DO_ZSH_GIT" ] ;
+    then
+        git_branch
+        git_dirty
+        git_prompt
+    else
+        unset git_prompt_string
+    fi
 }
-chpwd
+
+# start with git status enabled
+DO_ZSH_GIT=""
 
 #              command                    # color   part
 PROMPT="%{$fg_bold[red]%}["               # red     [
