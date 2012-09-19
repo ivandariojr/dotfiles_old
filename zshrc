@@ -173,16 +173,6 @@ git_prompt() {
         unset git_prompt_string
     fi
 }
-
-case $HOST in
-    krang|thebrain)
-        prompt_host_string="%{$fg_bold[red]%}%m"
-    ;;
-    *)
-        prompt_host_string="%{$fg_bold[green]%}%m"
-    ;;
-esac
-
 function toggle_git()
 {
     if [ -z "$DO_ZSH_GIT" ] ;
@@ -206,6 +196,20 @@ function chpwd()
     else
         unset git_prompt_string
     fi
+}
+
+function precmd {
+    case $HOST in
+        krang)
+            prompt_host_string="%{$fg_bold[red]%}%m[`bms -V`]"
+        ;;
+        thebrain)
+            prompt_host_string="%{$fg_bold[red]%}%m"
+        ;;
+        *)
+            prompt_host_string="%{$fg_bold[green]%}%m"
+        ;;
+    esac
 }
 
 # start with git status enabled
