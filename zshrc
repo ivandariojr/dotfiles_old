@@ -81,8 +81,10 @@ unsetopt correct_all
 PATH=/home/saul/bin:$PATH
 
 # for python virtualenvs
-WORKON_HOME=~/.python-virtualenvs
-source virtualenvwrapper.sh
+if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
+    WORKON_HOME=~/.python-virtualenvs
+    source virtualenvwrapper.sh
+fi
 
 ###############################################################################
 ############################### C code tagging ################################
