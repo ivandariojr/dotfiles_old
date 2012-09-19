@@ -174,6 +174,15 @@ git_prompt() {
     fi
 }
 
+case $HOST in
+    krang|thebrain)
+        prompt_host_string="%{$fg_bold[red]%}%m"
+    ;;
+    *)
+        prompt_host_string="%{$fg_bold[green]%}%m"
+    ;;
+esac
+
 function toggle_git()
 {
     if [ -z "$DO_ZSH_GIT" ] ;
@@ -206,9 +215,9 @@ DO_ZSH_GIT=""
 PROMPT="%{$fg_bold[red]%}["               # red     [
 PROMPT=$PROMPT"%{$fg_bold[green]%}%n"     # green   user
 PROMPT=$PROMPT"%{$fg_bold[green]%}@"      # green   @
-PROMPT=$PROMPT"%{$fg_bold[green]%}%m"     # green   host
-PROMPT=$PROMPT"%{$fg_bold[blue]%} %1~"    # blue     dir
-PROMPT=$PROMPT'$git_prompt_string'        # *        (git)
+PROMPT=$PROMPT'$prompt_host_string'       # *       host
+PROMPT=$PROMPT"%{$fg_bold[blue]%} %1~"    # blue    dir
+PROMPT=$PROMPT'$git_prompt_string'        # *       (git)
 PROMPT=$PROMPT"%{$fg_bold[red]%}]$ "      # red     ]$
 PROMPT=$PROMPT"%{$reset_color%}"          # reset   _
 
