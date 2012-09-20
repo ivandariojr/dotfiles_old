@@ -81,8 +81,10 @@ unsetopt correct_all
 PATH=/home/saul/bin:$PATH
 
 # for python virtualenvs
-WORKON_HOME=~/.python-virtualenvs
-source virtualenvwrapper.sh
+if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
+    WORKON_HOME=~/.python-virtualenvs
+    source virtualenvwrapper.sh
+fi
 
 ###############################################################################
 ############################### C code tagging ################################
@@ -172,7 +174,6 @@ git_prompt() {
         unset git_prompt_string
     fi
 }
-
 function toggle_git()
 {
     if [ -z "$DO_ZSH_GIT" ] ;
@@ -198,6 +199,20 @@ function chpwd()
     fi
 }
 
+function precmd {
+    case $HOST in
+        krang)
+            prompt_host_string="%{$fg_bold[red]%}%m[`bms -V`]"
+        ;;
+        thebrain)
+            prompt_host_string="%{$fg_bold[red]%}%m"
+        ;;
+        *)
+            prompt_host_string="%{$fg_bold[green]%}%m"
+        ;;
+    esac
+}
+
 # start with git status enabled
 DO_ZSH_GIT=""
 
@@ -205,9 +220,9 @@ DO_ZSH_GIT=""
 PROMPT="%{$fg_bold[red]%}["               # red     [
 PROMPT=$PROMPT"%{$fg_bold[green]%}%n"     # green   user
 PROMPT=$PROMPT"%{$fg_bold[green]%}@"      # green   @
-PROMPT=$PROMPT"%{$fg_bold[green]%}%m"     # green   host
-PROMPT=$PROMPT"%{$fg_bold[blue]%} %1~"    # blue     dir
-PROMPT=$PROMPT'$git_prompt_string'        # *        (git)
+PROMPT=$PROMPT'$prompt_host_string'       # *       host
+PROMPT=$PROMPT"%{$fg_bold[blue]%} %1~"    # blue    dir
+PROMPT=$PROMPT'$git_prompt_string'        # *       (git)
 PROMPT=$PROMPT"%{$fg_bold[red]%}]$ "      # red     ]$
 PROMPT=$PROMPT"%{$reset_color%}"          # reset   _
 
