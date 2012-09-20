@@ -198,6 +198,12 @@
 (require 'git-commit)
 ;; (load "~/.emacs.d/magit-commit.el")
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; cscope ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; Produce syntax highlighting in git commit mode
+(require 'ascope)
 
 
 
