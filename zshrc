@@ -89,7 +89,8 @@ source virtualenvwrapper.sh
 ###############################################################################
 
 CODEDIR=~/src
-alias mktags='cd $CODEDIR && etags `find $CODEDIR -name "*.[h|c|py|cpp|cc|hh|hpp|java]"` && cd -'
+alias mktags='cd $CODEDIR && etags "`find $CODEDIR -name *.[h|c|py|cpp|cc|hh|hpp|java]`" && cd -'
+alias mktagscurrent='etags `find . -name "*.[h|c|py|cpp|cc|hh|hpp|java]"`'
 
 ###############################################################################
 ########################### Colors and Display ################################
