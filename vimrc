@@ -14,8 +14,10 @@ set backup
 set backupdir=~/.vim/backup//
 
 " do undo files
-set undofile 
-set undodir=~/.vim/undo//
+if exists("undofile")
+    set undofile 
+    set undodir=~/.vim/undo//
+endif
 
 " do swap files
 set dir=~/.vim/swap//,/var/tmp//,/tmp//,.
@@ -40,7 +42,9 @@ set visualbell
 " show line numbers to the left - 3 characters, relative offset
 set number " show line numbers to the left
 set numberwidth=3
-set relativenumber
+if exists("+relativenumber")
+    set relativenumber
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
