@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+#############################################
+########### Install things to ~ #############
+#############################################
 test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'zshrc' 'xmonad' 'xmobarrc' )
 
 [[ ! -e "$HOME/old-dotfiles" ]] && mkdir "$HOME/old-dotfiles"
