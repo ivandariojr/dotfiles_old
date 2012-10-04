@@ -51,9 +51,6 @@ end
 -- Themes define colours, icons, and wallpapers
 beautiful.init(awful.util.getdir("config") .. "/themes/awesome-solarized/dark/theme.lua")
 
--- This is used later as the default terminal and editor to run.
-terminal = "x-terminal-emulator"
-
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
@@ -358,7 +355,7 @@ globalkeys = awful.util.table.join(
              end),
 
    -- Standard program
-   awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+   awful.key({ modkey,           }, "Return", function () awful.util.spawn("x-terminal-emulator") end),
    awful.key({ modkey, "Control" }, "r", awesome.restart),
 
    awful.key({ modkey,           }, "Right", function () awful.tag.incmwfact( 0.05)    end),
@@ -522,3 +519,6 @@ awful.util.spawn("dropbox start")
 
 -- disable touchpad tap-to-click
 awful.util.spawn("synclient MaxTapTime=0")
+
+-- start gnome-do at login
+awful.util.spawn("gnome-do")
