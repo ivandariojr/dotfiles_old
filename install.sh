@@ -22,9 +22,26 @@ done
 
 [[ "$(ls -A $HOME/old-dotfiles)" ]] && echo "Copied old dotfiles to $HOME/old-dotfiles" || rm -rf "$HOME/old-dotfiles"
 
-#############################################
-########### Install other things ############
-#############################################
+####################################################
+########### Configure Vim's directories ############
+####################################################
+
+if [ ! -d "~/.vim/" ]; then
+    mkdir "~/.vim/"
+fi
+if [ ! -d "~/.vim/backup" ]; then
+    mkdir "~/.vim/backup"
+fi
+if [ ! -d "~/.vim/undo" ]; then
+    mkdir "~/.vim/undo"
+fi
+if [ ! -d "~/.vim/swap" ]; then
+    mkdir "~/.vim/swap"
+fi
+
+################################################
+########### Install Awesome Configs ############
+################################################
 
 ### awesome
 if [ ! -d "~/.config/awesome" ]; then
