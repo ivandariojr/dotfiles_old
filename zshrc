@@ -7,8 +7,8 @@
 if [[ "$TERM" == "dumb" ]]; then
     return
 fi
-if [[ "$TERM" != "tmux" ]]; then
-    tmux
+if [[ "$TERM" != "screen-256color" && "$TERM" != "screen" ]]; then
+    tmux -2
 fi
 
 ###############################################################################
@@ -61,9 +61,6 @@ bindkey -e
 export EDITOR="emacsclient -t -a \"\""
 export VISUAL="emacsclient -t -a \"\""
 export ALTERNATE_EDITOR="vim"
-
-# colors!
-export TERM='xterm-256color'
 
 # Don't duplicate history lines.
 setopt hist_ignore_all_dups
@@ -133,6 +130,9 @@ compdef _setfacl sa=setfacl
 
 # call this to update the git vars in our command line
 alias gup='chpwd'
+
+# becuase tmux is stupid about color
+alias tmux='tmux -2'
 
 ###############################################################################
 #################################### prompt ###################################
