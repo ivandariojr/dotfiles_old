@@ -2,7 +2,7 @@
 
 
 #############################################
-########### Install things to ~ #############
+########### Install things to $HOME #############
 #############################################
 test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'zshrc' 'xmonad' 'xmobarrc' )
 
@@ -26,17 +26,17 @@ done
 ########### Configure Vim's directories ############
 ####################################################
 
-if [ ! -d "~/.vim/" ]; then
-    mkdir "~/.vim/"
+if [ ! -d "$HOME/.vim/" ]; then
+    mkdir "$HOME/.vim/"
 fi
-if [ ! -d "~/.vim/backup" ]; then
-    mkdir "~/.vim/backup"
+if [ ! -d "$HOME/.vim/backup" ]; then
+    mkdir "$HOME/.vim/backup"
 fi
-if [ ! -d "~/.vim/undo" ]; then
-    mkdir "~/.vim/undo"
+if [ ! -d "$HOME/.vim/undo" ]; then
+    mkdir "$HOME/.vim/undo"
 fi
-if [ ! -d "~/.vim/swap" ]; then
-    mkdir "~/.vim/swap"
+if [ ! -d "$HOME/.vim/swap" ]; then
+    mkdir "$HOME/.vim/swap"
 fi
 
 ################################################
@@ -44,20 +44,20 @@ fi
 ################################################
 
 ### awesome
-if [ ! -d "~/.config/awesome" ]; then
-    mkdir "~/.config/awesome"
+if [ ! -d "$HOME/.config/awesome" ]; then
+    mkdir "$HOME/.config/awesome"
 fi
 
-if [ ! -d "~/.config/awesome/revelation" ]; then
-    git clone git://github.com/bioe007/awesome-revelation.git ~/.config/awesome/revelation
+if [ ! -d "$HOME/.config/awesome/revelation" ]; then
+    git clone git://github.com/bioe007/awesome-revelation.git $HOME/.config/awesome/revelation
 fi
 
-if [ ! -d "~/.config/awesome/themes/" ]; then
-    mkdir "~/.config/awesome/themes"
+if [ ! -d "$HOME/.config/awesome/themes/" ]; then
+    mkdir "$HOME/.config/awesome/themes"
 fi
 
-if [ ! -d "~/.config/awesome/themes/awesome-solarized" ]; then
-    git clone git://github.com/cycojesus/awesome-solarized.git ~/.config/awesome/themes/awesome-solarized
+if [ ! -d "$HOME/.config/awesome/themes/awesome-solarized" ]; then
+    git clone git://github.com/cycojesus/awesome-solarized.git $HOME/.config/awesome/themes/awesome-solarized
 fi
 
 [[ -e "$HOME/.config/awesome/rc.lua" ]] && [[ ! -h "$HOME/.config/awesome/rc.lua" ]] && mv "$HOME/.config/awesome/rc.lua" "$HOME/old-dotfiles/awesomerc.lua"
