@@ -15,9 +15,38 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)                    ;load everything
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                                                                         ;;
+;;  README                                                                 ;;
+;;                                                                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; things required to use this .emacs:
+;; 
+;; * install from package manager:
+;;   - emacs24
+;;     - ubuntu: ppa:cassou/emacs and emacs-snapshot
+;;   - cscope
+;;   - sbcl
+;;   - cl-swank
+;; * install using package-list-packages:
+;;   - helm
+;;   - ascope
+;;   - slime
+;;   - slime-repl
+;;   - solarized-theme
+;; * install to src/ using git:
+;; * set up in other ways
+;;   - you need ~/.irc.el to contain some passwords for your irc client
 
-
+;; other things that I like to have:
+;; * install from package manager:
+;; * install using package-list-packages:
+;;   - magit
+;; * install to src/ using git:
+;; * set up in other ways
 
 
 
