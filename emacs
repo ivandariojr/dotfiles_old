@@ -335,10 +335,7 @@
                     ;; slime-sbcl-exts
                     ;slime-scratch
                     ;slime-xref-browser
-                    ))
-     (slime-autodoc-mode)
-     (setq slime-complete-symbol*-fancy t
-           slime-complete-sumbol-function 'slime-fuzzy-complete-symbol)))
+                    ))))
 
 (require 'slime)
 (slime-setup)
