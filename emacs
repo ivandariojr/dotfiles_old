@@ -111,13 +111,8 @@
 ;; tell emacs how to read ansi terminal colors
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
-;; load up solarized from the ~/src directory where we've cloned the
-;; appropriate repo
-(add-to-list 'custom-theme-load-path "~/src/emacs-color-theme-solarized" t)
-
-(add-hook 'server-visit-hook
-          '(lambda ()
-             (load-theme 'solarized-dark)))
+;; set font size
+(set-face-attribute 'default nil :height 110)
 
 ;; I give up. I'll just reload the theme manually whenever I need to.
 (global-set-key (kbd "C-z") 
@@ -165,11 +160,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; improves buffer-switching, autocomplete, and a lot of other things.
 
-(add-to-list 'load-path "~/src/emacs-helm")
 (require 'helm-config)
 (global-set-key (kbd "C-c h") 'helm-mini)
 (global-set-key (kbd "C-c C-h") 'helm-mini)
-;; (helm-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; iswitchb ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -315,9 +308,6 @@
 ;; common lisp  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(add-to-list 'load-path "/home/saul/src/slime/slime")
-;;(setq common-lisp-hyperspec-root "file:/home/saul/documents/source/hyperspec/")
-
 (eval-after-load "slime"
   '(progn
      (setq slime-lisp-implementations '((sbcl ("/usr/bin/sbcl"))))
@@ -374,7 +364,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#002b36" :foreground "#839496" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "misc" :family "fixed"))))
  '(slime-highlight-edits-face ((((class color) (background dark)) (:background "#333"))) t))
 
 
@@ -385,7 +374,7 @@
  ;; If there is more than one, they won't work right.
  '(case-fold-search t)
  '(current-language-environment "English")
- '(custom-safe-themes (quote ("501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" "7b4a6cbd00303fc53c2d486dfdbe76543e1491118eba6adc349205dbf0f7063a" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" "7b4a6cbd00303fc53c2d486dfdbe76543e1491118eba6adc349205dbf0f7063a" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(default-input-method "rfc1345")
  '(erc-auto-query (quote window))
  '(erc-beep-match-types (quote (current-nick)))
