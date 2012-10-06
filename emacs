@@ -324,15 +324,15 @@
      (slime-setup '(;slime-asdf
                     ;slime-autodoc
                     ;slime-editing-commands
-                    slime-fancy
+                    ;; slime-fancy
                     ;slime-fontifying-fu
                     ;slime-fuzzy
-                    slime-indentation
-                    slime-mdot-fu
+                    ;; slime-indentation
+                    ;; slime-mdot-fu
                     ;slime-package-fu
                     ;slime-references
                     slime-repl
-                    slime-sbcl-exts
+                    ;; slime-sbcl-exts
                     ;slime-scratch
                     ;slime-xref-browser
                     ))
