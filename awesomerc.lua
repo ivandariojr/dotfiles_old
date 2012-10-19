@@ -143,21 +143,24 @@ vicious.register(volumewidget, vicious.widgets.volume, "$1", 1, "Master")
 -------------------
 -- battery usage --
 -------------------
--- init
-chargebar = awful.widget.progressbar()
--- config
-chargebar:set_width(50)
--- chargebar:set_height(10)
-chargebar:set_background_color("#000000")
-chargebar:set_border_color(nil)
-chargebar:set_color("#eeee00")
--- register
-vicious.register(chargebar, vicious.widgets.bat, "$2", 1, "BAT1")
 
--- init
-chargetext = widget({type = "textbox"})
-vicious.register(chargetext, vicious.widgets.bat, "$3 $1", 1, "BAT1")
+-- only have to set this up when we have a battery
+if havebattery then
+   -- init
+   chargebar = awful.widget.progressbar()
+   -- config
+   chargebar:set_width(50)
+   -- chargebar:set_height(10)
+   chargebar:set_background_color("#000000")
+   chargebar:set_border_color(nil)
+   chargebar:set_color("#eeee00")
+   -- register
+   vicious.register(chargebar, vicious.widgets.bat, "$2", 1, "BAT1")
 
+   -- init
+   chargetext = widget({type = "textbox"})
+   vicious.register(chargetext, vicious.widgets.bat, "$3 $1", 1, "BAT1")
+end
 
 ------------------
 -- memory usage --
@@ -177,8 +180,23 @@ vicious.register(memwidget, vicious.widgets.mem, "$1", 1)
 -- CPU usage --
 ---------------
 
+ncpus = 1
+if hostname == "lanning" then
+   ncpus = 4
+end
+if hostname == "hermes" then
+   ncpus = 2
+end
+if hostname == "harpe" then
+   ncpus = 3
+end
+
+cpuspacers = {}
 cpuwidgets = {}
-for c = 1, 2 do
+for c = 1, ncpus do
+   -- do separators
+   cpuspacers[c] = widget({type = "textbox"})
+   cpuspacers[c].text = " "
    -- init
    cpuwidgets[c] = awful.widget.graph()
    -- config
@@ -268,6 +286,29 @@ mytasklist.buttons = awful.util.table.join(
                         end))
 
 for s = 1, screen.count() do
+   cpubox = { }
+   if s == 1 then
+      for i = 0, ncpus-1 do
+         table.insert(cpubox, cpuwidgets[ncpus-i].widget)
+         table.insert(cpubox, cpuspacers[ncpus-i])
+      end
+      table.insert(cpubox, memwidget.widget)
+      table.insert(cpubox, separators[2])
+   end
+   cpubox.layout = awful.widget.layout.horizontal.rightleft
+
+   -- only need to set this up if we have a battery
+   batterybox = { }
+   if s == 1 and havebattery then
+      batterybox = {
+         chargebar.widget,
+         spacers[3],
+         chargetext,
+         separators[1],
+      }
+   end
+   batterybox.layout = awful.widget.layout.horizontal.rightleft
+   
    -- Create a promptbox for each screen
    mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
@@ -296,23 +337,18 @@ for s = 1, screen.count() do
          -- exposebutton,
          mytaglist[s],
          mypromptbox[s],
+         separators[3],
          layout = awful.widget.layout.horizontal.leftright
       },
       -- right to left - layouts, clock, systray only on screen 1, network, task list
       mylayoutbox[s],
       mytextclock,
       s == 1 and mysystray or nil, -- ternary operator?
-      separators[6],
-      cpuwidgets[1].widget,
-      spacers[1],
-      cpuwidgets[2].widget,
-      spacers[2],
-      memwidget.widget,
       separators[4],
-      chargebar.widget,
-      spacers[3],
-      chargetext,
-      separators[1],
+      s == 1 and volumewidget.widget or nil,
+      s == 1 and separators[5] or nil,
+      s == 1 and cpubox or nil,
+      (s == 1 and havebattery) and batterybox or nil, -- only if we have a battery
       mytasklist[s],
       layout = awful.widget.layout.horizontal.rightleft
    }
