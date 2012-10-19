@@ -113,6 +113,19 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
 mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
                                      menu = mymainmenu })
 
+
+-------------------
+-- volume widget --
+-------------------
+
+volumewidget = awful.widget.progressbar()
+volumewidget:set_width(8)
+volumewidget:set_vertical(true)
+volumewidget:set_background_color("#000000")
+volumewidget:set_border_color(nil)
+volumewidget:set_color("#999999")
+vicious.register(volumewidget, vicious.widgets.volume, "$1", 1, "Master")
+
 -- -------------------
 -- -- expose button --
 -- -------------------
