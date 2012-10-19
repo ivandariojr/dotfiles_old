@@ -332,6 +332,10 @@ globalkeys = awful.util.table.join(
    -- personal shortcuts
    awful.key({ modkey,}, "c", function () awful.util.spawn("emacsclient -e (my-org-capture-other-frame)") end),
    awful.key({ "Shift", "Control"}, "l",      function() awful.util.spawn("xscreensaver-command --lock") end),
+
+   awful.key({ }, "XF86AudioRaiseVolume",     function() awful.util.spawn("amixer set Master 9%+") end),
+   awful.key({ }, "XF86AudioLowerVolume",     function() awful.util.spawn("amixer set Master 9%-") end),
+   awful.key({ }, "XF86AudioMute",            function() awful.util.spawn("amixer sset Master toggle") end),
    
    -- tag navigation
    awful.key({ modkey,           }, "p",      awful.tag.viewprev       ),
