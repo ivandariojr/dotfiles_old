@@ -182,7 +182,7 @@ vicious.register(memwidget, vicious.widgets.mem, "$1", 1)
 
 ncpus = 1
 if hostname == "lanning" then
-   ncpus = 4
+   ncpus = 8
 end
 if hostname == "hermes" then
    ncpus = 2
