@@ -80,14 +80,40 @@ havebattery = hostname == "hermes"
 --=================================================================================
 
 -- Define a tag table which hold all screen tags.
-tags = {
-   names  = { "ff1", "term", "ec", "4", "5", "kp", "im", "em", "ff2" },
-   layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
-              layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
-}
+tags = {}
+if hostname == "lanning" then
+   tags = {
+      {
+         names  = { "ff", "term", "ec", "4", "5", "6", "7", "8", "vlc" },
+         layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
+                    layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+      },
+      {
+         names  = { "ff", "term", "ec", "4", "5", "6", "vm", "mus", "surf" },
+         layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
+                    layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+      }
+   }
+elseif hostname == "hermes" then
+   tags = {
+      {
+         names  = { "ff1", "term", "ec", "4", "5", "kp", "im", "em", "ff2" },
+         layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
+                    layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+      }
+   }
+end
+
 for s = 1, screen.count() do
-   -- Each screen has its own tag table.
-   tags[s] = awful.tag(tags.names, s, tags.layout)
+   if (s <= #tags) then
+      tags[s] = awful.tag(tags[s].names, s, tags.layout)
+   else
+      names = {}
+      for i = 1, 9 do
+         names[i] = tostring(i)
+      end
+      tags[s] = awful.tag(names, s, tags.layout)
+   end
 end
 
 --=================================================================================
