@@ -105,9 +105,9 @@
 ;; these make emacs prefer to split side-by-side when possible.
 (setq split-height-threshold nil)       ;not allowed to split
                                         ;vertically (over-under)
-(setq split-width-threshold 130)        ;split left-right only if
-                                        ;window is wider than 130
-                                        ;characters
+(setq split-width-threshold 200)        ;split left-right only if
+                                        ;window is wider than this
+                                        ;many chars
 
 ;; tell emacs how to read ansi terminal colors
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
