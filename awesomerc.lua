@@ -106,13 +106,15 @@ end
 
 for s = 1, screen.count() do
    if (s <= #tags) then
-      tags[s] = awful.tag(tags[s].names, s, tags.layout)
+      tags[s] = awful.tag(tags[s].names, s, tags[s].layout)
    else
-      names = {}
+      tagnames = {}
+      taglayouts = {}
       for i = 1, 9 do
-         names[i] = tostring(i)
+         tagnames[i] = tostring(i)
+         taglayouts[i] = layouts[1]
       end
-      tags[s] = awful.tag(names, s, tags.layout)
+      tags[s] = awful.tag(tagnames, s, taglayouts)
    end
 end
 
