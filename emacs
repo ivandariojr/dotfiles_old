@@ -349,10 +349,10 @@
 ;; python  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;;(require 'pymacs)
-;;(pymacs-load "ropemacs" "rope-")
-
-
+(elpy-enable)
+;; (setq python-check-command "pylint")
+;; (setq python-check-command "pep8")
+(elpy-clean-modeline)
 
 
 
