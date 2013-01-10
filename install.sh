@@ -4,7 +4,7 @@
 #############################################
 ########### Install things to $HOME #############
 #############################################
-test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'zshrc' 'xmonad' 'xmobarrc' )
+test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' )
 
 [[ ! -e "$HOME/old-dotfiles" ]] && mkdir "$HOME/old-dotfiles"
 
