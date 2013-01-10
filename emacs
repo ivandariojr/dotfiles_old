@@ -240,7 +240,28 @@
 ;; Produce syntax highlighting in git commit mode
 (require 'ascope)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; w3m ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'w3m)
+(require 'mime-w3m)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; bbdb ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; (setq bbdb-file "~/.emacs.d/bbdb")
+;; (require 'bbdb)
+;; (bbdb-initialize)
+
+;; ;; save without asking
+;; (setq bbdb-offer-save 1)
+
+;; ;; popups
+;; (setq bbdb-pop-up-window-size 2)
+
+;; ;; interactive?
 
 
 
