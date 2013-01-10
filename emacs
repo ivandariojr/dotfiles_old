@@ -167,15 +167,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; improves buffer-switching, autocomplete, and a lot of other things.
 
-(require 'helm-config)
-(global-set-key (kbd "C-c h") 'helm-mini)
-(global-set-key (kbd "C-c C-h") 'helm-mini)
+;; (require 'helm-config)
+;; (global-set-key (kbd "C-c h") 'helm-mini)
+;; (global-set-key (kbd "C-c C-h") 'helm-mini)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; iswitchb ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; improves buffer-switching
-;; (iswitchb-mode)
+(iswitchb-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; password expirations ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
