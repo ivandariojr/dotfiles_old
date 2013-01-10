@@ -97,6 +97,8 @@
 ;; appearance ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq frame-title-format (concat invocation-name "@" system-name ": %b"))
+
 ;; tell emacs to use a dark background
 (add-to-list 'default-frame-alist '(background-mode . dark))
 
