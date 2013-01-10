@@ -252,3 +252,16 @@ alias rolldice="rolldice -s"
 # mode: sh
 # End:
 
+###############################################################################
+########################## cpan setup @@@@@@@@@@###############################
+###############################################################################
+
+case $HOST in
+    lanning)
+        export PERL_LOCAL_LIB_ROOT="/home/saul/perl5";
+        export PERL_MB_OPT="--install_base /home/saul/perl5";
+        export PERL_MM_OPT="INSTALL_BASE=/home/saul/perl5";
+        export PERL5LIB="/home/saul/perl5/lib/perl5/x86_64-linux-gnu-thread-multi:/home/saul/perl5/lib/perl5";
+        export PATH="/home/saul/perl5/bin:$PATH";
+    ;;
+esac
