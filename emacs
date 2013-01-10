@@ -464,7 +464,9 @@
  '(solarized-italic nil)
  '(solarized-termcolors 256)
  '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "evince") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s"))))
- '(transient-mark-mode t))
+ '(transient-mark-mode t)
+ '(wl-draft-config-alist (quote (("^From: .*saulrh@gatech.edu" (wl-smtp-authenticate-type . "plain") (wl-smtp-posting-user . "sarh3") (wl-smtp-posting-port . 465) (wl-smtp-posting-server . "mail.gatech.edu") (wl-smtp-connection-type quote ssl)) ("^From: .*sreynoldshaertle@gmail.com" (wl-smtp-authenticate-type . "login") (wl-smtp-posting-user . "sreynoldshaertle") (wl-smtp-posting-server . "smtp.gmail.com") (wl-local-domain . "gmail.com") (wl-smtp-posting-port . 587) (wl-smtp-connection-type quote starttls) (wl-message-id-domain . "smtp.gmail.com")) ("^From: .*vebyast@gmail.com" (wl-smtp-posting-user . "vebyast") (wl-smtp-posting-server . "smtp.gmail.com") (wl-smtp-posting-port . 587) (wl-smtp-connection-type quote starttls) (wl-smtp-authenticate-type . "login") (wl-local-domain . "gmail.com") (wl-message-id-domain . "smtp.gmail.com")))))
+ '(wl-template-alist (quote (("sreynoldshaertle@gmail" (wl-from . "Saul Reynolds-Haertle <sreynoldshaertle@gmail.com>") ("From" . wl-from)) ("saulrh@gatech.edu" (wl-from . "Saul Reynolds-Haertle <saulrh@gatech.edu>") ("From" . wl-from)) ("vebyast@gmail.com" (wl-from . "Vebyast Kranm <vebyast@gmail.com>") ("From" . wl-from))))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
