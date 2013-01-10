@@ -31,12 +31,16 @@
 ;;   - cscope
 ;;   - sbcl
 ;;   - cl-swank
+;;   - w3m
+;;   - wl-beta
+;;   - gnutls-bin
 ;; * install using package-list-packages:
 ;;   - helm
 ;;   - ascope
 ;;   - slime
 ;;   - slime-repl
 ;;   - solarized-theme
+;;   - w3m
 ;; * install to src/ using git:
 ;; * set up in other ways
 ;;   - you need ~/.irc.el to contain some passwords for your irc client
