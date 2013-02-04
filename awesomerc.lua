@@ -404,6 +404,7 @@ globalkeys = awful.util.table.join(
    awful.key({ }, "XF86AudioRaiseVolume",     function() awful.util.spawn("amixer set Master 9%+") end),
    awful.key({ }, "XF86AudioLowerVolume",     function() awful.util.spawn("amixer set Master 9%-") end),
    awful.key({ }, "XF86AudioMute",            function() awful.util.spawn("amixer sset Master toggle") end),
+   awful.key({ modkey,           }, "a",      function() awful.util.spawn("/usr/bin/keepass2 --auto-type") end),
    
    -- tag navigation
    awful.key({ modkey,           }, "p",      awful.tag.viewprev       ),
