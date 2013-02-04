@@ -246,15 +246,16 @@ function precmd {
 # start with git status enabled
 DO_ZSH_GIT=""
 
-#              command                    # color   part
-PROMPT="%{$fg_bold[red]%}["               # red     [
-PROMPT=$PROMPT"%{$fg_bold[green]%}%n"     # green   user
-PROMPT=$PROMPT"%{$fg_bold[green]%}@"      # green   @
-PROMPT=$PROMPT'$prompt_host_string'       # *       host
-PROMPT=$PROMPT"%{$fg_bold[blue]%} %1~"    # blue    dir
-PROMPT=$PROMPT'$git_prompt_string'        # *       (git)
-PROMPT=$PROMPT"%{$fg_bold[red]%}]$ "      # red     ]$
-PROMPT=$PROMPT"%{$reset_color%}"          # reset   _
+#              command                       # part
+PROMPT=$color_brackets"["                    # [
+PROMPT=$PROMPT'$prompt_user_string'          # username
+PROMPT=$PROMPT'$color_at'"@"         # @
+PROMPT=$PROMPT'$prompt_host_string'          # host
+PROMPT=$PROMPT'$color_dir'" %1~"       # dir
+PROMPT=$PROMPT'$git_prompt_string'           # git status
+PROMPT=$PROMPT'$color_brackets'"]"            # ]
+PROMPT=$PROMPT"%(#.# .$ )"                    # root gets a #, normal a $.
+PROMPT=$PROMPT"%{$reset_color%}"             # reset   
 
 ###############################################################################
 ################################# aliases #####################################
@@ -281,5 +282,5 @@ case $HOST in
         export PERL_MM_OPT="INSTALL_BASE=/home/saul/perl5";
         export PERL5LIB="/home/saul/perl5/lib/perl5/x86_64-linux-gnu-thread-multi:/home/saul/perl5/lib/perl5";
         export PATH="/home/saul/perl5/bin:$PATH";
-    ;;
+        ;;
 esac
