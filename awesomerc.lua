@@ -84,7 +84,7 @@ tags = {}
 if hostname == "lanning" then
    tags = {
       {
-         names  = { "ff", "term", "ec", "4", "5", "6", "7", "8", "vlc" },
+         names  = { "ff", "term", "ec", "4", "5", "6", "7", "vlc", "surf" },
          layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
                     layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
       },
