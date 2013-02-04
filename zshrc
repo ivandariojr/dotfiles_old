@@ -222,6 +222,14 @@ function chpwd()
 }
 
 function precmd {
+    case $USER in
+        root)
+            prompt_user_string=$color_username_root$USER
+            ;;
+        *)
+            prompt_user_string=$color_username_normal$USER
+            ;;
+    esac
     case $HOST in
         krang)
             prompt_host_string=$color_host_special$HOST"[`bms -V`]"
