@@ -224,14 +224,14 @@ function chpwd()
 function precmd {
     case $HOST in
         krang)
-            prompt_host_string="%{$fg_bold[red]%}%m[`bms -V`]"
-        ;;
+            prompt_host_string=$color_host_special$HOST"[`bms -V`]"
+            ;;
         thebrain)
-            prompt_host_string="%{$fg_bold[red]%}%m"
-        ;;
+            prompt_host_string=$color_host_special$HOST
+            ;;
         *)
-            prompt_host_string="%{$fg_bold[green]%}%m"
-        ;;
+            prompt_host_string=$color_host_normal$HOST
+            ;;
     esac
 }
 
