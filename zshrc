@@ -158,6 +158,16 @@ setopt promptsubst
 
 ###############################################################################
 
+color_brackets="%{$fg_bold[red]%}"
+color_username_normal="%{$fg_bold[green]%}"
+color_username_root="%{$fg_bold[yellow]%}"
+color_at="%{$fg_bold[green]%}"
+color_host_normal="%{$fg_bold[green]%}"
+color_host_special="%{$fg_bold[red]%}"
+color_dir="%{$fg_bold[blue]%}"
+
+###############################################################################
+
 # gets the name of the current branch
 # saves result as a var
 git_branch()
