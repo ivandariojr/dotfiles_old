@@ -164,8 +164,9 @@ color_username_root="%{$fg_bold[yellow]%}"
 color_at="%{$fg_bold[green]%}"
 color_host_normal="%{$fg_bold[green]%}"
 color_host_special="%{$fg_bold[red]%}"
-color_host_chroot="%{$fg_bold[yellow]%}"
 color_dir="%{$fg_bold[blue]%}"
+
+[[ -e "/schroot.conf" ]] && color_host_chroot="%{$fg_bold[yellow]%}" && color_host_normal="%{$fg_bold[yellow]%}"
 
 ###############################################################################
 
@@ -237,9 +238,6 @@ function precmd {
             ;;
         thebrain)
             prompt_host_string=$color_host_special$HOST
-            ;;
-        *-chroot-*)
-            prompt_host_string=$color_host_chroot$HOST
             ;;
         *)
             prompt_host_string=$color_host_normal$HOST
