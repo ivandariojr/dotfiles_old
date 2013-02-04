@@ -73,7 +73,7 @@ layouts = {
 
 -- get hostname
 hostname = awful.util.pread("hostname"):gsub("\n", "")
-havebattery = hostname == "hermes"
+havebattery = hostname == "hermes" or hostname == "pazuzu"
 
 --=================================================================================
 --=================================== Tags ========================================
@@ -94,7 +94,7 @@ if hostname == "lanning" then
                     layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
       }
    }
-elseif hostname == "hermes" then
+elseif hostname == "hermes" or hostname == "pazuzu" then
    tags = {
       {
          names  = { "ff1", "term", "ec", "4", "5", "kp", "im", "em", "ff2" },
@@ -212,7 +212,7 @@ ncpus = 1
 if hostname == "lanning" then
    ncpus = 8
 end
-if hostname == "hermes" then
+if hostname == "hermes" or hostname == "pazuzu" then
    ncpus = 2
 end
 if hostname == "harpe" then
