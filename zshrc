@@ -164,6 +164,7 @@ color_username_root="%{$fg_bold[yellow]%}"
 color_at="%{$fg_bold[green]%}"
 color_host_normal="%{$fg_bold[green]%}"
 color_host_special="%{$fg_bold[red]%}"
+color_host_chroot="%{$fg_bold[yellow]%}"
 color_dir="%{$fg_bold[blue]%}"
 
 ###############################################################################
@@ -230,6 +231,7 @@ function precmd {
             prompt_user_string=$color_username_normal$USER
             ;;
     esac
+
     case $HOST in
         krang)
             prompt_host_string=$color_host_special$HOST"[`bms -V`]"
@@ -241,6 +243,11 @@ function precmd {
             prompt_host_string=$color_host_normal$HOST
             ;;
     esac
+
+    if [ -n "$SCHROOT_CHROOT_NAME" ] ;
+    then
+        prompt_host_string=$prompt_host_string$color_host_chroot" ($SCHROOT_CHROOT_NAME)"
+    fi
 }
 
 # start with git status enabled
