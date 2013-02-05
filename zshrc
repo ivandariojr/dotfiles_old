@@ -232,21 +232,21 @@ function precmd {
             ;;
     esac
 
-    if [ -z "$SCHROOT_CHROOT_NAME" ] ;
+    case $HOST in
+        krang)
+            prompt_host_string=$color_host_special$HOST"[`bms -V`]"
+            ;;
+        thebrain)
+            prompt_host_string=$color_host_special$HOST
+            ;;
+        *)
+            prompt_host_string=$color_host_normal$HOST
+            ;;
+    esac
+
+    if [ -n "$SCHROOT_CHROOT_NAME" ] ;
     then
-        case $HOST in
-            krang)
-                prompt_host_string=$color_host_special$HOST"[`bms -V`]"
-                ;;
-            thebrain)
-                prompt_host_string=$color_host_special$HOST
-                ;;
-            *)
-                prompt_host_string=$color_host_normal$HOST
-                ;;
-        esac
-    else
-        color_host_chroot="%{$fg_bold[yellow]%}"
+        prompt_host_string=$prompt_host_string$color_host_chroot" ($SCHROOT_CHROOT_NAME)"
     fi
 }
 
