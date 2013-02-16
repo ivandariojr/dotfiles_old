@@ -86,8 +86,8 @@ unsetopt autocd
 # don't autocorrect. just autcomplete.
 unsetopt correct_all
 
-# for gitolite
-PATH=/home/saul/bin:$PATH
+# for gitolite and things from pip
+PATH=/home/saul/bin:/home/saul/.local/bin:$PATH
 
 # for python virtualenvs
 if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
