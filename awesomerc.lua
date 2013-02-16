@@ -94,6 +94,19 @@ if hostname == "lanning" then
                     layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
       }
    }
+elseif hostname == "vulcan" then
+   tags = {
+      {
+         names  = { "ff", "term", "ec", "4", "5", "6", "7", "vm", "music" },
+         layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
+                    layouts[1], layouts[1], layouts[1], layouts[7], layouts[1] }
+      },
+      {
+         names  = { "ff", "term", "ec", "4", "5", "6", "kp", "stat", "yt" },
+         layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
+                    layouts[1], layouts[1], layouts[1], layouts[7], layouts[7] }
+      }
+   }
 elseif hostname == "hermes" or hostname == "pazuzu" then
    tags = {
       {
@@ -211,6 +224,9 @@ vicious.register(memwidget, vicious.widgets.mem, "$1", 1)
 ncpus = 1
 if hostname == "lanning" then
    ncpus = 8
+end
+if hostname == "vulcan" then
+   ncpus = 6
 end
 if hostname == "hermes" or hostname == "pazuzu" then
    ncpus = 2
