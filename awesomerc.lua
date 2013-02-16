@@ -608,3 +608,7 @@ awful.util.spawn("synclient MaxTapTime=0")
 
 -- start gnome-do at login
 awful.util.spawn("gnome-do")
+
+-- Local Variables:
+-- mode: lua
+-- End:
