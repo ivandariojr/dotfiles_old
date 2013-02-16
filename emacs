@@ -35,15 +35,24 @@
 ;;   - wl-beta
 ;;   - gnutls-bin
 ;; * install using package-list-packages:
-;;   - helm
 ;;   - ascope
+;;   - auto-complete
+;;   - elpy
+;;   - find-file-in-project
+;;   - helm
+;;   - highlight-indentation
+;;   - idomenu
+;;   - nose
 ;;   - slime
 ;;   - slime-repl
 ;;   - solarized-theme
+;;   - virtualenv
 ;;   - w3m
+;;   - yasnippet
 ;; * install to src/ using git:
 ;; * set up in other ways
 ;;   - you need ~/.irc.el to contain some passwords for your irc client
+;;   - pip install --user elpy rope pyflakes pep8 virtualenvwrapper
 
 ;; other things that I like to have:
 ;; * install from package manager:
