@@ -625,6 +625,9 @@ awful.util.spawn("synclient MaxTapTime=0")
 -- start gnome-do at login
 awful.util.spawn("gnome-do")
 
+-- grab a desktop image and display it
+awful.util.spawn("~/dotfiles/nasa_iotd.sh")
+
 -- Local Variables:
 -- mode: lua
 -- End:
