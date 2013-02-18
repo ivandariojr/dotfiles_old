@@ -112,6 +112,11 @@ alias mktagscurrent='etags `find . -name "*.[h|c|py|cpp|cc|hh|hpp|java]"`'
 #  indicators.
 export LESSOPEN="|lesspipe %s"
 
+# editor
+alias e='emacsclient'
+alias enw='emacsclient -nw'
+alias enc='emacsclient -nc'
+
 # make ls easier to type
 alias la='ls -a'
 alias ll='ls -l'
