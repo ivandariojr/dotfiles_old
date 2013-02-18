@@ -201,9 +201,9 @@ git_branch()
 git_dirty()
 {
     if [[ -n "$(git status -s --ignore-submodules=dirty --porcelain 2> /dev/null)" ]]; then
-        git_dirty_string="%{$fg[yellow]%}"
+        git_dirty_string=$color_git_dirty
     else
-        git_dirty_string="%{$fg[green]%}"
+        git_dirty_string=$color_git_clean
     fi
 }
 
