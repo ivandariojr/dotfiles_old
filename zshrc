@@ -141,30 +141,48 @@ alias tmux='tmux -2'
 # turn on command substitution in the prompt!
 # Also parameter expansion and artihmetic expansion, but we don't use those.
 setopt promptsubst
+autoload colors && colors
 
 ###############################################################################
 
-# normal:
-# [user@host dir]$
-# {red}[{green}user@host {blue}dir{red}]$
-
-# with clean git repo:
-# [user@host dir (green git)]$
-# {red}[{green}user@host {blue}dir {blue}({green}git{blue}){red}]$
-
-# with dirty git repo:
-# [user@host dir (yellow git)]$
-# {red}[{green}user@host {blue}dir {blue}({yellow}git{blue}){red}]$
-
-###############################################################################
-
+# [user@host (chroot?) (git?) dir]$ 
+# ^                              ^^
 color_brackets="%{$fg_bold[red]%}"
+
+# [user@host (chroot?) (git?) dir]$ 
+#  ^^^^
 color_username_normal="%{$fg_bold[green]%}"
+
+# [root@host (chroot?) (git?) dir]$ 
+#  ^^^^
 color_username_root="%{$fg_bold[yellow]%}"
+
+# [user@host (chroot?) (git?) dir]$ 
+#      ^
 color_at="%{$fg_bold[green]%}"
+
+# [user@host (chroot?) (git?) dir]$ 
+#       ^^^^
 color_host_normal="%{$fg_bold[green]%}"
+
+# [user@important (chroot?) (git?) dir]$ 
+#       ^^^^^^^^^
 color_host_special="%{$fg_bold[red]%}"
+
+# [user@host (chroot?) (git?) dir]$ 
+#             ^^^^^^
 color_host_chroot="%{$fg_bold[yellow]%}"
+
+# [user@host (chroot?) (git?) dir]$ 
+#                       ^^^
+color_git_clean="%{$fg[green]%}"
+
+# [user@host (chroot?) (git?) dir]$ 
+#                       ^^^
+color_git_dirty="%{$fg[yellow]%}"
+
+# [user@host (chroot?) (git?) dir]$ 
+#                             ^^^
 color_dir="%{$fg_bold[blue]%}"
 
 ###############################################################################
