@@ -22,6 +22,10 @@ endif
 " do swap files
 set dir=~/.vim/swap//,/var/tmp//,/tmp//,.
 
+" load libraries
+execute pathogen#infect()
+filetype plugin indent on
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""                                                                 ""
