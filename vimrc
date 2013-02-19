@@ -81,6 +81,12 @@ set backspace=indent,eol,start
 " tell vim that we're using a really fast terminal
 set ttyfast 
 
+" better searching
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""                                                                 ""
@@ -92,3 +98,6 @@ set ttyfast
 " go by visible line rather than file line
 nmap j gj
 nmap k gk
+
+" keybinding to remove highlighting
+nmap \q :nohlsearch<CR>
