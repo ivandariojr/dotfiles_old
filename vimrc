@@ -110,3 +110,11 @@ nmap k gk
 
 " keybinding to remove highlighting
 nmap \q :nohlsearch<CR>
+
+" better buffer switching
+nmap <C-e> :e#<CR>
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
+
+" control-p
+nmap ; :CtrlPBuffer<CR>
