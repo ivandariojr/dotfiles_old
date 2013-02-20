@@ -29,6 +29,8 @@ curl='curl'
 # This is a list of all plugins which are available via Git repos. git:// URLs
 # don't work.
 repos=(
+    https://github.com/kien/ctrlp.vim.git
+    https://github.com/tpope/vim-sleuth.git
   )
 
 # Here's a list of everything else to download in the format
