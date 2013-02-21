@@ -24,6 +24,12 @@ me=$HOME/dotfiles/update.sh
 
 curl='curl'
 
+# BASIC SETUP -------------------------------------------------------------
+
+mkdir -p ~/.vim/autoload ~/.vim/bundle;
+$curl -Sso ~/.vim/autoload/pathogen.vim \
+    https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+
 # URLS --------------------------------------------------------------------
 
 # This is a list of all plugins which are available via Git repos. git:// URLs
