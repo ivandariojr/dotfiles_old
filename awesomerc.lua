@@ -102,7 +102,7 @@ elseif hostname == "vulcan" then
                     layouts[1], layouts[1], layouts[1], layouts[7], layouts[1] }
       },
       {
-         names  = { "ff", "term", "ec", "4", "5", "6", "kp", "stat", "yt" },
+         names  = { "ff", "term", "ec", "4", "5", "6", "kp", "stat", "vid" },
          layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
                     layouts[1], layouts[1], layouts[1], layouts[7], layouts[7] }
       }
