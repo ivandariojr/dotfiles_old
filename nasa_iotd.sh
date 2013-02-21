@@ -18,4 +18,4 @@ mkdir -p $dldir
 wget -q -O $dldir/$img_name $img_url
 
 # and then use awsetbg to set the background
-awsetbg -c $dldir/$img_name
+feh --bg-fill $dldir/$img_name
