@@ -140,8 +140,14 @@
 ;; keybindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; better compiling - make it easy to reuse the last line without
+;; having to renavigate to the build directory
 (global-set-key (kbd "C-c k") 'compile)
 (global-set-key (kbd "C-c C-k") 'recompile)
+
+;; We're using emacsclient exclusively, so we want the user to be
+;; slightly more aware of what's happening - use <C-c #>, <C-x 5 0>,
+;; or 'save-buffers-kill-emacs' as appropriate.
 (global-unset-key (kbd "C-x C-c"))
 
 
