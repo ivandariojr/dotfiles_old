@@ -4,12 +4,9 @@
 #############################################
 ########### Install things to $HOME #############
 #############################################
-test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' )
+test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc' )
 
-[[ ! -e "$HOME/old-dotfiles" ]] && mkdir "$HOME/old-dotfiles"
-
-#echo "${test[@]}"
-#echo "${#test[@]}"
+mkdir -p "$HOME/old-dotfiles"
 
 for (( i = 0 ; i < ${#test[@]} ; i++ ))
 do
@@ -26,18 +23,10 @@ done
 ########### Configure Vim's directories ############
 ####################################################
 
-if [ ! -d "$HOME/.vim/" ]; then
-    mkdir "$HOME/.vim/"
-fi
-if [ ! -d "$HOME/.vim/backup" ]; then
-    mkdir "$HOME/.vim/backup"
-fi
-if [ ! -d "$HOME/.vim/undo" ]; then
-    mkdir "$HOME/.vim/undo"
-fi
-if [ ! -d "$HOME/.vim/swap" ]; then
-    mkdir "$HOME/.vim/swap"
-fi
+mkdir -p "$HOME/.vim/"
+mkdir -p "$HOME/.vim/backup/"
+mkdir -p "$HOME/.vim/undo/"
+mkdir -p "$HOME/.vim/swap/"
 
 ################################################
 ############## Install oh-my-zsh ###############
@@ -52,18 +41,12 @@ fi
 ################################################
 
 ### awesome
-if [ ! -d "$HOME/.config/awesome" ]; then
-    mkdir "$HOME/.config/awesome"
-fi
-
+mkdir -p "$HOME/.config/awesome"
 if [ ! -d "$HOME/.config/awesome/revelation" ]; then
     git clone git://github.com/bioe007/awesome-revelation.git $HOME/.config/awesome/revelation
 fi
 
-if [ ! -d "$HOME/.config/awesome/themes/" ]; then
-    mkdir "$HOME/.config/awesome/themes"
-fi
-
+mkdir -p "$HOME/.config/awesome/themes"
 if [ ! -d "$HOME/.config/awesome/themes/awesome-solarized" ]; then
     git clone git://github.com/cycojesus/awesome-solarized.git $HOME/.config/awesome/themes/awesome-solarized
 fi

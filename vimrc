@@ -22,6 +22,10 @@ endif
 " do swap files
 set dir=~/.vim/swap//,/var/tmp//,/tmp//,.
 
+" load libraries
+execute pathogen#infect()
+filetype plugin indent on
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""                                                                 ""
@@ -76,3 +80,41 @@ set backspace=indent,eol,start
 
 " tell vim that we're using a really fast terminal
 set ttyfast 
+
+" better searching
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
+
+" configure Ctrl-P
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py'
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_switch_buffer = 0
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""                                                                 ""
+""  Keybindings                                                    ""
+""                                                                 ""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" go by visible line rather than file line
+nmap j gj
+nmap k gk
+
+" keybinding to remove highlighting
+nmap \q :nohlsearch<CR>
+
+" better buffer switching
+nmap <C-e> :e#<CR>
+nmap <C-n> :bnext<CR>
+nmap <C-p> :bprev<CR>
+
+" control-p
+nmap ; :CtrlPBuffer<CR>
