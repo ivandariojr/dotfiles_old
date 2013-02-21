@@ -150,6 +150,12 @@
 ;; or 'save-buffers-kill-emacs' as appropriate.
 (global-unset-key (kbd "C-x C-c"))
 
+;; we want to regexp-search by default because regexp search is
+;; awesome.
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-S-s") 'isearch-forward)
+(global-set-key (kbd "C-S-r") 'isearch-backward)
 
 
 
