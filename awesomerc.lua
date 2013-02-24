@@ -94,6 +94,19 @@ if hostname == "lanning" then
                     layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
       }
    }
+elseif hostname == "vulcan" then
+   tags = {
+      {
+         names  = { "ff", "term", "ec", "4", "5", "6", "7", "vm", "music" },
+         layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
+                    layouts[1], layouts[1], layouts[1], layouts[7], layouts[1] }
+      },
+      {
+         names  = { "ff", "term", "ec", "4", "5", "6", "kp", "stat", "vid" },
+         layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
+                    layouts[1], layouts[1], layouts[1], layouts[7], layouts[7] }
+      }
+   }
 elseif hostname == "hermes" or hostname == "pazuzu" then
    tags = {
       {
@@ -211,6 +224,9 @@ vicious.register(memwidget, vicious.widgets.mem, "$1", 1)
 ncpus = 1
 if hostname == "lanning" then
    ncpus = 8
+end
+if hostname == "vulcan" then
+   ncpus = 6
 end
 if hostname == "hermes" or hostname == "pazuzu" then
    ncpus = 2
@@ -398,12 +414,9 @@ root.buttons(awful.util.table.join(
 
 globalkeys = awful.util.table.join(
    -- personal shortcuts
-   awful.key({ modkey,}, "c", function () awful.util.spawn("emacsclient -e (my-org-capture-other-frame)") end),
-   awful.key({ "Shift", "Control"}, "l",      function() awful.util.spawn("xscreensaver-command --lock") end),
-
-   awful.key({ }, "XF86AudioRaiseVolume",     function() awful.util.spawn("amixer set Master 9%+") end),
-   awful.key({ }, "XF86AudioLowerVolume",     function() awful.util.spawn("amixer set Master 9%-") end),
-   awful.key({ }, "XF86AudioMute",            function() awful.util.spawn("amixer sset Master toggle") end),
+   awful.key({ }, "XF86AudioRaiseVolume",     function() awful.util.spawn_with_shell("amixer set Master 9%+") end),
+   awful.key({ }, "XF86AudioLowerVolume",     function() awful.util.spawn_with_shell("amixer set Master 9%-") end),
+   awful.key({ }, "XF86AudioMute",            function() awful.util.spawn_with_shell("amixer sset Master toggle") end),
    awful.key({ modkey,           }, "a",      function() awful.util.spawn("/usr/bin/keepass2 --auto-type") end),
    
    -- tag navigation
@@ -597,14 +610,24 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 --=================================== Autoruns ====================================
 --=================================================================================
 
+-- start keyboard shortcut keys
+awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh xbindkeys")
+
 -- should set caps lock to be a control key
-awful.util.spawn("setxkbmap -option ctrl:nocaps")
+awful.util.spawn_with_shell("setxkbmap -option ctrl:nocaps")
 
 -- start dropbox daemon
-awful.util.spawn("dropbox start")
+awful.util.spawn_with_shell("dropbox start")
 
 -- disable touchpad tap-to-click
-awful.util.spawn("synclient MaxTapTime=0")
+awful.util.spawn_with_shell("synclient MaxTapTime=0")
 
 -- start gnome-do at login
-awful.util.spawn("gnome-do")
+awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh gnome-do")
+
+-- grab a desktop image and display it
+awful.util.spawn_with_shell("$HOME/dotfiles/nasa_iotd.sh")
+
+-- Local Variables:
+-- mode: lua
+-- End:

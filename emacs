@@ -35,15 +35,24 @@
 ;;   - wl-beta
 ;;   - gnutls-bin
 ;; * install using package-list-packages:
-;;   - helm
 ;;   - ascope
+;;   - auto-complete
+;;   - elpy
+;;   - find-file-in-project
+;;   - helm
+;;   - highlight-indentation
+;;   - idomenu
+;;   - nose
 ;;   - slime
 ;;   - slime-repl
 ;;   - solarized-theme
+;;   - virtualenv
 ;;   - w3m
+;;   - yasnippet
 ;; * install to src/ using git:
 ;; * set up in other ways
 ;;   - you need ~/.irc.el to contain some passwords for your irc client
+;;   - pip install --user elpy rope pyflakes pep8 virtualenvwrapper
 
 ;; other things that I like to have:
 ;; * install from package manager:
@@ -131,10 +140,22 @@
 ;; keybindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; better compiling - make it easy to reuse the last line without
+;; having to renavigate to the build directory
 (global-set-key (kbd "C-c k") 'compile)
 (global-set-key (kbd "C-c C-k") 'recompile)
+
+;; We're using emacsclient exclusively, so we want the user to be
+;; slightly more aware of what's happening - use <C-c #>, <C-x 5 0>,
+;; or 'save-buffers-kill-emacs' as appropriate.
 (global-unset-key (kbd "C-x C-c"))
 
+;; we want to regexp-search by default because regexp search is
+;; awesome.
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-S-s") 'isearch-forward)
+(global-set-key (kbd "C-S-r") 'isearch-backward)
 
 
 
@@ -154,6 +175,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; kpm-list ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; improves the buffer list by trying to group intelligently
+(require 'kpm-list)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; dired+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -456,6 +483,9 @@
  '(erc-verbose-server-ping nil)
  '(gdb-many-windows t)
  '(helm-ff-auto-update-initial-value nil)
+ '(inhibit-eol-conversion nil)
+ '(iswitchb-default-method (quote samewindow))
+ '(iswitchb-mode t)
  '(org-agenda-files (quote ("~/org/todo.org" "~/.mobileorg/from-mobile.org")))
  '(org-agenda-include-diary t)
  '(org-agenda-ndays 21)

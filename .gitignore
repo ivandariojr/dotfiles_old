@@ -11,3 +11,4 @@ xmonad/xmonad-x86_64-linux
 emacs.d/eshell/lastdir
 emacs.d/eshell/history
 /emacs.d/url/cache/*
+/emacs.d/ac-comphist.dat
