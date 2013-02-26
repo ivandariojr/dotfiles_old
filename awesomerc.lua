@@ -373,7 +373,7 @@ for s = 1, screen.count() do
                                          end, mytasklist.buttons)
 
    -- Create the wibox
-   mywibox[s] = awful.wibox({ position = "top", screen = s })
+   mywibox[s] = awful.wibox({ position = "top", height = "20", screen = s })
    -- Add widgets to the wibox - order matters
    mywibox[s].widgets = {
       {                         -- left to right - launcher, tags, run prompt
@@ -414,12 +414,9 @@ root.buttons(awful.util.table.join(
 
 globalkeys = awful.util.table.join(
    -- personal shortcuts
-   awful.key({ modkey,}, "c", function () awful.util.spawn("emacsclient -e (my-org-capture-other-frame)") end),
-   awful.key({ "Shift", "Control"}, "l",      function() awful.util.spawn("xscreensaver-command --lock") end),
-
-   awful.key({ }, "XF86AudioRaiseVolume",     function() awful.util.spawn("amixer set Master 9%+") end),
-   awful.key({ }, "XF86AudioLowerVolume",     function() awful.util.spawn("amixer set Master 9%-") end),
-   awful.key({ }, "XF86AudioMute",            function() awful.util.spawn("amixer sset Master toggle") end),
+   awful.key({ }, "XF86AudioRaiseVolume",     function() awful.util.spawn_with_shell("amixer set Master 9%+") end),
+   awful.key({ }, "XF86AudioLowerVolume",     function() awful.util.spawn_with_shell("amixer set Master 9%-") end),
+   awful.key({ }, "XF86AudioMute",            function() awful.util.spawn_with_shell("amixer sset Master toggle") end),
    awful.key({ modkey,           }, "a",      function() awful.util.spawn("/usr/bin/keepass2 --auto-type") end),
    
    -- tag navigation
@@ -613,20 +610,23 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 --=================================== Autoruns ====================================
 --=================================================================================
 
+-- start keyboard shortcut keys
+awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh xbindkeys")
+
 -- should set caps lock to be a control key
-awful.util.spawn("setxkbmap -option ctrl:nocaps")
+awful.util.spawn_with_shell("setxkbmap -option ctrl:nocaps")
 
 -- start dropbox daemon
-awful.util.spawn("dropbox start")
+awful.util.spawn_with_shell("dropbox start")
 
 -- disable touchpad tap-to-click
-awful.util.spawn("synclient MaxTapTime=0")
+awful.util.spawn_with_shell("synclient MaxTapTime=0")
 
 -- start gnome-do at login
-awful.util.spawn("gnome-do")
+awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh gnome-do")
 
 -- grab a desktop image and display it
-awful.util.spawn("~/dotfiles/nasa_iotd.sh")
+awful.util.spawn_with_shell("$HOME/dotfiles/nasa_iotd.sh")
 
 -- Local Variables:
 -- mode: lua
