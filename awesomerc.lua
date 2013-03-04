@@ -237,6 +237,8 @@ end
 
 cpuspacers = {}
 cpuwidgets = {}
+
+vicious.cache(vicious.widgets.cpu)
 for c = 1, ncpus do
    -- do separators
    cpuspacers[c] = widget({type = "textbox"})
