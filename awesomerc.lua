@@ -2,20 +2,19 @@
 --=========================== Load libraries ======================================
 --=================================================================================
 -- Standard awesome library
-require("awful")
-require("awful.autofocus")
-require("awful.rules")
+awful = require("awful")
+awful.autofocus = require("awful.autofocus")
+awful.rules = require("awful.rules")
 -- Theme handling library
-require("beautiful")
+beautiful = require("beautiful")
 -- Notification library
-require("naughty")
+naughty = require("naughty")
 -- Widget library
-require("vicious")
--- Expose functionality
-require("revelation")
+vicious = require("vicious")
 
 -- Load Debian menu entries
-require("debian.menu")
+-- debian = require("debian")
+debianmenu = require("debian.menu")
 
 --=================================================================================
 --=========================== Error Handling ======================================
@@ -142,7 +141,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
+                                    { "Debian", debianmenu.Debian_menu.Debian },
                                   }
                         })
 
