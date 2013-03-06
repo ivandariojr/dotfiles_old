@@ -205,13 +205,12 @@ end
 ------------------
 -- memory usage --
 ------------------
+
 -- init
-memwidget = awful.widget.progressbar()
+memwidget = awful.widget.graph()
 -- config
-memwidget:set_width(8)
-memwidget:set_vertical(true)
+memwidget:set_width(60)
 memwidget:set_background_color("#000000")
-memwidget:set_border_color(nil)
 memwidget:set_color("#00ee00")
 -- register
 vicious.register(memwidget, vicious.widgets.mem, "$1", 1)
