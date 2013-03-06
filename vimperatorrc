@@ -1,7 +1,11 @@
 "3.5 (created: 2012/08/04 00:41:20)
 
 ignorekeys add -except=<C-n>,<C-p>,b,B,:,t,T,g,G,/,n,N,?,u '^http:\/\/www\.google\.com\/reader\/view\/'
+ignorekeys add '^https?:\/\/docs\.google\.com'
+ignorekeys add '^https?:\/\/drive\.google\.com'
 
 map \q :nohlsearch<CR>
+
+set editor=emacsclient
 
 " vim: set ft=vimperator:
