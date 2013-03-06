@@ -2,20 +2,19 @@
 --=========================== Load libraries ======================================
 --=================================================================================
 -- Standard awesome library
-require("awful")
-require("awful.autofocus")
-require("awful.rules")
+awful = require("awful")
+awful.autofocus = require("awful.autofocus")
+awful.rules = require("awful.rules")
 -- Theme handling library
-require("beautiful")
+beautiful = require("beautiful")
 -- Notification library
-require("naughty")
+naughty = require("naughty")
 -- Widget library
-require("vicious")
--- Expose functionality
-require("revelation")
+vicious = require("vicious")
 
 -- Load Debian menu entries
-require("debian.menu")
+-- debian = require("debian")
+debianmenu = require("debian.menu")
 
 --=================================================================================
 --=========================== Error Handling ======================================
@@ -84,14 +83,14 @@ tags = {}
 if hostname == "lanning" then
    tags = {
       {
-         names  = { "ff", "term", "ec", "4", "5", "6", "7", "vlc", "surf" },
+         names  = { "ff", "term", "ec", "4", "5", "6", "7", "8", "rss" },
          layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
                     layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
       },
       {
-         names  = { "ff", "term", "ec", "4", "5", "6", "vm", "mus", "surf" },
+         names  = { "ff", "term", "ec", "4", "5", "6", "7", "mus", "vid" },
          layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
-                    layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+                    layouts[1], layouts[1], layouts[1], layouts[1], layouts[7] }
       }
    }
 elseif hostname == "vulcan" then
@@ -142,7 +141,7 @@ myawesomemenu = {
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
+                                    { "Debian", debianmenu.Debian_menu.Debian },
                                   }
                         })
 
@@ -206,13 +205,12 @@ end
 ------------------
 -- memory usage --
 ------------------
+
 -- init
-memwidget = awful.widget.progressbar()
+memwidget = awful.widget.graph()
 -- config
-memwidget:set_width(8)
-memwidget:set_vertical(true)
+memwidget:set_width(60)
 memwidget:set_background_color("#000000")
-memwidget:set_border_color(nil)
 memwidget:set_color("#00ee00")
 -- register
 vicious.register(memwidget, vicious.widgets.mem, "$1", 1)
