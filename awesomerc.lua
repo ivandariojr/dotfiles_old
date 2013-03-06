@@ -83,14 +83,14 @@ tags = {}
 if hostname == "lanning" then
    tags = {
       {
-         names  = { "ff", "term", "ec", "4", "5", "6", "7", "vlc", "surf" },
+         names  = { "ff", "term", "ec", "4", "5", "6", "7", "8", "rss" },
          layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
                     layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
       },
       {
-         names  = { "ff", "term", "ec", "4", "5", "6", "vm", "mus", "surf" },
+         names  = { "ff", "term", "ec", "4", "5", "6", "7", "mus", "vid" },
          layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
-                    layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+                    layouts[1], layouts[1], layouts[1], layouts[1], layouts[7] }
       }
    }
 elseif hostname == "vulcan" then
