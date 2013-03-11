@@ -87,6 +87,8 @@ unsetopt autocd
 unsetopt correct_all
 
 # for gitolite and things from pip
+# note that we put in our local bin files before anything else, which means
+# that we prefer local versions of things
 PATH=/home/saul/bin:/home/saul/.local/bin:$PATH
 
 # for python virtualenvs
