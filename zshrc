@@ -97,6 +97,10 @@ if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
     source virtualenvwrapper.sh
 fi
 
+# set up SSH keychain
+keychain -Q id_rsa -q
+source ~/.keychain/${HOST}-sh
+
 ###############################################################################
 ############################### C code tagging ################################
 ###############################################################################
