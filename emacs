@@ -217,6 +217,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq password-cache-expiry nil)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ido mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(setq ido-enable-flex-matching t)
+(ido-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -491,6 +497,8 @@
  '(erc-verbose-server-ping nil)
  '(gdb-many-windows t)
  '(helm-ff-auto-update-initial-value nil)
+ '(ido-everywhere nil)
+ '(ido-mode (quote file) nil (ido))
  '(inhibit-eol-conversion nil)
  '(iswitchb-default-method (quote samewindow))
  '(iswitchb-mode t)
