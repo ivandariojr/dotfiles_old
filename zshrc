@@ -98,7 +98,16 @@ if [[ -x /usr/local/bin/virtualenvwrapper.sh || -x /usr/bin/virtualenvwrapper.sh
 fi
 
 # set up SSH keychain
-keychain -Q id_rsa -q
+case $HOST in
+    lanning)
+        keychain -Q id_rsa -q
+    ;;
+    hermes)
+        keychain -Q vulcan_primary -q
+    ;;
+    vulcan)
+    ;;
+esac
 source ~/.keychain/${HOST}-sh
 
 ###############################################################################
