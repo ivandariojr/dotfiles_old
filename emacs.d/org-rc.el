@@ -1,19 +1,19 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;                                                                         ;;
-;;  ORG-MODE CONFIGURATIONS                                                ;;
-;;                                                                         ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;                                                                         ;;
+;;;  ORG-MODE CONFIGURATIONS                                                ;;
+;;;                                                                         ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'org)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; diary ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; diary ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; define this first to avoid issues on startup
+;;; define this first to avoid issues on startup
 (defun saul-diary-on-day-of-week-in-block (left right days)
   "Returns true if the date is on one of the given days of the
 week and later than the left date and before the right date. All
@@ -29,25 +29,25 @@ diary functions."
              (memq (calendar-day-of-week date) days))
         t)))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; org-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
-;; add some extra todo keywords
+;;; add some extra todo keywords
 (setq org-todo-keywords
       '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "WILL-NOT-DO")
         (sequence "IDEA" "WORKING" "|" "TOO-HARD" "FEASIBLE" "FINISHED")
         (sequence "RECOMMENDED" "ON-HOLD" "|" "READ")))
 
-;; this has to happen early, so we do it manually instead of having
-;; customize do it
+;;; this has to happen early, so we do it manually instead of having
+;;; customize do it
 (setq org-mobile-directory "~/.mobileorg")
 
-;; load org-mode for .org files
+;;; load org-mode for .org files
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
-;; useful hotkeys
+;;; useful hotkeys
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c C-a") 'org-agenda)
@@ -55,8 +55,8 @@ diary functions."
 (global-set-key [f6] 'org-agenda-list)
 (global-set-key [f7] 'org-todo-list)
 
-;; add an annotation with the time when we change something's todo
-;; state
+;;; add an annotation with the time when we change something's todo
+;;; state
 (setq org-log-done t)
 
 (defun my-org-agenda-other-frame ()
@@ -99,7 +99,7 @@ frame when org-capture is done."
     (my-org-capture-other-frame-cleanup))) ;; if things blow up, close
                                            ;; the frame and clean up
 
-;; also close the window after org-capture succeeds
+;;; also close the window after org-capture succeeds
 (add-hook 'org-capture-after-finalize-hook 'my-org-capture-other-frame-cleanup)
 
 (defun my-org-capture-other-frame-cleanup ()
@@ -108,11 +108,11 @@ frame when org-capture is done."
       (delete-frame)))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; appt-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; appt-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; set up the appoinment notification facility and activate it
+;;; set up the appoinment notification facility and activate it
 (setq
  appt-message-warning-time 45 ;warn 45 min in advance - time to get anywhere on campus
  appt-display-mode-line t
@@ -120,16 +120,16 @@ frame when org-capture is done."
  diary-file "~/org/diary")
 (appt-activate 1)
 
-;; update appt every time we open our agenda
+;;; update appt every time we open our agenda
 (add-hook 'org-finalize-agenda-hook 'org-agenda-to-appt)
 
-;; hook appt into the operating system's notification system. This
-;; will provide a series of notifications that start at
-;; appt-message-warning-time minutes before the appointment and go at
-;; two-ish-minute intervals until the appt actually happens.
+;;; hook appt into the operating system's notification system. This
+;;; will provide a series of notifications that start at
+;;; appt-message-warning-time minutes before the appointment and go at
+;;; two-ish-minute intervals until the appt actually happens.
 (setq appt-disp-window-function (function saul-appt-display))
 
-;; on sane OSs, this will display a popup and play a chime.
+;;; on sane OSs, this will display a popup and play a chime.
 (defun saul-appt-display (min-to-app new-time msg)
   (saul-notification-send (format "Appointment in %s minutes" min-to-app) msg
                           "/usr/share/icons/gnome/scalable/status/appoinment-soon-symbolic.png"
@@ -150,9 +150,9 @@ frame when org-capture is done."
     ;; text-only version
     (message (concat title ": " msg))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org classes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; org classes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (require 'org-latex)
 (require 'org-special-blocks)
@@ -164,11 +164,11 @@ frame when org-capture is done."
                ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))             )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; org-babel ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; org-babel ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; load some languages
+;;; load some languages
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(
@@ -177,3 +177,7 @@ frame when org-capture is done."
    (octave . t)
    (emacs-lisp . t)
    (lisp . t)))
+
+;;; Local Variables:
+;;; mode: emacs-lisp
+;;; End:
