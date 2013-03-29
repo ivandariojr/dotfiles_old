@@ -226,10 +226,6 @@
 (add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
 (setq iswitchb-buffer-ignore '(" *Minibuf-1*"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; password expirations ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(setq password-cache-expiry nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -534,6 +530,7 @@
   %u" "~/org/todo.org" "Projects" nil) ("to-read" 114 "* TODO %?
   %u" "~/org/readinglist.org" "Uncategorized" nil))))
  '(org-reverse-note-order t)
+ '(password-cache-expiry nil)
  '(show-paren-mode t nil (paren))
  '(solarized-degrade nil)
  '(solarized-italic nil)
