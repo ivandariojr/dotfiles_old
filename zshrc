@@ -92,7 +92,7 @@ unsetopt correct_all
 PATH=/home/saul/bin:/home/saul/.local/bin:$PATH
 
 # for python virtualenvs
-if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
+if [[ -x /usr/local/bin/virtualenvwrapper.sh || -x /usr/bin/virtualenvwrapper.sh ]]; then
     WORKON_HOME=~/.python-virtualenvs
     source virtualenvwrapper.sh
 fi
