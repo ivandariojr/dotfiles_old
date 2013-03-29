@@ -87,6 +87,8 @@ unsetopt autocd
 unsetopt correct_all
 
 # for gitolite and things from pip
+# note that we put in our local bin files before anything else, which means
+# that we prefer local versions of things
 PATH=/home/saul/bin:/home/saul/.local/bin:$PATH
 
 # for python virtualenvs
@@ -94,6 +96,10 @@ if [[ -x /usr/local/bin/virtualenvwrapper.sh ]]; then
     WORKON_HOME=~/.python-virtualenvs
     source virtualenvwrapper.sh
 fi
+
+# set up SSH keychain
+keychain -Q id_rsa -q
+source ~/.keychain/${HOST}-sh
 
 ###############################################################################
 ############################### C code tagging ################################

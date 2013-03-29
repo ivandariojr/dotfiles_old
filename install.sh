@@ -1,20 +1,59 @@
 #!/bin/bash
 
+##########################################
+########### Helper Functions #############
+##########################################
 
-#############################################
+# $1 is the file to back up. If it's an actual file, it will be moved
+# to $HOME/old-dotfiles/; if it's a symlink, the symlink will be
+# deleted to leave room for a new one.
+function makebackup() {
+    if [[ ! -e "$1" ]]; then
+	return
+    fi
+    if [[ ! -h "$1" ]]; then
+	mv "$1" "$HOME/old-dotfiles/"
+        echo "backed up old $1"
+    else
+	rm "$1"
+    fi
+}
+
+# This function will update a git repository, cloning it first if it
+# doesn't exist. $1 is the location of the git repository to clone
+# from if cloning is necessary. $2 is the directory that the git
+# repository should be or is in. $3, if provided, is an
+# easily-identifiable name for the git repo for printing.
+function handlegitrepo() {
+    if [ ! -d "$2" ]; then
+        if [ -n "$3" ]; then echo "%{$fg[green]%}Installing%{$reset_color%} $3"; fi
+        git clone "$1" "$2"
+    else
+        if [ -n "$3" ]; then echo "Updating $3"; fi
+        (cd $2; git pull)
+    fi
+}
+
+#################################################
 ########### Install things to $HOME #############
+<<<<<<< HEAD
 #############################################
 test=( 'bashrc' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc' 'xbindkeysrc.scm' )
+=======
+#################################################
+test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc' 'xbindkeysrc.scm' )
+>>>>>>> origin/master
 
 mkdir -p "$HOME/old-dotfiles"
 
+echo "Symlinking dotfiles"
+
 for (( i = 0 ; i < ${#test[@]} ; i++ ))
 do
-	[[ -e "$HOME/.${test[i]}" ]] && [[ ! -h "$HOME/.${test[i]}" ]] && mv "$HOME/.${test[i]}" "$HOME/old-dotfiles/${test[i]}"
-	[[ -e "$HOME/.${test[i]}" ]] && [[ -h "$HOME/.${test[i]}" ]] && rm "$HOME/.${test[i]}"
-
-	ln -s "$PWD/${test[i]}" "$HOME/.${test[i]}" 
-    echo "installed $HOME/.${test[i]}"
+    makebackup "$HOME/.${test[i]}"
+    
+    ln -s "$PWD/${test[i]}" "$HOME/.${test[i]}" 
+    echo "symlinked $HOME/.${test[i]}"
 done
 
 [[ "$(ls -A $HOME/old-dotfiles)" ]] && echo "Copied old dotfiles to $HOME/old-dotfiles" || rm -rf "$HOME/old-dotfiles"
@@ -28,30 +67,28 @@ mkdir -p "$HOME/.vim/backup/"
 mkdir -p "$HOME/.vim/undo/"
 mkdir -p "$HOME/.vim/swap/"
 
+echo "Updating vim plugins"
+$HOME/dotfiles/vim-update.sh repos
+
 ################################################
 ############## Install oh-my-zsh ###############
 ################################################
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh
-fi
+handlegitrepo "git://github.com/robbyrussell/oh-my-zsh.git" "$HOME/.oh-my-zsh" "oh-my-zsh"
 
 ################################################
 ########### Install Awesome Configs ############
 ################################################
 
-### awesome
-mkdir -p "$HOME/.config/awesome"
-if [ ! -d "$HOME/.config/awesome/revelation" ]; then
-    git clone git://github.com/bioe007/awesome-revelation.git $HOME/.config/awesome/revelation
-fi
+handlegitrepo "git://github.com/bioe007/awesome-revelation.git" "$HOME/.config/awesome/revelation" "revelation"
+handlegitrepo "git://github.com/cycojesus/awesome-solarized.git" "$HOME/.config/awesome/themes/awesome-solarized" "awesome-solarized"
 
-mkdir -p "$HOME/.config/awesome/themes"
-if [ ! -d "$HOME/.config/awesome/themes/awesome-solarized" ]; then
-    git clone git://github.com/cycojesus/awesome-solarized.git $HOME/.config/awesome/themes/awesome-solarized
-fi
-
-[[ -e "$HOME/.config/awesome/rc.lua" ]] && [[ ! -h "$HOME/.config/awesome/rc.lua" ]] && mv "$HOME/.config/awesome/rc.lua" "$HOME/old-dotfiles/awesomerc.lua"
-[[ -e "$HOME/.config/awesome/rc.lua" ]] && [[ -h "$HOME/.config/awesome/rc.lua" ]] && rm "$HOME/.config/awesome/rc.lua"
+makebackup "$HOME/.config/awesome/rc.lua"
 
 ln -s "$PWD/awesomerc.lua" "$HOME/.config/awesome/rc.lua"
+
+##########################################################
+########### Install random things from github ############
+##########################################################
+
+handlegitrepo "git://github.com/rupa/z.git" "$HOME/src/z" "z"
