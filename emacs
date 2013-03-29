@@ -307,8 +307,33 @@
 
 ;;; ;; interactive?
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; paredit ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;; handle parentheses in lispy languages better
+(add-hook 'emacs-lisp-mode-hook
+          (lambda () (enable-paredit-mode)))
+(add-hook 'slime-mode-hook
+          (lambda () (enable-paredit-mode)))
+(add-hook 'slime-repl-mode-hook
+          (lambda () (enable-paredit-mode)))
+(add-hook 'lisp-mode-hook
+          (lambda () (enable-paredit-mode)))
+(add-hook 'lisp-interaction-mode-hook
+          (lambda () (enable-paredit-mode)))
+(add-hook 'scheme-mode-hook
+          (lambda () (enable-paredit-mode)))
 
+;; Stop SLIME's REPL from grabbing DEL, which is annoying when
+;; backspacing over a '('
+(add-hook 'slime-repl-mode-hook
+          (lambda ()
+            (define-key slime-repl-mode-map (read-kbd-macro paredit-backward-delete-key) nil)))
+
+;;; (add-hook 'paredit-mode-hook
+;;;           (lambda ()
+;;;             (local-set-key "C-c C-c" slime-eval-buffer)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
