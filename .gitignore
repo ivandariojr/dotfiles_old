@@ -12,3 +12,4 @@ emacs.d/eshell/lastdir
 emacs.d/eshell/history
 /emacs.d/url/cache/*
 /emacs.d/ac-comphist.dat
+/emacs.d/tmp/savehist
