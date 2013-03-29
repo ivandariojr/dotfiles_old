@@ -529,7 +529,6 @@
  '(helm-ff-auto-update-initial-value nil)
  '(inhibit-eol-conversion nil)
  '(iswitchb-default-method (quote samewindow))
- '(iswitchb-mode t)
  '(org-agenda-files (quote ("~/org/todo.org" "~/.mobileorg/from-mobile.org")))
  '(org-agenda-include-diary t)
  '(org-agenda-ndays 21)
