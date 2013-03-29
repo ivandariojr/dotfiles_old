@@ -1,5 +1,3 @@
-; -*-lisp-*-
-; vim: set filetype=lisp : 
 
 ;; this is where we'll save everything
 (add-to-list 'load-path "~/.emacs.d")
