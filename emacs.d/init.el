@@ -172,7 +172,11 @@
 ;;; bind recentf
 (global-set-key (kbd "C-x f") 'recentf-open-files)
 
-
+;;; properly handle control-arrows in the terminal
+(define-key input-decode-map (kbd "M-[ A") [C-up])
+(define-key input-decode-map (kbd "M-[ B") [C-down])
+(define-key input-decode-map (kbd "M-[ C") [C-right])
+(define-key input-decode-map (kbd "M-[ D") [C-left])
 
 
 
