@@ -36,13 +36,8 @@ function handlegitrepo() {
 
 #################################################
 ########### Install things to $HOME #############
-<<<<<<< HEAD
-#############################################
-test=( 'bashrc' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc' 'xbindkeysrc.scm' )
-=======
 #################################################
-test=( 'bashrc' 'emacs' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc' 'xbindkeysrc.scm' )
->>>>>>> origin/master
+test=( 'bashrc' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc' 'xbindkeysrc.scm' )
 
 mkdir -p "$HOME/old-dotfiles"
 
