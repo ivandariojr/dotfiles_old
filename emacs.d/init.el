@@ -142,11 +142,14 @@
 ;;; set font size
 (set-face-attribute 'default nil :height 110)
 
-;;; I give up. I'll just reload the theme manually whenever I need to.
-(global-set-key (kbd "C-z") 
-                (lambda ()
-                  (interactive)
-                  (load-theme 'solarized-dark)))
+;;; I give up. I'll just toggle the theme manually whenever I need to.
+(defun toggle-theme (th)
+  (if (member th custom-enabled-themes)
+      (disable-theme th)
+    (load-theme th)))
+
+(global-set-key (kbd "C-z")
+                (lambda () (interactive) (toggle-theme 'solarized-dark)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; keybindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
