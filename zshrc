@@ -102,13 +102,17 @@ case $HOST in
     lanning)
         keychain -Q id_rsa -q
     ;;
-    hermes)
+    vulcan)
         keychain -Q vulcan_primary -q
     ;;
-    vulcan)
+    pazuzu)
+        keychain -Q saul-pazuzu -q
     ;;
 esac
 source ~/.keychain/${HOST}-sh
+
+# teamocil - add autocompletion
+compctl -g '~/.teamocil/*(:t:r)' teamocil
 
 ###############################################################################
 ############################### C code tagging ################################
