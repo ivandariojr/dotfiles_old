@@ -336,6 +336,13 @@
 ;;;             (local-set-key "C-c C-c" slime-eval-buffer)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; minimap ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(require 'minimap)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;                                                                         ;;
@@ -494,6 +501,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(minimap-semantic-function-face ((t (:inherit (font-lock-function-name-face minimap-font-face) :background "gray10" :box (:line-width 1 :color "white") :height 2.5))))
  '(slime-highlight-edits-face ((((class color) (background dark)) (:background "#333"))) t))
 
 
@@ -533,6 +541,8 @@
  '(ido-mode (quote file) nil (ido))
  '(inhibit-eol-conversion nil)
  '(iswitchb-default-method (quote samewindow))
+ '(minimap-dedicated-window t)
+ '(minimap-window-location (quote right))
  '(org-agenda-files (quote ("~/org/todo.org" "~/.mobileorg/from-mobile.org")))
  '(org-agenda-include-diary t)
  '(org-agenda-ndays 21)
