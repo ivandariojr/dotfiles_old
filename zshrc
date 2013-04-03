@@ -58,8 +58,8 @@ source $ZSH/oh-my-zsh.sh
 bindkey -e
 
 # set up editor variables
-export EDITOR="emacsclient -t -a \"\""
-export VISUAL="emacsclient -t -a \"\""
+export EDITOR="emacsclient -a \"\""
+export VISUAL="emacsclient -a \"\""
 export ALTERNATE_EDITOR="vim"
 
 # Don't duplicate history lines.
