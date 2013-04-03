@@ -84,7 +84,7 @@ SAVEHIST=10000
 unsetopt autocd
 
 # don't autocorrect. just autcomplete.
-unsetopt correct_all
+unsetopt correct
 
 # for gitolite and things from pip
 # note that we put in our local bin files before anything else, which means
