@@ -232,6 +232,9 @@ end
 if hostname == "harpe" then
    ncpus = 3
 end
+if hostname == "bismarck" then
+   ncpus = 8
+end
 
 cpuspacers = {}
 cpuwidgets = {}
