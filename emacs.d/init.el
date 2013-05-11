@@ -265,23 +265,23 @@
 
 (load "org-rc.el")
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; Emacs IRC Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;; Emacs IRC Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; change fill width when the window changes size
-(make-variable-buffer-local 'erc-fill-column)
-(add-hook 'window-configuration-change-hook 
-          '(lambda ()
-             (save-excursion
-               (walk-windows
-                (lambda (w)
-                  (let ((buffer (window-buffer w)))
-                    (set-buffer buffer)
-                    (when (eq major-mode 'erc-mode)
-                      (setq erc-fill-column (- (window-width w) 2)))))))))
+;; ; change fill width when the window changes size
+;; (make-variable-buffer-local 'erc-fill-column)
+;; (add-hook 'window-configuration-change-hook 
+;;           '(lambda ()
+;;              (save-excursion
+;;                (walk-windows
+;;                 (lambda (w)
+;;                   (let ((buffer (window-buffer w)))
+;;                     (set-buffer buffer)
+;;                     (when (eq major-mode 'erc-mode)
+;;                       (setq erc-fill-column (- (window-width w) 2)))))))))
 
-(load "~/.irc.el")              ;load passwords
+;; (load "~/.irc.el")              ;load passwords
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Git ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
