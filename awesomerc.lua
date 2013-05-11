@@ -623,7 +623,7 @@ awful.util.spawn_with_shell("dropbox start")
 awful.util.spawn_with_shell("synclient MaxTapTime=0")
 
 -- start gnome-do at login
-awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh gnome-do")
+awful.util.spawn_with_shell("gnome-do")
 
 -- grab a desktop image and display it
 awful.util.spawn_with_shell("$HOME/dotfiles/nasa_iotd.sh")
