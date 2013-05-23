@@ -47,7 +47,6 @@
 ;;;   - yasnippet
 ;;; * install to src/ using git:
 ;;; * set up in other ways
-;;;   - you need ~/.irc.el to contain some passwords for your irc client
 ;;;   - pip install --user elpy rope pyflakes pep8 virtualenvwrapper
 ;;;   - install swank and slime using quicklisp:
 ;;;       cd ~
@@ -261,19 +260,22 @@
 ;;; Emacs IRC Client ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; change fill width when the window changes size
-(make-variable-buffer-local 'erc-fill-column)
-(add-hook 'window-configuration-change-hook 
-          '(lambda ()
-             (save-excursion
-               (walk-windows
-                (lambda (w)
-                  (let ((buffer (window-buffer w)))
-                    (set-buffer buffer)
-                    (when (eq major-mode 'erc-mode)
-                      (setq erc-fill-column (- (window-width w) 2)))))))))
+;;; to use this, you'll need to create an ~/.irc.el file that, when
+;;; executed, populates a list of irc servers passwords.
 
-(load "~/.irc.el")              ;load passwords
+;; ; change fill width when the window changes size
+;; (make-variable-buffer-local 'erc-fill-column)
+;; (add-hook 'window-configuration-change-hook 
+;;           '(lambda ()
+;;              (save-excursion
+;;                (walk-windows
+;;                 (lambda (w)
+;;                   (let ((buffer (window-buffer w)))
+;;                     (set-buffer buffer)
+;;                     (when (eq major-mode 'erc-mode)
+;;                       (setq erc-fill-column (- (window-width w) 2)))))))))
+
+;; (load "~/.irc.el")              ;load passwords
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Git ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
