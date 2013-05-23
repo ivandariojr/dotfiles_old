@@ -39,9 +39,12 @@
 ;;;   - helm
 ;;;   - highlight-indentation
 ;;;   - idomenu
+;;;   - kpm-list
+;;;   - minimap
 ;;;   - nose
 ;;;   - paredit
 ;;;   - solarized-theme
+;;;   - undo-tree
 ;;;   - virtualenv
 ;;;   - w3m
 ;;;   - yasnippet
