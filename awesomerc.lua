@@ -180,9 +180,8 @@ end
 --------------
 -- launcher --
 --------------
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
+mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
-
 
 -------------------
 -- volume widget --
