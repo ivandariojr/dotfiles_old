@@ -255,36 +255,22 @@ vicious.register(memwidget, vicious.widgets.mem, "$1", 1)
 -- CPU usage --
 ---------------
 
-ncpus = 1
-if hostname == "lanning" then
-   ncpus = 8
-end
-if hostname == "vulcan" then
-   ncpus = 6
-end
-if hostname == "hermes" or hostname == "pazuzu" then
-   ncpus = 2
-end
-if hostname == "harpe" then
-   ncpus = 3
-end
-
-cpuspacers = {}
-cpuwidgets = {}
+ncpus = tonumber(io.popen("cat /proc/cpuinfo | grep '^processor' | wc -l"):read('*all'))
 
 vicious.cache(vicious.widgets.cpu)
+cpubox = wibox.layout.fixed.horizontal()
 for c = 1, ncpus do
-   -- do separators
-   cpuspacers[c] = widget({type = "textbox"})
-   cpuspacers[c].text = " "
-   -- init
-   cpuwidgets[c] = awful.widget.graph()
-   -- config
-   cpuwidgets[c]:set_width(60)
-   cpuwidgets[c]:set_background_color("#000000")
-   cpuwidgets[c]:set_color("#0000cc")
-   -- register
-   vicious.register(cpuwidgets[c], vicious.widgets.cpu, string.format("$%d", c+1), 2)
+   -- separator
+   local cpuspacer = wibox.widget.textbox()
+   cpuspacer:set_text(" ")
+   cpubox:add(cpuspacer)
+   -- widget
+   local cpuwidget = awful.widget.graph()
+   cpuwidget:set_width(60)
+   cpuwidget:set_background_color("#000000")
+   cpuwidget:set_color("#0000cc")
+   vicious.register(cpuwidget, vicious.widgets.cpu, string.format("$%d", c+1), 2)
+   cpubox:add(cpuwidget)
 end
 
 -----------
