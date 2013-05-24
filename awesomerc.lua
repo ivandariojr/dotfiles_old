@@ -163,6 +163,20 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
 --=================================================================================
 
 
+----------------
+-- separators --
+----------------
+separators = {}
+for c = 1, 10 do
+   separators[c] = wibox.widget.textbox()
+   separators[c]:set_text(" | ")
+end
+spacers = {}
+for c = 1, 10 do
+   spacers[c] = wibox.widget.textbox()
+   spacers[c]:set_text(" ")
+end
+
 --------------
 -- launcher --
 --------------
@@ -272,20 +286,6 @@ mytextclock = awful.widget.textclock({ align = "right" })
 -- system tray --
 -----------------
 mysystray = widget({ type = "systray" })
-
-----------------
--- separators --
-----------------
-separators = {}
-for c = 1, 10 do
-   separators[c] = widget({type = "textbox" })
-   separators[c].text = " | "
-end
-spacers = {}
-for c = 1, 10 do
-   spacers[c] = widget({type = "textbox" })
-   spacers[c].text = " "
-end
 
 -----------------------------
 -- create wibox and set up --
