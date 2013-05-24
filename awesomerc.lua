@@ -199,7 +199,7 @@ vicious.register(volumewidget, vicious.widgets.volume, "$1", 1, "Master")
 -- -- expose button --
 -- -------------------
 -- -- exposebutton = widget({type = "textbox"})
--- -- exposebutton.text = " expose "
+-- -- exposebutton:set_text(" expose ")
 -- exposebutton = awful.widget.button({ image = image(beautiful.awesome_icon)})
 -- exposebutton:buttons(awful.util.table.join(
 --                         awful.button({ }, 1, revelation)
@@ -222,8 +222,8 @@ if havebattery then
    -- register
    vicious.register(chargebar, vicious.widgets.bat, "$2", 1, "BAT1")
 
-   -- init
-   chargetext = widget({type = "textbox"})
+   -- text - time to full/empty charge
+   chargetext = wibox.widget.textbox()
    vicious.register(chargetext, vicious.widgets.bat, "$3 $1", 1, "BAT1")
 end
 
@@ -284,7 +284,7 @@ mytextclock = awful.widget.textclock()
 -----------------
 -- system tray --
 -----------------
-mysystray = widget({ type = "systray" })
+mysystray = wibox.widget.systray()
 
 -----------------------------
 -- create wibox and set up --
