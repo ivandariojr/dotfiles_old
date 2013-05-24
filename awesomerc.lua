@@ -210,21 +210,32 @@ vicious.register(volumewidget, vicious.widgets.volume, "$1", 1, "Master")
 -------------------
 
 -- only have to set this up when we have a battery
+batterybox = wibox.layout.fixed.horizontal()
 if havebattery then
-   -- init
+   -- spacer and separator
+   sep = wibox.widget.textbox()
+   sep:set_text(" | ")
+   spa = wibox.widget.textbox()
+   spa:set_text("  ")
+
+   -- progress bar display
    chargebar = awful.widget.progressbar()
-   -- config
    chargebar:set_width(50)
    -- chargebar:set_height(10)
    chargebar:set_background_color("#000000")
    chargebar:set_border_color(nil)
    chargebar:set_color("#eeee00")
-   -- register
    vicious.register(chargebar, vicious.widgets.bat, "$2", 1, "BAT1")
 
    -- text - time to full/empty charge
    chargetext = wibox.widget.textbox()
    vicious.register(chargetext, vicious.widgets.bat, "$3 $1", 1, "BAT1")
+
+   -- build layout
+   batterybox:add(chargebar)
+   batterybox:add(spa)
+   batterybox:add(chargetext)
+   batterybox:add(sep)
 end
 
 ------------------
