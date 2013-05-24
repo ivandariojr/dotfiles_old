@@ -287,7 +287,6 @@ mysystray = wibox.widget.systray()
 -- create wibox and set up --
 -----------------------------
 mywibox = {}
-mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
 mytasklist = {}
@@ -338,33 +337,9 @@ mytasklist.buttons = awful.util.table.join(
                         end))
 
 for s = 1, screen.count() do
-   cpubox = { }
-   if s == 1 then
-      for i = 0, ncpus-1 do
-         table.insert(cpubox, cpuwidgets[ncpus-i].widget)
-         table.insert(cpubox, cpuspacers[ncpus-i])
-      end
-      table.insert(cpubox, memwidget.widget)
-      table.insert(cpubox, separators[2])
-   end
-   cpubox.layout = awful.widget.layout.horizontal.rightleft
-
-   -- only need to set this up if we have a battery
-   batterybox = { }
-   if s == 1 and havebattery then
-      batterybox = {
-         chargebar.widget,
-         spacers[3],
-         chargetext,
-         separators[1],
-      }
-   end
-   batterybox.layout = awful.widget.layout.horizontal.rightleft
    
-   -- Create a promptbox for each screen
-   mypromptbox[s] = awful.widget.prompt({ layout = awful.widget.layout.horizontal.leftright })
-   -- Create an imagebox widget which will contains an icon indicating which layout we're using.
-   -- We need one layoutbox per screen.
+   -- Widget that will indicate which layout we're using and let us
+   -- switch it around with the mouse
    mylayoutbox[s] = awful.widget.layoutbox(s)
    mylayoutbox[s]:buttons(awful.util.table.join(
                              awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
@@ -373,48 +348,47 @@ for s = 1, screen.count() do
                              awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
 
    -- Create a taglist widget
-   mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.label.all, mytaglist.buttons)
+   mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
    -- Create a tasklist widget
-   mytasklist[s] = awful.widget.tasklist(function(c)
-                                            return awful.widget.tasklist.label.currenttags(c, s)
-                                         end, mytasklist.buttons)
+   mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
-   -- Create the wibox
+
+   -- create a left layout for the launcher and the tags list
+   local left_layout = wibox.layout.fixed.horizontal()
+   left_layout:add(mylauncher)
+   left_layout:add(mytaglist[s])
+   left_layout:add(separators[3])
+   -- create a right layout for graphs, systray, clock, and layout indicator
+   local right_layout = wibox.layout.fixed.horizontal()
+   if s == 1 and havebattery then right_layout:add(batterybox) end
+   if s == 1 then right_layout:add(cpubox) end
+   if s == 1 then right_layout:add(separators[5]) end
+   if s == 1 then right_layout:add(volumewidget) end
+   right_layout:add(separators[4])
+   if s == 1 then right_layout:add(mysystray) end
+   
+   -- put them all together with the tasklist filling it all in
+   local top_layout = wibox.layout.align.horizontal()
+   top_layout:set_first(left_layout)
+   top_layout:set_second(mytasklist[s])
+   top_layout:set_third(right_layout)
+   
+   -- -- Create the wibox
    mywibox[s] = awful.wibox({ position = "top", height = "20", screen = s })
-   -- Add widgets to the wibox - order matters
-   mywibox[s].widgets = {
-      {                         -- left to right - launcher, tags, run prompt
-         mylauncher,
-         -- exposebutton,
-         mytaglist[s],
-         mypromptbox[s],
-         separators[3],
-         layout = awful.widget.layout.horizontal.leftright
-      },
-      -- right to left - layouts, clock, systray only on screen 1, network, task list
-      mylayoutbox[s],
-      mytextclock,
-      s == 1 and mysystray or nil, -- ternary operator?
-      separators[4],
-      s == 1 and volumewidget.widget or nil,
-      s == 1 and separators[5] or nil,
-      s == 1 and cpubox or nil,
-      (s == 1 and havebattery) and batterybox or nil, -- only if we have a battery
-      mytasklist[s],
-      layout = awful.widget.layout.horizontal.rightleft
-   }
+   -- -- Add widgets to the wibox - order matters
+   mywibox[s]:set_widget(top_layout)
 end
 
 --=================================================================================
 --==================================== Mouse ======================================
 --=================================================================================
 
-root.buttons(awful.util.table.join(
-                awful.button({ }, 3, function () mymainmenu:toggle() end),
-                awful.button({ }, 4, awful.tag.viewnext),
-                awful.button({ }, 5, awful.tag.viewprev)
-                                  ))
+-- root.buttons(awful.util.table.join(
+--                 awful.button({ }, 3, function () mymainmenu:toggle() end),
+--                 awful.button({ }, 4, awful.tag.viewnext),
+--                 awful.button({ }, 5, awful.tag.viewprev)
+--                                   ))
 
 --=================================================================================
 --================================= Keyboard ======================================
