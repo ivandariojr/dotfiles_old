@@ -451,6 +451,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
    awful.key({ modkey, "Control" }, "n", awful.client.restore)
+   )
 
 clientkeys = awful.util.table.join(
    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
