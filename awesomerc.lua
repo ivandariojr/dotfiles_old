@@ -46,6 +46,15 @@ do
                                       end)
 end
 
+-- use naughty to print the given table's members to the screen
+function notify_table(tab)
+   foo=string.format("type of tab is: %s\n", type(tab))
+   for k,v in pairs(tab) do
+      foo = foo .. string.format(" %s -> %s\n", tostring(k), tostring(v))
+   end
+   naughty.notify({title=string.format(foo), text=""})
+end
+
 --=================================================================================
 --========================= Variable Definitions ==================================
 --=================================================================================
