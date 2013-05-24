@@ -280,7 +280,7 @@ end
 -----------
 -- clock --
 -----------
-mytextclock = awful.widget.textclock({ align = "right" })
+mytextclock = awful.widget.textclock()
 
 -----------------
 -- system tray --
