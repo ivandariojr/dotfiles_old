@@ -614,11 +614,7 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh xbindkeys")
 
 -- should set caps lock to be a control key
-awful.util.spawn_with_shell("xmodmap -e 'keycode 66 = Control_L'")
-awful.util.spawn_with_shell("xmodmap -e 'clear Lock'")
-awful.util.spawn_with_shell("xmodmap -e 'add Control = Control_L'")
-awful.util.spawn_with_shell("xmodmap -e 'keycode 37 = Return NoSymbol Return'")
-awful.util.spawn_with_shell("xmodmap -e 'remove control = Return'")
+awful.util.spawn_with_shell("xmodmap ~/.xmodmap.conf")
 
 -- start dropbox daemon
 awful.util.spawn_with_shell("dropbox start")
