@@ -582,7 +582,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh xbindkeys")
 
 -- should set caps lock to be a control key
-awful.util.spawn_with_shell("setxkbmap -option ctrl:nocaps")
+awful.util.spawn_with_shell("xmodmap ~/.xmodmap.conf")
 
 -- start dropbox daemon
 awful.util.spawn_with_shell("dropbox start")
