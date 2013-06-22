@@ -42,6 +42,9 @@ ZSH=$HOME/.oh-my-zsh
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
+# hopefully disable completion
+DISABLE_CORRECTION="true"
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -84,6 +87,7 @@ SAVEHIST=10000
 unsetopt autocd
 
 # don't autocorrect. just autcomplete.
+unsetopt correct_all
 unsetopt correct
 
 # for gitolite and things from pip
@@ -123,7 +127,7 @@ alias mktags='cd $CODEDIR && etags "`find $CODEDIR -name *.[h|c|py|cpp|cc|hh|hpp
 alias mktagscurrent='etags `find . -name "*.[h|c|py|cpp|cc|hh|hpp|java]"`'
 
 ###############################################################################
-########################### Colors and Display ################################
+################################## Aliases ####################################
 ###############################################################################
 
 # make ls more friendly with lesspipe
@@ -155,8 +159,13 @@ compdef _setfacl sa=setfacl
 # call this to update the git vars in our command line
 alias gup='chpwd'
 
-# becuase tmux is stupid about color
+alias rolldice="rolldice -s"
+
+# tmux stuff
 alias tmux='tmux -2'
+alias teamocil="teamocil --here"
+
+alias open="gnome-open"
 
 ###############################################################################
 #################################### prompt ###################################
@@ -305,12 +314,6 @@ PROMPT=$PROMPT'$git_prompt_string'           # git status
 PROMPT=$PROMPT'$color_brackets'"]"            # ]
 PROMPT=$PROMPT"%(#.# .$ )"                    # root gets a #, normal a $.
 PROMPT=$PROMPT"%{$reset_color%}"             # reset   
-
-###############################################################################
-################################# aliases #####################################
-###############################################################################
-
-alias rolldice="rolldice -s"
 
 ###############################################################################
 ########################## emacs editing things ###############################
