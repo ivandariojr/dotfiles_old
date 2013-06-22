@@ -362,6 +362,7 @@ for s = 1, screen.count() do
    -- create a right layout for graphs, systray, clock, and layout indicator
    local right_layout = wibox.layout.fixed.horizontal()
    if s == 1 and havebattery then right_layout:add(batterybox) end
+   if s == 1 then right_layout:add(memwidget) end
    if s == 1 then right_layout:add(cpubox) end
    if s == 1 then right_layout:add(separators[5]) end
    if s == 1 then right_layout:add(volumewidget) end
