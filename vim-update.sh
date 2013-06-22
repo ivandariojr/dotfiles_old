@@ -37,6 +37,7 @@ $curl -Sso ~/.vim/autoload/pathogen.vim \
 repos=(
     https://github.com/kien/ctrlp.vim.git
     https://github.com/tpope/vim-sleuth.git
+    git://github.com/tpope/vim-surround.git
   )
 
 # Here's a list of everything else to download in the format
