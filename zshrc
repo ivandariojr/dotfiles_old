@@ -104,13 +104,13 @@ fi
 # set up SSH keychain
 case $HOST in
     lanning)
-        keychain -Q id_rsa -q
+        eval `keychain -Q id_rsa --eval`
     ;;
     vulcan)
-        keychain -Q vulcan_primary -q
+        eval `keychain -Q vulcan_primary --eval`
     ;;
     pazuzu)
-        keychain -Q saul-pazuzu -q
+        eval `keychain -Q saul-pazuzu 23E69FB1 DD9CCD1A --eval`
     ;;
 esac
 source ~/.keychain/${HOST}-sh
