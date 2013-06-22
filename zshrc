@@ -127,7 +127,7 @@ alias mktags='cd $CODEDIR && etags "`find $CODEDIR -name *.[h|c|py|cpp|cc|hh|hpp
 alias mktagscurrent='etags `find . -name "*.[h|c|py|cpp|cc|hh|hpp|java]"`'
 
 ###############################################################################
-########################### Colors and Display ################################
+################################## Aliases ####################################
 ###############################################################################
 
 # make ls more friendly with lesspipe
@@ -159,8 +159,13 @@ compdef _setfacl sa=setfacl
 # call this to update the git vars in our command line
 alias gup='chpwd'
 
-# becuase tmux is stupid about color
+alias rolldice="rolldice -s"
+
+# tmux stuff
 alias tmux='tmux -2'
+alias teamocil="teamocil --here"
+
+alias open="gnome-open"
 
 ###############################################################################
 #################################### prompt ###################################
@@ -309,12 +314,6 @@ PROMPT=$PROMPT'$git_prompt_string'           # git status
 PROMPT=$PROMPT'$color_brackets'"]"            # ]
 PROMPT=$PROMPT"%(#.# .$ )"                    # root gets a #, normal a $.
 PROMPT=$PROMPT"%{$reset_color%}"             # reset   
-
-###############################################################################
-################################# aliases #####################################
-###############################################################################
-
-alias rolldice="rolldice -s"
 
 ###############################################################################
 ########################## emacs editing things ###############################
