@@ -368,8 +368,8 @@ for s = 1, screen.count() do
    right_layout:add(separators[4])
    if s == 1 then right_layout:add(mysystray) end
    if s == 1 then right_layout:add(mytextclock) end
-   right_layout:add(mylayoutbox[s]) end
-   
+   right_layout:add(mylayoutbox[s])
+
    -- put them all together with the tasklist filling it all in
    local top_layout = wibox.layout.align.horizontal()
    top_layout:set_first(left_layout)
