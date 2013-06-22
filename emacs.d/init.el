@@ -465,7 +465,7 @@
 ;;; (setq python-check-command "pylint")
 ;;; (setq python-check-command "pep8")
 (elpy-clean-modeline)
-
+(elpy-use-ipython)
 
 
 
