@@ -35,15 +35,15 @@ end
 do
    local in_error = false
    awesome.connect_signal("debug::error", function (err)
-                         -- Make sure we don't go into an endless error loop
-                         if in_error then return end
-                         in_error = true
+                             -- Make sure we don't go into an endless error loop
+                             if in_error then return end
+                             in_error = true
 
-                         naughty.notify({ preset = naughty.config.presets.critical,
-                                          title = "Oops, an error happened!",
-                                          text = err })
-                         in_error = false
-                                      end)
+                             naughty.notify({ preset = naughty.config.presets.critical,
+                                              title = "Oops, an error happened!",
+                                              text = err })
+                             in_error = false
+   end)
 end
 
 -- use naughty to print the given table's members to the screen
@@ -154,8 +154,8 @@ myawesomemenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debianmenu.Debian_menu.Debian },
-                                  }
-                        })
+}
+                       })
 
 
 --=================================================================================
@@ -299,7 +299,7 @@ mytaglist.buttons = awful.util.table.join(
    awful.button({ modkey }, 3, awful.client.toggletag), -- mod-right: put client on multiple tags
    awful.button({ }, 4, awful.tag.viewprev),            -- wheel up: prev tag
    awful.button({ }, 5, awful.tag.viewnext)             -- wheel down: next tag
-                                         )
+)
 
 -- what each button does on the window list
 mytasklist.buttons = awful.util.table.join(
@@ -317,7 +317,7 @@ mytasklist.buttons = awful.util.table.join(
                       client.focus = c
                       c:raise()
                    end
-                        end),
+   end),
    awful.button({ }, 3, function ()
                    if instance then
                       instance:hide()
@@ -325,16 +325,16 @@ mytasklist.buttons = awful.util.table.join(
                    else
                       instance = awful.menu.clients({ width=250 })
                    end
-                        end),
+   end),
    -- scroll buttons scroll
    awful.button({ }, 4, function ()
                    awful.client.focus.byidx(-1)
                    if client.focus then client.focus:raise() end
-                        end),
+   end),
    awful.button({ }, 5, function ()
                    awful.client.focus.byidx(1)
                    if client.focus then client.focus:raise() end
-                        end))
+end))
 
 for s = 1, screen.count() do
    
@@ -375,7 +375,7 @@ for s = 1, screen.count() do
    top_layout:set_first(left_layout)
    top_layout:set_second(mytasklist[s])
    top_layout:set_third(right_layout)
-   
+
    -- -- Create the wibox
    mywibox[s] = awful.wibox({ position = "top", height = "20", screen = s })
    -- -- Add widgets to the wibox - order matters
@@ -415,12 +415,12 @@ globalkeys = awful.util.table.join(
              function ()
                 awful.client.focus.byidx( 1)
                 if client.focus then client.focus:raise() end
-             end),
+   end),
    awful.key({ modkey,           }, "k",
              function ()
                 awful.client.focus.byidx(-1)
                 if client.focus then client.focus:raise() end
-             end),
+   end),
    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
    -- Layout manipulation
@@ -435,7 +435,7 @@ globalkeys = awful.util.table.join(
                 if client.focus then
                    client.focus:raise()
                 end
-             end),
+   end),
 
    -- Standard program
    awful.key({ modkey,           }, "Return", function () awful.util.spawn("x-terminal-emulator") end),
@@ -451,7 +451,7 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),
 
    awful.key({ modkey, "Control" }, "n", awful.client.restore)
-   )
+)
 
 clientkeys = awful.util.table.join(
    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),
@@ -471,8 +471,8 @@ clientkeys = awful.util.table.join(
              function (c)
                 c.maximized_horizontal = not c.maximized_horizontal
                 c.maximized_vertical   = not c.maximized_vertical
-             end)
-                                  )
+   end)
+)
 
 -- Compute the maximum number of digit we need, limited to 9
 keynumber = 0
@@ -491,26 +491,26 @@ for i = 1, keynumber do
                                                    if tags[screen][i] then
                                                       awful.tag.viewonly(tags[screen][i])
                                                    end
-                                                end),
+                                      end),
                                       awful.key({ modkey, "Control" }, "#" .. i + 9,
                                                 function ()
                                                    local screen = mouse.screen
                                                    if tags[screen][i] then
                                                       awful.tag.viewtoggle(tags[screen][i])
                                                    end
-                                                end),
+                                      end),
                                       awful.key({ modkey, "Shift" }, "#" .. i + 9,
                                                 function ()
                                                    if client.focus and tags[client.focus.screen][i] then
                                                       awful.client.movetotag(tags[client.focus.screen][i])
                                                    end
-                                                end),
+                                      end),
                                       awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                                                 function ()
                                                    if client.focus and tags[client.focus.screen][i] then
                                                       awful.client.toggletag(tags[client.focus.screen][i])
                                                    end
-                                                end))
+   end))
 end
 
 clientbuttons = awful.util.table.join(
@@ -550,29 +550,29 @@ awful.rules.rules = {
 
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
-                     -- Add a titlebar
-                     -- awful.titlebar.add(c, { modkey = modkey })
+                         -- Add a titlebar
+                         -- awful.titlebar.add(c, { modkey = modkey })
 
-                     -- -- Enable sloppy focus
-                     -- c:connect_signal("mouse::enter", function(c)
-                     --                 if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-                     --                    and awful.client.focus.filter(c) then
-                     --                 client.focus = c
-                     --                 end
-                     --                              end)
+                         -- -- Enable sloppy focus
+                         -- c:connect_signal("mouse::enter", function(c)
+                         --                 if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+                         --                    and awful.client.focus.filter(c) then
+                         --                 client.focus = c
+                         --                 end
+                         --                              end)
 
-                     if not startup then
-                        -- Set the windows at the slave,
-                        -- i.e. put it at the end of others instead of setting it master.
-                        -- awful.client.setslave(c)
+                         if not startup then
+                            -- Set the windows at the slave,
+                            -- i.e. put it at the end of others instead of setting it master.
+                            -- awful.client.setslave(c)
 
-                        -- Put windows in a smart way, only if they does not set an initial position.
-                        if not c.size_hints.user_position and not c.size_hints.program_position then
-                           awful.placement.no_overlap(c)
-                           awful.placement.no_offscreen(c)
-                        end
-                     end
-                            end)
+                            -- Put windows in a smart way, only if they does not set an initial position.
+                            if not c.size_hints.user_position and not c.size_hints.program_position then
+                               awful.placement.no_overlap(c)
+                               awful.placement.no_offscreen(c)
+                            end
+                         end
+end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
