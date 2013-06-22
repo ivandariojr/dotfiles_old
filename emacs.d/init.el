@@ -226,7 +226,7 @@
         '(("C-b" . iswitchb-prev-match)
           ("C-f" . iswitchb-next-match))))
 (add-hook 'iswitchb-define-mode-map-hook 'iswitchb-local-keys)
-(setq iswitchb-buffer-ignore '(" *Minibuf-1*"))
+(setq iswitchb-buffer-ignore '(" *Minibuf-1*" "*elpy-rpc*"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; ido mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
