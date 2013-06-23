@@ -37,7 +37,7 @@ function handlegitrepo() {
 #################################################
 ########### Install things to $HOME #############
 #################################################
-test=( 'bashrc' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc' 'xbindkeysrc.scm' )
+test=( 'xmodmap.conf' 'bashrc' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc' 'xbindkeysrc.scm' )
 
 mkdir -p "$HOME/old-dotfiles"
 
@@ -58,9 +58,13 @@ done
 ####################################################
 
 mkdir -p "$HOME/.vim/"
+mkdir -p "$HOME/.vim/bundle/"
+mkdir -p "$HOME/.vim/autoload/"
 mkdir -p "$HOME/.vim/backup/"
 mkdir -p "$HOME/.vim/undo/"
 mkdir -p "$HOME/.vim/swap/"
+
+curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
 echo "Updating vim plugins"
 $HOME/dotfiles/vim-update.sh repos
