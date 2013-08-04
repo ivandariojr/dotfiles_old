@@ -107,7 +107,7 @@ case $HOST in
         eval `keychain -Q id_rsa --eval`
     ;;
     vulcan)
-        eval `keychain -Q vulcan_primary --eval`
+        eval `keychain -Q vulcan_primary 0x2E7E2C25C26D70D3 0x5131CA9463219CCD --eval`
     ;;
     pazuzu)
         eval `keychain -Q saul-pazuzu 23E69FB1 DD9CCD1A --eval`
