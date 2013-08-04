@@ -112,6 +112,9 @@ case $HOST in
     pazuzu)
         eval `keychain -Q saul-pazuzu 23E69FB1 DD9CCD1A --eval`
     ;;
+    *)
+        eval `keychain -Q id_rsa --eval`
+    ;;
 esac
 source ~/.keychain/${HOST}-sh
 

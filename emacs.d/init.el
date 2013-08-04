@@ -44,6 +44,7 @@
 ;;;   - minimap
 ;;;   - nose
 ;;;   - paredit
+;;;   - smart-tabs-mode
 ;;;   - solarized-theme
 ;;;   - undo-tree
 ;;;   - virtualenv
@@ -80,10 +81,6 @@
 
 (setq make-backup-files nil)            ;no backups to clutter things up
 (setq inhibit-startup-message t)        ;don't put up the splash page
-
-;;; global settings for tabs - use spaces!
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 8)
 
 ;;; use utf-8 everywhere
 (set-language-environment "UTF-8")
@@ -362,6 +359,16 @@
 
 (require 'minimap)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; tabs ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; global settings for tabs - use spaces!
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
+
+;;; but use smart tabs for c and c++
+(smart-tabs-insinuate 'c 'c++)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
