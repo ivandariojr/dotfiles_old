@@ -58,7 +58,7 @@
 
 ;; mute firefox's flash-plugin. Take /that/, hulu ads! :D
 (xbindkey '(XF86Search)
-          "$HOME/.local/bin/mute-application plugin-container")
+          "$HOME/.local/bin/mute-application -a plugin-container; $HOME/.local/bin/mute-application -a Chromium")
 
 ;; tell nuvola to go forward one track
 (xbindkey '(XF86Mail)
