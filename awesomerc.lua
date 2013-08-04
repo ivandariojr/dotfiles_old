@@ -96,7 +96,7 @@ if hostname == "lanning" then
 elseif hostname == "vulcan" then
    tags = {
       {
-         names  = { "ff", "term", "ec", "4", "5", "6", "kp", "veb", "music" },
+         names  = { "ff", "term", "ec", "4", "5", "veb", "kp", "tb", "music" },
          layout = { layouts[1], layouts[1], layouts[1], layouts[1], layouts[1],
                     layouts[1], layouts[1], layouts[1], layouts[7], layouts[1] }
       },
