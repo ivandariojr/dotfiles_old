@@ -506,7 +506,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (when (string= system-name "pazuzu")
-  (set-face-attribute 'default nil :height 100)
+  (set-face-attribute 'default nil :height 90)
   )
 
 
