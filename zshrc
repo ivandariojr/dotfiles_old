@@ -121,6 +121,10 @@ source ~/.keychain/${HOST}-sh
 # teamocil - add autocompletion
 compctl -g '~/.teamocil/*(:t:r)' teamocil
 
+# some variables for building debian packages
+export DEBEMAIL="saulrh@gatech.edu"
+export DEBFULLNAME="Saul Reynolds-Haertle"
+
 ###############################################################################
 ############################### C code tagging ################################
 ###############################################################################
