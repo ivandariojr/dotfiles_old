@@ -48,7 +48,7 @@ DISABLE_CORRECTION="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python svn debian)
+plugins=(git python svn debian safe-paste rsync)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,7 +107,7 @@ case $HOST in
         eval `keychain -Q id_rsa --eval`
     ;;
     vulcan)
-        eval `keychain -Q vulcan_primary --eval`
+        eval `keychain -Q vulcan_primary 0x2E7E2C25C26D70D3 0x5131CA9463219CCD --eval`
     ;;
     pazuzu)
         eval `keychain -Q saul-pazuzu 23E69FB1 DD9CCD1A --eval`
@@ -124,6 +124,12 @@ compctl -g '~/.teamocil/*(:t:r)' teamocil
 # some variables for building debian packages
 export DEBEMAIL="saulrh@gatech.edu"
 export DEBFULLNAME="Saul Reynolds-Haertle"
+
+###############################################################################
+################################# Other Junk ##################################
+###############################################################################
+
+. ~/src/z/z.sh
 
 ###############################################################################
 ############################### C code tagging ################################

@@ -58,7 +58,7 @@
 
 ;; mute firefox's flash-plugin. Take /that/, hulu ads! :D
 (xbindkey '(XF86Search)
-          "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.nuvolaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek Time_In_Us:-9999999 > /dev/null")
+          "$HOME/.local/bin/mute-application -a plugin-container; $HOME/.local/bin/mute-application -a Chromium")
 
 ;; tell nuvola to go forward one track
 (xbindkey '(XF86Mail)
