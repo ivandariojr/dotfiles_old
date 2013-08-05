@@ -580,6 +580,7 @@
  '(erc-truncate-mode t)
  '(erc-user-full-name "Vebyast Kranm")
  '(erc-verbose-server-ping nil)
+ '(fill-column 99)
  '(gdb-many-windows t)
  '(helm-ff-auto-update-initial-value nil)
  '(ido-everywhere nil)
