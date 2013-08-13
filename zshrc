@@ -285,7 +285,10 @@ function precmd {
 
     case $HOST in
         krang)
-            prompt_host_string=$color_host_special$HOST"[`bms -V`]"
+            # jobs=`sudo ps -eo pcpu,user`
+            # achd_cpu=`ps -eo pcpu,fname | grep achd | cut -d " " -f 2 | paste -sd+ | bc`
+            prompt_host_string=$color_host_special$HOST"[`bmsGetLast.sh`]"
+            #prompt_host_string=$color_host_special$HOST
             ;;
         thebrain)
             prompt_host_string=$color_host_special$HOST
