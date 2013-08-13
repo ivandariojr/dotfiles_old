@@ -54,15 +54,15 @@
 
 ;; tell nuvola to go backward one track
 (xbindkey '(XF86HomePage)
-          "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.nuvolaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next > /dev/null")
+          "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.nuvolaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous > /dev/null")
 
 ;; mute firefox's flash-plugin. Take /that/, hulu ads! :D
 (xbindkey '(XF86Search)
-          "$HOME/.local/bin/mute-application plugin-container")
+          "$HOME/.local/bin/mute-application -a plugin-container; $HOME/.local/bin/mute-application -a Chromium")
 
 ;; tell nuvola to go forward one track
 (xbindkey '(XF86Mail)
-          "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.nuvolaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Prev > /dev/null")
+          "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.nuvolaplayer /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next > /dev/null")
 
 ;; On some machines these get bound to the favorites buttons across
 ;; the top of the microsoft ergonomic keyboards
