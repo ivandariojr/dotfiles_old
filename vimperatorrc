@@ -1,12 +1,8 @@
 "3.5 (created: 2012/08/04 00:41:20)
 
-ignorekeys add -except=<C-n>,<C-p>,b,B,:,t,T,g,G,/,n,N,?,u '^http:\/\/www\.google\.com\/reader\/view\/'
-ignorekeys add '^http:\/\/app\.roll20\.net\/editor\/'
-ignorekeys add '^https?:\/\/docs\.google\.com'
-ignorekeys add '^https?:\/\/drive\.google\.com'
-
+" Hit backslash-t to unhighlight search term matches
 map \\t :nohlsearch<CR>
 
+" Use emacsclient as our external editor
 set editor=emacsclient
 
-" vim: set ft=vimperator:
