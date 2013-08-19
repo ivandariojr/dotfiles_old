@@ -394,7 +394,9 @@
 (add-hook 'c-mode-common-hook 
           (lambda ()
             (c-set-style "bsd") ; I've written too much java
-            (setq c-basic-offset 4)))
+            (setq c-basic-offset 4)
+            (setq comment-start "// ")
+            (setq comment-end "")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; C++ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
