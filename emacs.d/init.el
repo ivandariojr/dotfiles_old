@@ -395,17 +395,6 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 ;; (global-set-key (kbd "M-/") 'company-complete)
 
-;;; set up tags searching
-(require 'etags-table)
-(setq etags-table-search-up-depth 10)
-(setq etags-table-alist '(("^\\(/ssh:krang2:/\\|/\\)\\(home/saulrh/\\|home/saul/\\)\\(.*\\)$"
-                           "\\1\\2Documents/Software/lib/ach/TAGS"
-                           "\\1\\2Documents/Software/lib/amino/TAGS"
-                           "\\1\\2Documents/Software/lib/somatic/TAGS"
-                           "\\1\\2Documents/Software/project/krang/kore/TAGS"
-                           "\\1\\2src/sim/dart/TAGS"
-                           "\\1\\2src/sim/grip/TAGS")))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;                                                                         ;;
@@ -425,6 +414,29 @@
             (setq c-basic-offset 4)
             (setq comment-start "// ")
             (setq comment-end "")))
+
+(require 'cedet)
+(require 'semantic)
+(require 'semantic/ia)
+(require 'semantic/bovine/gcc)
+(semantic-mode 1)
+
+(setq-mode-local c-mode semanticdb-find-default-throttle
+                 '(project unloaded system recursive))
+(semanticdb-enable-gnu-global-databases 'c-mode)
+(semanticdb-enable-gnu-global-databases 'c++-mode)
+(setq semanticdb-default-submodes '(global-semantic-idle-scheduler-mode
+                                    global-semanticdb-minor-mode))
+
+(defun my-add-cedet-bindings ()
+  (local-set-key (kbd "C-<return>") 'semantic-ia-complete-symbol)
+  (local-set-key (kbd ">") 'semantic-complete-self-insert)
+  (local-set-key (kbd ".") 'semantic-complete-self-insert)
+  (local-set-key (kbd "C-c p") 'semantic-ia-show-summary)
+  (local-set-key (kbd "M-.") 'semantic-ia-fast-jump))
+(add-hook 'c-mode-common-hook 'my-add-cedet-bindings)
+(add-hook 'c++-mode-common-hook 'my-add-cedet-bindings)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; C++ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
