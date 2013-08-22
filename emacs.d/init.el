@@ -378,6 +378,17 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 ;; (global-set-key (kbd "M-/") 'company-complete)
 
+;;; set up tags searching
+(require 'etags-table)
+(setq etags-table-search-up-depth 10)
+(setq etags-table-alist '(("^\\(/ssh:krang2:/\\|/\\)\\(home/saulrh/\\|home/saul/\\)\\(.*\\)$"
+                           "\\1\\2Documents/Software/lib/ach/TAGS"
+                           "\\1\\2Documents/Software/lib/amino/TAGS"
+                           "\\1\\2Documents/Software/lib/somatic/TAGS"
+                           "\\1\\2Documents/Software/project/krang/kore/TAGS"
+                           "\\1\\2src/sim/dart/TAGS"
+                           "\\1\\2src/sim/grip/TAGS")))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;                                                                         ;;
