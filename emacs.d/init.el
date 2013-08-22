@@ -12,6 +12,17 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)                    ;load everything
 
+;;; install any packages we need
+(mapc
+ (lambda (package)
+   (or (package-installed-p package)
+       (if (y-or-n-p (format "Package %s is missing. Install it? " package))
+           (package-install package))))
+ '(ascope auto-complete desktop-registry elpy find-file-in-project helm
+          highlight-indentation idomenu kpm-list minimap nose paredit
+          smart-tabs-mode solarized-theme undo-tree virtualenv w3m yasnippet
+          dired+ ecb cedet))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;                                                                         ;;
