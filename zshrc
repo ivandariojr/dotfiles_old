@@ -306,6 +306,9 @@ function precmd {
             prompt_host_string=$color_host_special$HOST"[`bmsGetLast.sh`]"
             #prompt_host_string=$color_host_special$HOST
             ;;
+        krang-vision)
+            prompt_host_string=$color_host_special$HOST
+            ;;
         thebrain)
             prompt_host_string=$color_host_special$HOST
             ;;
