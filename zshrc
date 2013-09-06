@@ -7,7 +7,7 @@
 if [[ "$TERM" == "dumb" ]]; then
     return
 fi
-if [[ "$TERM" != "screen-256color" && "$TERM" != "screen" ]]; then
+if [[ "$TERM" != "screen-256color" && "$TERM" != "screen" && "$TERM" != "eterm-color" ]]; then
     tmux -2
 fi
 
