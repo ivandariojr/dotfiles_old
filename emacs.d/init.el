@@ -192,7 +192,11 @@
 (define-key input-decode-map (kbd "M-[ C") [C-right])
 (define-key input-decode-map (kbd "M-[ D") [C-left])
 
-
+;;; define slightly more intuitive window switching
+(global-set-key (kbd "C-x \\") 'split-window-right)
+(global-set-key (kbd "C-x C-\\") 'split-window-right)
+(global-set-key (kbd "C-x -") 'split-window-below)
+(global-set-key (kbd "C-x C--") 'split-window-below)
 
 
 
