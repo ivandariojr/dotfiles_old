@@ -235,6 +235,9 @@ end
 if hostname == "bismarck" then
    ncpus = 8
 end
+if hostname == "parliament" then
+   ncpus = 8
+end
 
 cpuspacers = {}
 cpuwidgets = {}
@@ -625,11 +628,14 @@ awful.util.spawn_with_shell("dropbox start")
 -- disable touchpad tap-to-click
 awful.util.spawn_with_shell("synclient MaxTapTime=0")
 
--- start gnome-do at login
+-- start gnome-do
 awful.util.spawn_with_shell("gnome-do")
 
+-- start rescuetime
+awful.util.spawn_with_shell("rescuetime")
+
 -- grab a desktop image and display it
-awful.util.spawn_with_shell("$HOME/dotfiles/nasa_iotd.sh")
+-- awful.util.spawn_with_shell("$HOME/dotfiles/nasa_iotd.sh")
 
 -- Local Variables:
 -- mode: lua
