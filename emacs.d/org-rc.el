@@ -33,10 +33,10 @@ diary functions."
 ;;; org-mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-
 ;;; add some extra todo keywords
 (setq org-todo-keywords
-      '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "WILL-NOT-DO")
+      ;; '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "WILL-NOT-DO")
+      '((sequence "TODO" "|" "DONE") 
         (sequence "IDEA" "WORKING" "|" "TOO-HARD" "FEASIBLE" "FINISHED")
         (sequence "RECOMMENDED" "ON-HOLD" "|" "READ")))
 
@@ -46,6 +46,20 @@ diary functions."
 
 ;;; load org-mode for .org files
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+
+;;; these are where my agenda files are located
+(setq org-agenda-files (directory-files "/home/eric/org" nil "\\.org$"))
+
+;;; stop destroying frames on agenda close
+(setq org-agenda-window-setup 'current-window)
+
+;;; set agenda prefix format
+(setq org-agenda-prefix-format 
+      '((agenda . " %i %-12:c%?-12t% s%b")
+        (timeline . "  % s")
+        (todo . " %i %-12:c %b")
+        (tags . " %i %-12:c")
+        (search . " %i %-12:c")))
 
 ;;; useful hotkeys
 (global-set-key (kbd "C-c l") 'org-store-link)
