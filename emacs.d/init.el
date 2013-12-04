@@ -89,6 +89,9 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 
+;;; fill column
+(setq fill-column 80)
+
 ;;; put temporary files somewhere else
 (defvar user-temporary-file-directory
   (concat temporary-file-directory user-login-name "/"))
@@ -151,7 +154,7 @@
 (global-set-key (kbd "C-z")
                 (lambda () (interactive) (toggle-theme 'solarized-dark)))
 
-;;; tell doc-view to render pdfs at higher resolutions
+;;; tell doc-view to render at higher resolutions
 (setq doc-view-resolution 300)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -184,12 +187,8 @@
 (define-key input-decode-map (kbd "M-[ C") [C-right])
 (define-key input-decode-map (kbd "M-[ D") [C-left])
 
-
-
-
-
-
-
+;;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -385,6 +384,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (push '("\\.urdf$" . nxml-mode)  auto-mode-alist)
+(push '("\\.launch$" . nxml-mode)  auto-mode-alist)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; haskell ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -526,7 +526,6 @@
  '(case-fold-search t)
  '(column-number-mode t)
  '(current-language-environment "English")
- '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" "7b4a6cbd00303fc53c2d486dfdbe76543e1491118eba6adc349205dbf0f7063a" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(default-input-method "rfc1345")
  '(desktop-path (quote ("~/.emacs.d/" "~" "~/Desktop")))
  '(elpy-default-minor-modes (quote (eldoc-mode flymake-mode yas-minor-mode auto-complete-mode)))

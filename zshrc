@@ -22,6 +22,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="saulrh"
+ZSH_THEME="robbyrussell"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -45,7 +46,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python svn debian)
+plugins=(git python svn debian safe-paste rsync lol nyan)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,10 +107,16 @@ case $HOST in
         keychain -Q vulcan_primary -q
     ;;
     pazuzu)
-        keychain -Q saul-pazuzu -q
+        eval `keychain -Q saul-pazuzu 23E69FB1 DD9CCD1A --eval`
+    ;;
+    krang)
+        eval `keychain -Q krang_rsa --eval`
+    ;;
+    *)
+        # eval `keychain -Q id_rsa --eval`
     ;;
 esac
-source ~/.keychain/${HOST}-sh
+# source ~/.keychain/${HOST}-sh
 
 # teamocil - add autocompletion
 compctl -g '~/.teamocil/*(:t:r)' teamocil
@@ -162,149 +169,155 @@ alias tmux='tmux -2'
 #################################### prompt ###################################
 ###############################################################################
 
-# turn on command substitution in the prompt!
-# Also parameter expansion and artihmetic expansion, but we don't use those.
-setopt promptsubst
-autoload colors && colors
+# # turn on command substitution in the prompt!
+# # Also parameter expansion and artihmetic expansion, but we don't use those.
+# setopt promptsubst
+# autoload colors && colors
 
-###############################################################################
+# ###############################################################################
 
-# [user@host (chroot?) (git?) dir]$ 
-# ^                              ^^
-color_brackets="%{$fg_bold[red]%}"
+# # [user@host (chroot?) (git?) dir]$ 
+# # ^                              ^^
+# color_brackets="%{$fg_bold[red]%}"
 
-# [user@host (chroot?) (git?) dir]$ 
-#  ^^^^
-color_username_normal="%{$fg_bold[green]%}"
+# # [user@host (chroot?) (git?) dir]$ 
+# #  ^^^^
+# color_username_normal="%{$fg_bold[green]%}"
 
-# [root@host (chroot?) (git?) dir]$ 
-#  ^^^^
-color_username_root="%{$fg_bold[yellow]%}"
+# # [root@host (chroot?) (git?) dir]$ 
+# #  ^^^^
+# color_username_root="%{$fg_bold[yellow]%}"
 
-# [user@host (chroot?) (git?) dir]$ 
-#      ^
-color_at="%{$fg_bold[green]%}"
+# # [user@host (chroot?) (git?) dir]$ 
+# #      ^
+# color_at="%{$fg_bold[green]%}"
 
-# [user@host (chroot?) (git?) dir]$ 
-#       ^^^^
-color_host_normal="%{$fg_bold[green]%}"
+# # [user@host (chroot?) (git?) dir]$ 
+# #       ^^^^
+# color_host_normal="%{$fg_bold[green]%}"
 
-# [user@important (chroot?) (git?) dir]$ 
-#       ^^^^^^^^^
-color_host_special="%{$fg_bold[red]%}"
+# # [user@important (chroot?) (git?) dir]$ 
+# #       ^^^^^^^^^
+# color_host_special="%{$fg_bold[red]%}"
 
-# [user@host (chroot?) (git?) dir]$ 
-#             ^^^^^^
-color_host_chroot="%{$fg_bold[yellow]%}"
+# # [user@host (chroot?) (git?) dir]$ 
+# #             ^^^^^^
+# color_host_chroot="%{$fg_bold[yellow]%}"
 
-# [user@host (chroot?) (git?) dir]$ 
-#                       ^^^
-color_git_clean="%{$fg[green]%}"
+# # [user@host (chroot?) (git?) dir]$ 
+# #                       ^^^
+# color_git_clean="%{$fg[green]%}"
 
-# [user@host (chroot?) (git?) dir]$ 
-#                       ^^^
-color_git_dirty="%{$fg[yellow]%}"
+# # [user@host (chroot?) (git?) dir]$ 
+# #                       ^^^
+# color_git_dirty="%{$fg[yellow]%}"
 
-# [user@host (chroot?) (git?) dir]$ 
-#                             ^^^
-color_dir="%{$fg_bold[blue]%}"
+# # [user@host (chroot?) (git?) dir]$ 
+# #                             ^^^
+# color_dir="%{$fg_bold[blue]%}"
 
-###############################################################################
+# ###############################################################################
 
-# gets the name of the current branch
-# saves result as a var
-git_branch()
-{
-    git_branch_string="$(git symbolic-ref HEAD 2>/dev/null)"
-    git_branch_string="${git_branch_string##*/}"
-    git_branch_string="${git_branch_string:-no branch}"
-}
+# # gets the name of the current branch
+# # saves result as a var
+# git_branch()
+# {
+#     git_branch_string="$(git symbolic-ref HEAD 2>/dev/null)"
+#     git_branch_string="${git_branch_string##*/}"
+#     git_branch_string="${git_branch_string:-no branch}"
+# }
 
-# gets whether the current worktree has changes
-# changes color of the branch name
-git_dirty()
-{
-    if [[ -n "$(git status -s --ignore-submodules=dirty --porcelain 2> /dev/null)" ]]; then
-        git_dirty_string=$color_git_dirty
-    else
-        git_dirty_string=$color_git_clean
-    fi
-}
+# # gets whether the current worktree has changes
+# # changes color of the branch name
+# git_dirty()
+# {
+#     if [[ -n "$(git status -s --ignore-submodules=dirty --porcelain 2> /dev/null)" ]]; then
+#         git_dirty_string=$color_git_dirty
+#     else
+#         git_dirty_string=$color_git_clean
+#     fi
+# }
 
-git_prompt() {
-    if [[ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]];
-    then
-        git_prompt_string="%{$fg_bold[blue]%} ("$git_dirty_string$git_branch_string"%{$fg_bold[blue]%})"
-    else
-        unset git_prompt_string
-    fi
-}
-function toggle_git()
-{
-    if [ -z "$DO_ZSH_GIT" ] ;
-    then
-        echo "Will not include git status in prompt"
-        DO_ZSH_GIT="foo"
-    else
-        echo "Will include git status in prompt"
-        DO_ZSH_GIT=""
-    fi
-}
+# git_prompt() {
+#     if [[ -n "$(git symbolic-ref HEAD 2> /dev/null)" ]];
+#     then
+#         git_prompt_string="%{$fg_bold[blue]%} ("$git_dirty_string$git_branch_string"%{$fg_bold[blue]%})"
+#     else
+#         unset git_prompt_string
+#     fi
+# }
+# function toggle_git()
+# {
+#     if [ -z "$DO_ZSH_GIT" ] ;
+#     then
+#         echo "Will not include git status in prompt"
+#         DO_ZSH_GIT="foo"
+#     else
+#         echo "Will include git status in prompt"
+#         DO_ZSH_GIT=""
+#     fi
+# }
 
-# now, update our variables whenever we change directory. 
-function chpwd()
-{
-    if [ -z "$DO_ZSH_GIT" ] ;
-    then
-        git_branch
-        git_dirty
-        git_prompt
-    else
-        unset git_prompt_string
-    fi
-}
+# # now, update our variables whenever we change directory. 
+# function chpwd()
+# {
+#     if [ -z "$DO_ZSH_GIT" ] ;
+#     then
+#         git_branch
+#         git_dirty
+#         git_prompt
+#     else
+#         unset git_prompt_string
+#     fi
+# }
 
-function precmd {
-    case $USER in
-        root)
-            prompt_user_string=$color_username_root$USER
-            ;;
-        *)
-            prompt_user_string=$color_username_normal$USER
-            ;;
-    esac
+# function precmd {
+#     case $USER in
+#         root)
+#             prompt_user_string=$color_username_root$USER
+#             ;;
+#         *)
+#             prompt_user_string=$color_username_normal$USER
+#             ;;
+#     esac
 
-    case $HOST in
-        krang)
-            prompt_host_string=$color_host_special$HOST"[`bms -V`]"
-            ;;
-        thebrain)
-            prompt_host_string=$color_host_special$HOST
-            ;;
-        *)
-            prompt_host_string=$color_host_normal$HOST
-            ;;
-    esac
+#     case $HOST in
+#         krang)
+#             # jobs=`sudo ps -eo pcpu,user`
+#             # achd_cpu=`ps -eo pcpu,fname | grep achd | cut -d " " -f 2 | paste -sd+ | bc`
+#             prompt_host_string=$color_host_special$HOST"[`bmsGetLast.sh`]"
+#             #prompt_host_string=$color_host_special$HOST
+#             ;;
+#         krang-vision)
+#             prompt_host_string=$color_host_special$HOST
+#             ;;
+#         thebrain)
+#             prompt_host_string=$color_host_special$HOST
+#             ;;
+#         *)
+#             prompt_host_string=$color_host_normal$HOST
+#             ;;
+#     esac
 
-    if [ -n "$SCHROOT_CHROOT_NAME" ] ;
-    then
-        prompt_host_string=$prompt_host_string$color_host_chroot" ($SCHROOT_CHROOT_NAME)"
-    fi
-}
+#     if [ -n "$SCHROOT_CHROOT_NAME" ] ;
+#     then
+#         prompt_host_string=$prompt_host_string$color_host_chroot" ($SCHROOT_CHROOT_NAME)"
+#     fi
+# }
 
-# start with git status enabled
-DO_ZSH_GIT=""
+# # start with git status enabled
+# DO_ZSH_GIT=""
 
-#              command                       # part
-PROMPT=$color_brackets"["                    # [
-PROMPT=$PROMPT'$prompt_user_string'          # username
-PROMPT=$PROMPT'$color_at'"@"         # @
-PROMPT=$PROMPT'$prompt_host_string'          # host
-PROMPT=$PROMPT'$color_dir'" %1~"       # dir
-PROMPT=$PROMPT'$git_prompt_string'           # git status
-PROMPT=$PROMPT'$color_brackets'"]"            # ]
-PROMPT=$PROMPT"%(#.# .$ )"                    # root gets a #, normal a $.
-PROMPT=$PROMPT"%{$reset_color%}"             # reset   
+# #              command                       # part
+# PROMPT=$color_brackets"["                    # [
+# PROMPT=$PROMPT'$prompt_user_string'          # username
+# PROMPT=$PROMPT'$color_at'"@"         # @
+# PROMPT=$PROMPT'$prompt_host_string'          # host
+# PROMPT=$PROMPT'$color_dir'" %1~"       # dir
+# PROMPT=$PROMPT'$git_prompt_string'           # git status
+# PROMPT=$PROMPT'$color_brackets'"]"            # ]
+# PROMPT=$PROMPT"%(#.# .$ )"                    # root gets a #, normal a $.
+# PROMPT=$PROMPT"%{$reset_color%}"             # reset   
 
 ###############################################################################
 ################################# aliases #####################################

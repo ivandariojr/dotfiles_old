@@ -238,6 +238,9 @@ end
 if hostname == "parliament" then
    ncpus = 8
 end
+if hostname == "charlemagne" then
+   ncpus = 8
+end
 
 cpuspacers = {}
 cpuwidgets = {}
