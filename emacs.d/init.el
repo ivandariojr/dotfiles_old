@@ -151,6 +151,9 @@
 (global-set-key (kbd "C-z")
                 (lambda () (interactive) (toggle-theme 'solarized-dark)))
 
+;;; tell doc-view to render pdfs at higher resolutions
+(setq doc-view-resolution 300)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; keybindings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
