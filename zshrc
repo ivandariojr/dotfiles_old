@@ -85,6 +85,7 @@ SAVEHIST=10000
 unsetopt autocd
 
 # don't autocorrect. just autcomplete.
+unsetopt correct_all
 unsetopt correct
 
 # for gitolite and things from pip
@@ -120,6 +121,9 @@ esac
 
 # teamocil - add autocompletion
 compctl -g '~/.teamocil/*(:t:r)' teamocil
+
+# use ccache
+PATH=/usr/lib/ccache:$PATH
 
 ###############################################################################
 ############################### C code tagging ################################
@@ -164,6 +168,9 @@ alias gup='chpwd'
 
 # becuase tmux is stupid about color
 alias tmux='tmux -2'
+
+# i like colors
+alias tree='tree -C'
 
 ###############################################################################
 #################################### prompt ###################################
@@ -346,3 +353,35 @@ case $HOST in
         export PATH="/home/saul/perl5/bin:$PATH";
         ;;
 esac
+
+###############################################################################
+########################## ros setup ##########################################
+###############################################################################
+
+# ros
+# source /opt/ros/fuerte/setup.zsh
+source /opt/ros/groovy/setup.zsh
+
+# catkin
+source ~/pcl_ws/install_isolated/setup.zsh
+source ~/catkin_ws/devel/setup.zsh
+
+
+# Path hacks
+export PATH=~/catkin_ws/devel/lib/hubo_drc_vision:${PATH}
+export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
+
+# drcsim
+# source /usr/share/drcsim/setup.sh
+# source /usr/local/share/drcsim/setup.sh
+
+# vrc package
+export ROS_PACKAGE_PATH=${HOME}/src/vrc_golem:${ROS_PACKAGE_PATH}
+# export ROS_PACKAGE_PATH=${HOME}/src/drchubo:${ROS_PACKAGE_PATH}
+# export ROS_PACKAGE_PATH=${HOME}/src/DRC_msgs:${ROS_PACKAGE_PATH}
+
+# export GAZEBO_MODEL_PATH=/home/eric/src/vrc-golem/data/models/gazebo_modified_models:${GAZEBO_MODEL_PATH}
+# export GAZEBO_MODEL_PATH=${HOME}/src/drchubo/data/models/drchubo:${GAZEBO_MODEL_PATH}
+
+# atlas
+# export ROS_PACKAGE_PATH=/usr/share/drcsim-2.6/gazebo_models/atlas_description/atlas:/usr/share/drcsim-2.6/gazebo_models/multisense_sl_description/multisense_sl_description/:${ROS_PACKAGE_PATH}
