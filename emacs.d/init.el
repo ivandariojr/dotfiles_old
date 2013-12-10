@@ -141,7 +141,7 @@
     (if (file-exists-p persistent-scratch-filename)
         (copy-file persistent-scratch-filename
                    (make-persistent-scratch-backup-name)))
-    (write-region (point-min) (point-max) 
+    (write-region (point-min) (point-max)
                   persistent-scratch-filename)))
 (defun load-persistent-scratch ()
   "Load the contents of PERSISTENT-SCRATCH-FILENAME into the
@@ -182,7 +182,7 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
 ;;; set font size
-(set-face-attribute 'default nil :height 110)
+(set-face-attribute 'default nil :height 80)
 
 ;;; I give up. I'll just toggle the theme manually whenever I need to.
 (defun toggle-theme (th)
@@ -586,10 +586,8 @@
  '(color-theme-is-cumulative nil)
  '(column-number-mode t)
  '(current-language-environment "English")
- '(cursor-color "#839496")
- '(custom-safe-themes
-   (quote
-    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "501caa208affa1145ccbb4b74b6cd66c3091e41c5bb66c677feda9def5eab19c" "7b4a6cbd00303fc53c2d486dfdbe76543e1491118eba6adc349205dbf0f7063a" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(custom-enabled-themes (quote (sanityinc-solarized-dark)))
+ '(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(default-input-method "rfc1345")
  '(desktop-path (quote ("~/.emacs.d/" "~" "~/Desktop")))
  '(elpy-default-minor-modes

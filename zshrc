@@ -357,31 +357,39 @@ esac
 ###############################################################################
 ########################## ros setup ##########################################
 ###############################################################################
-
-# ros
-# source /opt/ros/fuerte/setup.zsh
+# ros groovy
 source /opt/ros/groovy/setup.zsh
-
-# catkin
-source ~/pcl_ws/install_isolated/setup.zsh
+# pcl-1.7
+source ~/pcl_ws/devel_isolated/setup.zsh
+# catkin workspace
 source ~/catkin_ws/devel/setup.zsh
-
-
-# Path hacks
+# hubo utilities
 export PATH=~/catkin_ws/devel/lib/hubo_drc_vision:${PATH}
-export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 
-# drcsim
-# source /usr/share/drcsim/setup.sh
-# source /usr/local/share/drcsim/setup.sh
+# ROS Master (for network connections)
+# export ROS_MASTER_URI=http://localhost:11311
+# export ROS_MASTER_URI=http://192.168.0.11:11311
+# export ROS_IP=192.168.1.246
+# export ROS_HOSTNAME=192.168.0.12
+# export ROS_MASTER_URI=http://192.168.1.232:11311
+# export ROS_IP=192.168.1.233
+# export ROS_MASTER_URI=http://192.168.1.97:11311 # Grey's
+# export ROS_IP=192.168.1.233                     # Mine
 
-# vrc package
-export ROS_PACKAGE_PATH=${HOME}/src/vrc_golem:${ROS_PACKAGE_PATH}
-# export ROS_PACKAGE_PATH=${HOME}/src/drchubo:${ROS_PACKAGE_PATH}
-# export ROS_PACKAGE_PATH=${HOME}/src/DRC_msgs:${ROS_PACKAGE_PATH}
+# java sillyness
+wmname LG3D
 
-# export GAZEBO_MODEL_PATH=/home/eric/src/vrc-golem/data/models/gazebo_modified_models:${GAZEBO_MODEL_PATH}
-# export GAZEBO_MODEL_PATH=${HOME}/src/drchubo/data/models/drchubo:${GAZEBO_MODEL_PATH}
+###############################################################################
+########################## distcc & ccache setup ##############################
+###############################################################################
+# export DISTCC_HOSTS='hubo-ci'
+# export PATH=/usr/lib/distcc:${PATH}
+export PATH=/usr/lib/ccache:${PATH}
+# export CCACHE_PREFIX='distcc'
 
-# atlas
-# export ROS_PACKAGE_PATH=/usr/share/drcsim-2.6/gazebo_models/atlas_description/atlas:/usr/share/drcsim-2.6/gazebo_models/multisense_sl_description/multisense_sl_description/:${ROS_PACKAGE_PATH}
+###############################################################################
+########################## kdump setup ########################################
+###############################################################################
+# export VMLINUZ=/boot/vmlinuz-`uname -r`
+# export SKIP=$(sudo grep -aboP '\x1f\x8b\x08\x00' $VMLINUZ | awk -F: '{print $1}')
+# sudo dd bs=1 skip=$SKIP if=$VMLINUZ | gzip -d -c > /tmp/vmlinux
