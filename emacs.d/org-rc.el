@@ -36,7 +36,7 @@ diary functions."
 ;;; add some extra todo keywords
 (setq org-todo-keywords
       ;; '((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "WILL-NOT-DO")
-      '((sequence "TODO" "|" "DONE") 
+      '((sequence "TODO" "IN-PROGRESS" "|" "DONE") 
         (sequence "IDEA" "WORKING" "|" "TOO-HARD" "FEASIBLE" "FINISHED")
         (sequence "RECOMMENDED" "ON-HOLD" "|" "READ")))
 
