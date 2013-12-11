@@ -47,7 +47,7 @@ diary functions."
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
 ;;; these are where my agenda files are located
-(setq org-agenda-files (directory-files "/home/eric/org" nil "\\.org$"))
+(setq org-agenda-files '("~/org"))
 
 ;;; stop destroying frames on agenda close
 (setq org-agenda-window-setup 'current-window)
