@@ -230,6 +230,16 @@
 ;;; magit
 (global-set-key (kbd "C-x g") 'magit-status)
 
+;;; efficient window switching
+(global-set-key (kbd "C-S-h") 'windmove-left)
+(global-set-key (kbd "C-S-j") 'windmove-)
+(global-set-key (kbd "C-S-k") 'windmove-up)
+(global-set-key (kbd "C-S-l") 'windmove-right)
+
+;;; avoid highlighting when looking around after window switching
+(global-set-key (kbd "C-S-n") 'next-line)
+(global-set-key (kbd "C-S-p") 'previous-line)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;                                                                         ;;
@@ -569,18 +579,9 @@
  '(TeX-source-correlate-mode t)
  '(TeX-source-correlate-start-server t)
  '(TeX-view-program-list (quote (("Okular" "okular –unique %o#src:%n%b"))))
- '(TeX-view-program-selection
-   (quote
-    ((output-pdf "Okular")
-     ((output-dvi style-pstricks)
-      "dvips and gv")
-     (output-dvi "xdvi")
-     (output-pdf "Evince")
-     (output-html "xdg-open"))))
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector
-   (vector "#eaeaea" "#d54e53" "#b9ca4a" "#e7c547" "#7aa6da" "#c397d8" "#70c0b1" "#000000"))
+ '(TeX-view-program-selection (quote ((output-pdf "Okular") ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi") (output-pdf "Evince") (output-html "xdg-open"))))
+ '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector (vector "#eaeaea" "#d54e53" "#b9ca4a" "#e7c547" "#7aa6da" "#c397d8" "#70c0b1" "#000000"))
  '(background-color "#002b36")
  '(background-mode dark)
  '(case-fold-search t)
@@ -591,35 +592,16 @@
  '(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(default-input-method "rfc1345")
  '(desktop-path (quote ("~/.emacs.d/" "~" "~/Desktop")))
- '(elpy-default-minor-modes
-   (quote
-    (eldoc-mode flymake-mode yas-minor-mode auto-complete-mode)))
+ '(elpy-default-minor-modes (quote (eldoc-mode flymake-mode yas-minor-mode auto-complete-mode)))
  '(erc-auto-query (quote window))
  '(erc-beep-match-types (quote (current-nick)))
  '(erc-format-nick-function (quote erc-format-@nick))
  '(erc-highlight-nicknames-mode t)
  '(erc-identd-mode nil)
  '(erc-match-mode t)
- '(erc-modules
-   (quote
-    (button completion fill irccontrols log match menu netsplit networks noncommands readonly ring scrolltobottom services stamp track truncate notifications highlight-nicknames)))
+ '(erc-modules (quote (button completion fill irccontrols log match menu netsplit networks noncommands readonly ring scrolltobottom services stamp track truncate notifications highlight-nicknames)))
  '(erc-nick "Vebyast")
- '(erc-nickserv-alist
-   (quote
-    ((Mibbit "NickServ!services@mibbit.net" "" "" "" nil nil nil)
-     (Foonetic "NickServ@services.foonetic.net" "/msg[:space:]*NickServ[:space:]*identify[:space:]*<password>" "NickServ" "identify" nil nil nil)
-     (Ars nil nil "Census" "IDENTIFY" nil nil nil)
-     (Austnet "NickOP!service@austnet.org" "/msg\\s-NickOP@austnet.org\\s-identify\\s-<password>" "nickop@austnet.org" "identify" nil nil nil)
-     (Azzurra "NickServ!service@azzurra.org" "/ns\\s-IDENTIFY\\s-password" "NickServ" "IDENTIFY" nil nil nil)
-     (BitlBee nil nil "&bitlbee" "identify" nil nil nil)
-     (BRASnet "NickServ!services@brasnet.org" "/NickServ\\s-IDENTIFY\\s-senha" "NickServ" "IDENTIFY" nil "" nil)
-     (DALnet "NickServ!service@dal.net" "/msg\\s-NickServ@services.dal.net\\s-IDENTIFY\\s-<password>" "NickServ@services.dal.net" "IDENTIFY" nil nil nil)
-     (freenode "NickServ!NickServ@services." "/msg\\s-NickServ\\s-IDENTIFY\\s-<password>" "NickServ" "IDENTIFY" nil nil nil)
-     (GalaxyNet "NS!nickserv@galaxynet.org" "Please\\s-change\\s-nicks\\s-or\\s-authenticate." "NS@services.galaxynet.org" "AUTH" t nil nil)
-     (iip "Trent@anon.iip" "type\\s-/squery\\s-Trent\\s-identify\\s-<password>" "Trent@anon.iip" "IDENTIFY" nil "SQUERY" nil)
-     (OFTC "NickServ!services@services.oftc.net" "type\\s-/msg\\s-NickServ\\s-IDENTIFY\\s-password." "NickServ" "IDENTIFY" nil nil nil)
-     (QuakeNet nil nil "Q@CServe.quakenet.org" "auth" t nil nil)
-     (SlashNET "NickServ!services@services.slashnet.org" "/msg\\s-NickServ\\s-IDENTIFY\\s-password" "NickServ@services.slashnet.org" "IDENTIFY" nil nil nil))))
+ '(erc-nickserv-alist (quote ((Mibbit "NickServ!services@mibbit.net" "" "" "" nil nil nil) (Foonetic "NickServ@services.foonetic.net" "/msg[:space:]*NickServ[:space:]*identify[:space:]*<password>" "NickServ" "identify" nil nil nil) (Ars nil nil "Census" "IDENTIFY" nil nil nil) (Austnet "NickOP!service@austnet.org" "/msg\\s-NickOP@austnet.org\\s-identify\\s-<password>" "nickop@austnet.org" "identify" nil nil nil) (Azzurra "NickServ!service@azzurra.org" "/ns\\s-IDENTIFY\\s-password" "NickServ" "IDENTIFY" nil nil nil) (BitlBee nil nil "&bitlbee" "identify" nil nil nil) (BRASnet "NickServ!services@brasnet.org" "/NickServ\\s-IDENTIFY\\s-senha" "NickServ" "IDENTIFY" nil "" nil) (DALnet "NickServ!service@dal.net" "/msg\\s-NickServ@services.dal.net\\s-IDENTIFY\\s-<password>" "NickServ@services.dal.net" "IDENTIFY" nil nil nil) (freenode "NickServ!NickServ@services." "/msg\\s-NickServ\\s-IDENTIFY\\s-<password>" "NickServ" "IDENTIFY" nil nil nil) (GalaxyNet "NS!nickserv@galaxynet.org" "Please\\s-change\\s-nicks\\s-or\\s-authenticate." "NS@services.galaxynet.org" "AUTH" t nil nil) (iip "Trent@anon.iip" "type\\s-/squery\\s-Trent\\s-identify\\s-<password>" "Trent@anon.iip" "IDENTIFY" nil "SQUERY" nil) (OFTC "NickServ!services@services.oftc.net" "type\\s-/msg\\s-NickServ\\s-IDENTIFY\\s-password." "NickServ" "IDENTIFY" nil nil nil) (QuakeNet nil nil "Q@CServe.quakenet.org" "auth" t nil nil) (SlashNET "NickServ!services@services.slashnet.org" "/msg\\s-NickServ\\s-IDENTIFY\\s-password" "NickServ@services.slashnet.org" "IDENTIFY" nil nil nil))))
  '(erc-nickserv-identify-mode (quote both))
  '(erc-notifications-mode t)
  '(erc-paranoid t)
@@ -647,56 +629,23 @@
  '(org-agenda-skip-scheduled-if-done t)
  '(org-agenda-start-on-weekday nil)
  '(org-agenda-warning-days 14)
- '(org-capture-templates
-   (quote
-    (("s" "school todo" entry
-      (file+headline "~/org/todo.org" "School")
-      "* TODO %?
-  %u" :prepend t)
-     ("t" "todo" entry
-      (file+headline "~/org/todo.org" "Uncategorized")
-      "* TODO %?
-  %u" :prepend t)
-     ("m" "Money Todo" entry
-      (file+headline "~/org/todo.org" "Money")
-      "* TODO %?
-  %u")
-     ("i" "idea" entry
-      (file+headline "~/org/ideas.org" "Ideas")
-      "* IDEA %?
-  %u" :prepend t)
-     ("p" "project" entry
-      (file+headline "~/org/todo.org" "Projects")
-      "* TODO %?
-  %u" :prepend t)
-     ("r" "to-read" entry
-      (file+headline "~/org/readinglist.org" "Uncategorized")
-      "* RECOMMENDED %?" :prepend t)
-     ("n" "Note" entry
-      (file+headline "~/org/notes/notes.org" "Uncategorized")
-      "* %?
-  %u" :prepend t)
-     ("w" "Wait" entry
-      (file+headline "~/org/todo.org" "Wait")
-      "* TODO %?
+ '(org-capture-templates (quote (("s" "school todo" entry (file+headline "~/org/todo.org" "School") "* TODO %?
+  %u" :prepend t) ("t" "todo" entry (file+headline "~/org/todo.org" "Uncategorized") "* TODO %?
+  %u" :prepend t) ("m" "Money Todo" entry (file+headline "~/org/todo.org" "Money") "* TODO %?
+  %u") ("i" "idea" entry (file+headline "~/org/ideas.org" "Ideas") "* IDEA %?
+  %u" :prepend t) ("p" "project" entry (file+headline "~/org/todo.org" "Projects") "* TODO %?
+  %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* RECOMMENDED %?" :prepend t) ("n" "Note" entry (file+headline "~/org/notes/notes.org" "Uncategorized") "* %?
+  %u" :prepend t) ("w" "Wait" entry (file+headline "~/org/todo.org" "Wait") "* TODO %?
   SCHEDULED: <%(org-read-date nil nil \"+24h\")>
-  %u")
-     ("b" "To buy at store" entry
-      (file "~/org/shopping-list.org")
-      "* %?"))))
+  %u") ("b" "To buy at store" entry (file "~/org/shopping-list.org") "* %?"))))
  '(org-default-notes-file "~/org/notes.org")
  '(org-mobile-files (quote (org-agenda-files "~/org/readinglist.org")))
  '(org-priority-faces (quote ((65 . "red") (66 . "yellow") (67 . "blue"))))
  '(org-remember-store-without-prompt t)
- '(org-remember-templates
-   (quote
-    (("todo" 116 "* TODO %?
-  %u" "~/org/todo.org" "Uncategorized" nil)
-     ("idea" 105 "* TODO %?
-  %u" "~/org/todo.org" "Ideas" nil)
-     ("project" 112 "* TODO %?
-  %u" "~/org/todo.org" "Projects" nil)
-     ("to-read" 114 "* TODO %?
+ '(org-remember-templates (quote (("todo" 116 "* TODO %?
+  %u" "~/org/todo.org" "Uncategorized" nil) ("idea" 105 "* TODO %?
+  %u" "~/org/todo.org" "Ideas" nil) ("project" 112 "* TODO %?
+  %u" "~/org/todo.org" "Projects" nil) ("to-read" 114 "* TODO %?
   %u" "~/org/readinglist.org" "Uncategorized" nil))))
  '(org-reverse-note-order t)
  '(password-cache-expiry nil)
@@ -704,74 +653,13 @@
  '(solarized-degrade nil)
  '(solarized-italic nil)
  '(solarized-termcolors 256)
- '(tex-dvi-view-command
-   (quote
-    (cond
-     ((eq window-system
-          (quote x))
-      "evince")
-     ((eq window-system
-          (quote w32))
-      "yap")
-     (t "dvi2tty * | cat -s"))))
+ '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "evince") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s"))))
  '(transient-mark-mode t)
  '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#d54e53")
-     (40 . "#e78c45")
-     (60 . "#e7c547")
-     (80 . "#b9ca4a")
-     (100 . "#70c0b1")
-     (120 . "#7aa6da")
-     (140 . "#c397d8")
-     (160 . "#d54e53")
-     (180 . "#e78c45")
-     (200 . "#e7c547")
-     (220 . "#b9ca4a")
-     (240 . "#70c0b1")
-     (260 . "#7aa6da")
-     (280 . "#c397d8")
-     (300 . "#d54e53")
-     (320 . "#e78c45")
-     (340 . "#e7c547")
-     (360 . "#b9ca4a"))))
+ '(vc-annotate-color-map (quote ((20 . "#d54e53") (40 . "#e78c45") (60 . "#e7c547") (80 . "#b9ca4a") (100 . "#70c0b1") (120 . "#7aa6da") (140 . "#c397d8") (160 . "#d54e53") (180 . "#e78c45") (200 . "#e7c547") (220 . "#b9ca4a") (240 . "#70c0b1") (260 . "#7aa6da") (280 . "#c397d8") (300 . "#d54e53") (320 . "#e78c45") (340 . "#e7c547") (360 . "#b9ca4a"))))
  '(vc-annotate-very-old-color nil)
- '(wl-draft-config-alist
-   (quote
-    (("^From: .*saulrh@gatech.edu"
-      (wl-smtp-authenticate-type . "plain")
-      (wl-smtp-posting-user . "sarh3")
-      (wl-smtp-posting-port . 465)
-      (wl-smtp-posting-server . "mail.gatech.edu")
-      (wl-smtp-connection-type quote ssl))
-     ("^From: .*sreynoldshaertle@gmail.com"
-      (wl-smtp-authenticate-type . "login")
-      (wl-smtp-posting-user . "sreynoldshaertle")
-      (wl-smtp-posting-server . "smtp.gmail.com")
-      (wl-local-domain . "gmail.com")
-      (wl-smtp-posting-port . 587)
-      (wl-smtp-connection-type quote starttls)
-      (wl-message-id-domain . "smtp.gmail.com"))
-     ("^From: .*vebyast@gmail.com"
-      (wl-smtp-posting-user . "vebyast")
-      (wl-smtp-posting-server . "smtp.gmail.com")
-      (wl-smtp-posting-port . 587)
-      (wl-smtp-connection-type quote starttls)
-      (wl-smtp-authenticate-type . "login")
-      (wl-local-domain . "gmail.com")
-      (wl-message-id-domain . "smtp.gmail.com")))))
- '(wl-template-alist
-   (quote
-    (("sreynoldshaertle@gmail"
-      (wl-from . "Saul Reynolds-Haertle <sreynoldshaertle@gmail.com>")
-      ("From" . wl-from))
-     ("saulrh@gatech.edu"
-      (wl-from . "Saul Reynolds-Haertle <saulrh@gatech.edu>")
-      ("From" . wl-from))
-     ("vebyast@gmail.com"
-      (wl-from . "Vebyast Kranm <vebyast@gmail.com>")
-      ("From" . wl-from))))))
+ '(wl-draft-config-alist (quote (("^From: .*saulrh@gatech.edu" (wl-smtp-authenticate-type . "plain") (wl-smtp-posting-user . "sarh3") (wl-smtp-posting-port . 465) (wl-smtp-posting-server . "mail.gatech.edu") (wl-smtp-connection-type quote ssl)) ("^From: .*sreynoldshaertle@gmail.com" (wl-smtp-authenticate-type . "login") (wl-smtp-posting-user . "sreynoldshaertle") (wl-smtp-posting-server . "smtp.gmail.com") (wl-local-domain . "gmail.com") (wl-smtp-posting-port . 587) (wl-smtp-connection-type quote starttls) (wl-message-id-domain . "smtp.gmail.com")) ("^From: .*vebyast@gmail.com" (wl-smtp-posting-user . "vebyast") (wl-smtp-posting-server . "smtp.gmail.com") (wl-smtp-posting-port . 587) (wl-smtp-connection-type quote starttls) (wl-smtp-authenticate-type . "login") (wl-local-domain . "gmail.com") (wl-message-id-domain . "smtp.gmail.com")))))
+ '(wl-template-alist (quote (("sreynoldshaertle@gmail" (wl-from . "Saul Reynolds-Haertle <sreynoldshaertle@gmail.com>") ("From" . wl-from)) ("saulrh@gatech.edu" (wl-from . "Saul Reynolds-Haertle <saulrh@gatech.edu>") ("From" . wl-from)) ("vebyast@gmail.com" (wl-from . "Vebyast Kranm <vebyast@gmail.com>") ("From" . wl-from))))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
