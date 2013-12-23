@@ -336,6 +336,10 @@ alias rolldice="rolldice -s"
 ########################## emacs editing things ###############################
 ###############################################################################
 
+# Make M-f behave like in emacs
+bindkey '^[F' emacs-forward-word
+bindkey '^[f' emacs-forward-word
+
 # Local Variables:
 # mode: sh
 # End:
