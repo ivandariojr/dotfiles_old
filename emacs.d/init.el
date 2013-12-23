@@ -237,8 +237,10 @@
 (global-set-key (kbd "C-S-l") 'windmove-right)
 
 ;;; avoid highlighting when looking around after window switching
-(global-set-key (kbd "C-S-n") 'next-line)
-(global-set-key (kbd "C-S-p") 'previous-line)
+;; (global-set-key (kbd "C-S-n") 'next-line)
+;; (global-set-key (kbd "C-S-p") 'previous-line)
+;; (global-unset-key (kbd "C-S-n"))
+;; (global-unset-key (kbd "C-S-p"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
