@@ -1479,7 +1479,7 @@ Late deadlines first, then scheduled, then non-late deadlines"
 ;;
 (if (boundp 'org-mode-user-contrib-lisp-path)
     (add-to-list 'load-path org-mode-user-contrib-lisp-path)
-  (add-to-list 'load-path (expand-file-name "~/git/org-mode/contrib/lisp")))
+  (add-to-list 'load-path (expand-file-name "~/.emacs.d/org-mode/contrib/lisp")))
 
 (require 'org-checklist)
 
