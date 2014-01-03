@@ -200,6 +200,11 @@
 (global-set-key (kbd "C-S-k") 'windmove-up)
 (global-set-key (kbd "C-S-l") 'windmove-right)
 
+;;; window splitting and killing
+(global-set-key (kbd "C-S-o") 'split-window-vertically)
+(global-set-key (kbd "C-S-e") 'split-window-horizontally)
+(global-set-key (kbd "C-S-w") 'delete-window)
+
 ;;; avoid highlighting when looking around after window switching
 ;; (global-set-key (kbd "C-S-n") 'next-line)
 ;; (global-set-key (kbd "C-S-p") 'previous-line)
