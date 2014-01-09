@@ -7,7 +7,7 @@
     (add-to-list 'load-path org-mode-user-lisp-path)
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/org-mode/lisp")))
 
-(add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\|txt\\)$" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(org\\|org_archive\\)$" . org-mode))
 (require 'org)
 ;;
 ;; Standard key bindings
