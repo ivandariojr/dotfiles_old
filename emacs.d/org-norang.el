@@ -1522,10 +1522,10 @@ Late deadlines first, then scheduled, then non-late deadlines"
                           org-bibtex
                           org-crypt
                           org-gnus
+                          org-habit
                           org-id
                           org-info
                           org-jsinfo
-                          org-habit
                           org-inlinetask
                           org-irc
                           org-mew
