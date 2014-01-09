@@ -240,14 +240,6 @@
                        (org-tags-match-list-sublevels nil))))
                nil))))
 
-;; Set agenda prefix format
-(setq org-agenda-prefix-format 
-      '((agenda . " %i %-12:c%?-12t% s%b")
-        (timeline . "  % s")
-        (todo . " %i %-12:c %b")
-        (tags . " %i %-12:c")
-        (search . " %i %-12:c")))
-
 (defun bh/org-auto-exclude-function (tag)
   "Automatic task exclusion in the agenda with / RET"
   (and (cond

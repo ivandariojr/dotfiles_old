@@ -536,8 +536,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(minimap-semantic-function-face ((t (:inherit (font-lock-function-name-face minimap-font-face) :background "gray10" :box (:line-width 1 :color "white") :height 2.5))))
- '(slime-highlight-edits-face ((((class color) (background dark)) (:background "#333"))) t))
+ '(org-mode-line-clock ((t (:foreground "red" :box (:line-width -1 :style released-button)))) t))
 
 
 (custom-set-variables
@@ -545,92 +544,15 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(TeX-PDF-mode t)
- '(TeX-source-correlate-method (quote synctex))
- '(TeX-source-correlate-mode t)
- '(TeX-source-correlate-start-server t)
- '(TeX-view-program-list (quote (("Okular" "okular –unique %o#src:%n%b"))))
- '(TeX-view-program-selection (quote ((output-pdf "Okular") ((output-dvi style-pstricks) "dvips and gv") (output-dvi "xdvi") (output-pdf "Evince") (output-html "xdg-open"))))
  '(ansi-color-faces-vector [default bold shadow italic underline bold bold-italic bold])
- '(ansi-color-names-vector (vector "#eaeaea" "#d54e53" "#b9ca4a" "#e7c547" "#7aa6da" "#c397d8" "#70c0b1" "#000000"))
- '(background-color "#002b36")
- '(background-mode dark)
- '(case-fold-search t)
- '(color-theme-is-cumulative nil)
- '(column-number-mode t)
- '(current-language-environment "English")
- '(custom-enabled-themes (quote (sanityinc-solarized-dark)))
- '(custom-safe-themes (quote ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
- '(default-input-method "rfc1345")
- '(desktop-path (quote ("~/.emacs.d/" "~" "~/Desktop")))
- '(elpy-default-minor-modes (quote (eldoc-mode flymake-mode yas-minor-mode auto-complete-mode)))
- '(erc-auto-query (quote window))
- '(erc-beep-match-types (quote (current-nick)))
- '(erc-format-nick-function (quote erc-format-@nick))
- '(erc-highlight-nicknames-mode t)
- '(erc-identd-mode nil)
- '(erc-match-mode t)
- '(erc-modules (quote (button completion fill irccontrols log match menu netsplit networks noncommands readonly ring scrolltobottom services stamp track truncate notifications highlight-nicknames)))
- '(erc-nick "Vebyast")
- '(erc-nickserv-alist (quote ((Mibbit "NickServ!services@mibbit.net" "" "" "" nil nil nil) (Foonetic "NickServ@services.foonetic.net" "/msg[:space:]*NickServ[:space:]*identify[:space:]*<password>" "NickServ" "identify" nil nil nil) (Ars nil nil "Census" "IDENTIFY" nil nil nil) (Austnet "NickOP!service@austnet.org" "/msg\\s-NickOP@austnet.org\\s-identify\\s-<password>" "nickop@austnet.org" "identify" nil nil nil) (Azzurra "NickServ!service@azzurra.org" "/ns\\s-IDENTIFY\\s-password" "NickServ" "IDENTIFY" nil nil nil) (BitlBee nil nil "&bitlbee" "identify" nil nil nil) (BRASnet "NickServ!services@brasnet.org" "/NickServ\\s-IDENTIFY\\s-senha" "NickServ" "IDENTIFY" nil "" nil) (DALnet "NickServ!service@dal.net" "/msg\\s-NickServ@services.dal.net\\s-IDENTIFY\\s-<password>" "NickServ@services.dal.net" "IDENTIFY" nil nil nil) (freenode "NickServ!NickServ@services." "/msg\\s-NickServ\\s-IDENTIFY\\s-<password>" "NickServ" "IDENTIFY" nil nil nil) (GalaxyNet "NS!nickserv@galaxynet.org" "Please\\s-change\\s-nicks\\s-or\\s-authenticate." "NS@services.galaxynet.org" "AUTH" t nil nil) (iip "Trent@anon.iip" "type\\s-/squery\\s-Trent\\s-identify\\s-<password>" "Trent@anon.iip" "IDENTIFY" nil "SQUERY" nil) (OFTC "NickServ!services@services.oftc.net" "type\\s-/msg\\s-NickServ\\s-IDENTIFY\\s-password." "NickServ" "IDENTIFY" nil nil nil) (QuakeNet nil nil "Q@CServe.quakenet.org" "auth" t nil nil) (SlashNET "NickServ!services@services.slashnet.org" "/msg\\s-NickServ\\s-IDENTIFY\\s-password" "NickServ@services.slashnet.org" "IDENTIFY" nil nil nil))))
- '(erc-nickserv-identify-mode (quote both))
- '(erc-notifications-mode t)
- '(erc-paranoid t)
- '(erc-prompt-for-nickserv-password nil)
- '(erc-server-reconnect-attempts 0)
- '(erc-text-matched-hook (quote (erc-log-matches erc-beep-on-match)))
- '(erc-truncate-mode t)
- '(erc-user-full-name "Vebyast Kranm")
- '(erc-verbose-server-ping nil)
- '(fci-rule-color "#2a2a2a")
- '(foreground-color "#839496")
- '(gdb-many-windows t)
- '(helm-ff-auto-update-initial-value nil)
- '(ido-everywhere nil)
- '(ido-mode (quote file) nil (ido))
- '(inhibit-eol-conversion nil)
- '(iswitchb-default-method (quote samewindow))
- '(minimap-dedicated-window t)
- '(minimap-window-location (quote right))
- '(org-agenda-files (quote ("~/org/todo.org" "~/.mobileorg/from-mobile.org")))
- '(org-agenda-include-diary t)
- '(org-agenda-ndays 21)
- '(org-agenda-show-all-dates t)
- '(org-agenda-skip-deadline-if-done t)
- '(org-agenda-skip-scheduled-if-done t)
- '(org-agenda-start-on-weekday nil)
- '(org-agenda-warning-days 14)
- '(org-capture-templates (quote (("s" "school todo" entry (file+headline "~/org/todo.org" "School") "* TODO %?
-  %u" :prepend t) ("t" "todo" entry (file+headline "~/org/todo.org" "Uncategorized") "* TODO %?
-  %u" :prepend t) ("m" "Money Todo" entry (file+headline "~/org/todo.org" "Money") "* TODO %?
-  %u") ("i" "idea" entry (file+headline "~/org/ideas.org" "Ideas") "* IDEA %?
-  %u" :prepend t) ("p" "project" entry (file+headline "~/org/todo.org" "Projects") "* TODO %?
-  %u" :prepend t) ("r" "to-read" entry (file+headline "~/org/readinglist.org" "Uncategorized") "* RECOMMENDED %?" :prepend t) ("n" "Note" entry (file+headline "~/org/notes/notes.org" "Uncategorized") "* %?
-  %u" :prepend t) ("w" "Wait" entry (file+headline "~/org/todo.org" "Wait") "* TODO %?
-  SCHEDULED: <%(org-read-date nil nil \"+24h\")>
-  %u") ("b" "To buy at store" entry (file "~/org/shopping-list.org") "* %?"))))
- '(org-default-notes-file "~/org/notes.org")
- '(org-mobile-files (quote (org-agenda-files "~/org/readinglist.org")))
- '(org-priority-faces (quote ((65 . "red") (66 . "yellow") (67 . "blue"))))
- '(org-remember-store-without-prompt t)
- '(org-remember-templates (quote (("todo" 116 "* TODO %?
-  %u" "~/org/todo.org" "Uncategorized" nil) ("idea" 105 "* TODO %?
-  %u" "~/org/todo.org" "Ideas" nil) ("project" 112 "* TODO %?
-  %u" "~/org/todo.org" "Projects" nil) ("to-read" 114 "* TODO %?
-  %u" "~/org/readinglist.org" "Uncategorized" nil))))
- '(org-reverse-note-order t)
- '(password-cache-expiry nil)
- '(show-paren-mode t nil (paren))
- '(solarized-degrade nil)
- '(solarized-italic nil)
- '(solarized-termcolors 256)
- '(tex-dvi-view-command (quote (cond ((eq window-system (quote x)) "evince") ((eq window-system (quote w32)) "yap") (t "dvi2tty * | cat -s"))))
- '(transient-mark-mode t)
+ '(ansi-color-names-vector (vector "#839496" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#002b36"))
+ '(custom-enabled-themes (quote (sanityinc-solarized-light)))
+ '(custom-safe-themes (quote ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
+ '(fci-rule-color "#073642")
+ '(org-modules (quote (org-bbdb org-bibtex org-crypt org-docview org-gnus org-habit org-id org-info org-irc org-mhe org-protocol org-rmail org-w3m org-checklist)))
  '(vc-annotate-background nil)
- '(vc-annotate-color-map (quote ((20 . "#d54e53") (40 . "#e78c45") (60 . "#e7c547") (80 . "#b9ca4a") (100 . "#70c0b1") (120 . "#7aa6da") (140 . "#c397d8") (160 . "#d54e53") (180 . "#e78c45") (200 . "#e7c547") (220 . "#b9ca4a") (240 . "#70c0b1") (260 . "#7aa6da") (280 . "#c397d8") (300 . "#d54e53") (320 . "#e78c45") (340 . "#e7c547") (360 . "#b9ca4a"))))
- '(vc-annotate-very-old-color nil)
- '(wl-draft-config-alist (quote (("^From: .*saulrh@gatech.edu" (wl-smtp-authenticate-type . "plain") (wl-smtp-posting-user . "sarh3") (wl-smtp-posting-port . 465) (wl-smtp-posting-server . "mail.gatech.edu") (wl-smtp-connection-type quote ssl)) ("^From: .*sreynoldshaertle@gmail.com" (wl-smtp-authenticate-type . "login") (wl-smtp-posting-user . "sreynoldshaertle") (wl-smtp-posting-server . "smtp.gmail.com") (wl-local-domain . "gmail.com") (wl-smtp-posting-port . 587) (wl-smtp-connection-type quote starttls) (wl-message-id-domain . "smtp.gmail.com")) ("^From: .*vebyast@gmail.com" (wl-smtp-posting-user . "vebyast") (wl-smtp-posting-server . "smtp.gmail.com") (wl-smtp-posting-port . 587) (wl-smtp-connection-type quote starttls) (wl-smtp-authenticate-type . "login") (wl-local-domain . "gmail.com") (wl-message-id-domain . "smtp.gmail.com")))))
- '(wl-template-alist (quote (("sreynoldshaertle@gmail" (wl-from . "Saul Reynolds-Haertle <sreynoldshaertle@gmail.com>") ("From" . wl-from)) ("saulrh@gatech.edu" (wl-from . "Saul Reynolds-Haertle <saulrh@gatech.edu>") ("From" . wl-from)) ("vebyast@gmail.com" (wl-from . "Vebyast Kranm <vebyast@gmail.com>") ("From" . wl-from))))))
+ '(vc-annotate-color-map (quote ((20 . "#dc322f") (40 . "#cb4b16") (60 . "#b58900") (80 . "#859900") (100 . "#2aa198") (120 . "#268bd2") (140 . "#d33682") (160 . "#6c71c4") (180 . "#dc322f") (200 . "#cb4b16") (220 . "#b58900") (240 . "#859900") (260 . "#2aa198") (280 . "#268bd2") (300 . "#d33682") (320 . "#6c71c4") (340 . "#dc322f") (360 . "#cb4b16"))))
+ '(vc-annotate-very-old-color nil))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
