@@ -72,7 +72,7 @@ layouts = {
 
 -- get hostname
 hostname = awful.util.pread("hostname"):gsub("\n", "")
-havebattery = hostname == "hermes" or hostname == "pazuzu"
+havebattery = hostname == "hermes" or hostname == "pazuzu" or hostname == "ivan-Satellite-P755"
 
 --=================================================================================
 --=================================== Tags ========================================
@@ -220,7 +220,7 @@ vicious.register(memwidget, vicious.widgets.mem, "$1", 1)
 ---------------
 
 ncpus = 1
-if hostname == "lanning" then
+if hostname == "lanning" or hostname == "ivan-Satellite-P755" then
    ncpus = 8
 end
 if hostname == "vulcan" then
@@ -616,17 +616,25 @@ awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh xbindkeys")
 -- should set caps lock to be a control key
 awful.util.spawn_with_shell("xmodmap ~/.xmodmap.conf")
 
+--start wicd
+
+awful.util.spawn_with_shell("wicd-client")
+
 -- start dropbox daemon
-awful.util.spawn_with_shell("dropbox start")
+
+awful.util.spawn_with_shell("$HOME/.dropbox-dist/dropboxd")
 
 -- disable touchpad tap-to-click
 awful.util.spawn_with_shell("synclient MaxTapTime=0")
 
 -- start gnome-do at login
-awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh gnome-do")
+awful.util.spawn_with_shell("gnome-do")
 
 -- grab a desktop image and display it
 awful.util.spawn_with_shell("$HOME/dotfiles/nasa_iotd.sh")
+
+--start an emacs daemon
+awful.util.spawn_with_shell("emacs --daemon")
 
 -- Local Variables:
 -- mode: lua

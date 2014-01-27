@@ -1,5 +1,6 @@
 ;;; this is where we'll save everything
 (add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "/usr/share/emacs/24.3.50/lisp/gnus")
 
 ;;; require common lisp
 (require 'cl)
@@ -23,6 +24,7 @@
           smart-tabs-mode solarized-theme undo-tree virtualenv w3m yasnippet
           dired+ ecb cedet))
 
+(require 'gccsense)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;                                                                         ;;
