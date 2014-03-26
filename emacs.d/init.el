@@ -4,7 +4,7 @@
 
 ;;; require common lisp
 (require 'cl)
-
+(require 'quack)
 ;;; First, load up some packages
 (require 'package)
 (add-to-list 'package-archives
@@ -409,6 +409,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; dirty fix for having AC everywhere
+(define-globalized-minor-mode real-global-auto-complete-mode
+  auto-complete-mode (lambda ()
+                       (if (not (minibufferp (current-buffer)))
+                         (auto-complete-mode 1))
+                       ))
+(real-global-auto-complete-mode t)
+
+;;;  Cmake-project make flymake work for c/c++
+(require 'cmake-project)
+
+(defun maybe-cmake-project-hook ()
+  (if (file-exists-p "CMakeLists.txt") (cmake-project-mode)))
+(add-hook 'c-mode-hook 'maybe-cmake-project-hook)
+(add-hook 'c++-mode-hook 'maybe-cmake-project-hook)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; C ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -501,6 +517,9 @@
 ;;; common lisp  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(require 'pretty-lambdada)
+(pretty-lambda-for-modes)
+
 (load (expand-file-name "~/.quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl --noinform --no-linedit")
 
@@ -533,6 +552,16 @@
             (local-set-key "C-c r" slime-eval-region)
             (local-set-key "C-c C-r" slime-eval-region)))
 
+(add-to-list 'load-path "/var/lib/chicken/6/")   ; Where Eggs are installed
+(autoload 'chicken-slime "chicken-slime" "SWANK backend for Chicken" t)
+(setq slime-csi-path "/usr/bin/csi")
+
+(add-hook 'scheme-mode-hook 
+          (lambda ()
+            (slime-mode t)))
+
+(add-hook 'scheme-mode-hook 'turn-on-pretty-lambda-mode)
+(add-hook 'slime-mode-hook 'turn-on-pretty-lambda-mode)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; python  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

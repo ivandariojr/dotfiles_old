@@ -1,0 +1,19 @@
+;; Object Project1/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "Project1/"
+  :tables (list 
+   (semanticdb-table "prettyPrinting.sch"
+    :major-mode 'scheme-mode
+    :tags 
+        '( ("abs" variable (:default-value ((15 . 68))) nil [1 69]))          
+    :file "prettyPrinting.sch"
+    :pointmax 70
+    :fsize 69
+    :lastmodtime '(21289 12943 748608 404000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!ivan!Dropbox!src!LISP!Project1!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

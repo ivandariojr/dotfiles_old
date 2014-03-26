@@ -251,6 +251,23 @@ for c = 1, ncpus do
    vicious.register(cpuwidgets[c], vicious.widgets.cpu, string.format("$%d", c+1), 2)
 end
 
+--Network widget
+-- ntext = wibox.widget.textbox()
+-- netwidget = awful.widget.graph()
+-- netwidget:set_width(50)
+-- --netwidget:set_height(30)
+-- netwidget:set_background_color("#494B4F")
+-- netwidget:set_color("#FF5656")
+-- netwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
+--netwidget_t = awful.tooltip({ objects = { netwidget.widget },})
+
+-- Register network widget
+-- vicious.register(netwidget, vicious.widgets.net,
+ --                    function (widget, args)
+ --                        netwidget_t:set_text("Network download: " .. args["{eth0 down_mb}"] .. "mb/s")
+ --                        return args["{eth0 down_mb}"]
+ --                    end, 3)
+
 -----------
 -- clock --
 -----------
@@ -391,22 +408,13 @@ for s = 1, screen.count() do
       separators[4],
       s == 1 and volumewidget.widget or nil,
       s == 1 and separators[5] or nil,
+      -- netwidget,
       s == 1 and cpubox or nil,
       (s == 1 and havebattery) and batterybox or nil, -- only if we have a battery
       mytasklist[s],
       layout = awful.widget.layout.horizontal.rightleft
    }
 end
-
---=================================================================================
---==================================== Mouse ======================================
---=================================================================================
-
-root.buttons(awful.util.table.join(
-                awful.button({ }, 3, function () mymainmenu:toggle() end),
-                awful.button({ }, 4, awful.tag.viewnext),
-                awful.button({ }, 5, awful.tag.viewprev)
-                                  ))
 
 --=================================================================================
 --================================= Keyboard ======================================

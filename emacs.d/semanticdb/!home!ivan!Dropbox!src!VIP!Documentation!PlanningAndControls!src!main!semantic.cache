@@ -1,0 +1,265 @@
+;; Object main/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "main/"
+  :tables (list 
+   (semanticdb-table "mainwindow.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("mainwindow.h" include nil nil [1 24])
+            ("MainWindow" function
+               (:constructor-flag t
+                :parent "MainWindow"
+                :arguments 
+                  ( ("parent" variable
+                       (:pointer 1
+                        :type ("QWidget" type (:type "class") nil nil))
+                        (reparse-symbol arg-sub-list) [52 68]))                  
+                :type ("MainWindow" type (:type "class") nil nil))
+                nil [29 630])
+            ("MainWindow" function
+               (:destructor-flag t
+                :parent "MainWindow"
+                :type "void")
+                nil [632 662])
+            ("creatList" function
+               (:parent "MainWindow"
+                :type "void")
+                nil [665 995])
+            ("creatButtonGroup" function
+               (:parent "MainWindow"
+                :type "void")
+                nil [997 1418])
+            ("creatTopGroup" function
+               (:parent "MainWindow"
+                :type "void")
+                nil [1421 1678])
+            ("creatBotGroup" function
+               (:parent "MainWindow"
+                :type "void")
+                nil [1680 1931])
+            ("creatLog" function
+               (:parent "MainWindow"
+                :type "void")
+                nil [1933 2276])
+            ("appLog" function
+               (:parent "MainWindow"
+                :type "void")
+                nil [2278 2408]))          
+    :file "mainwindow.cpp"
+    :pointmax 2408
+    :fsize 2408
+    :lastmodtime '(21264 63151 772764 554000)
+    :unmatched-syntax 'nil
+    )
+   (semanticdb-table "mainwindow.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("MAINWINDOW_H" variable (:constant-flag t) nil [30 42])
+            ("QMainWindow" include (:system-flag t) nil [44 66])
+            ("QListView" include nil nil [67 87])
+            ("QLayout" include nil nil [88 106])
+            ("QGroupBox" include nil nil [107 127])
+            ("QPushButton" include nil nil [128 150])
+            ("QTextEdit" include nil nil [151 171])
+            ("QStringListModel" include nil nil [172 199])
+            ("MainWindow" type
+               (:superclasses 
+                  ( ("QMainWindow" type
+                       (:protection "public"
+                        :type "class")
+                        nil nil))                  
+                :members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [255 262])
+                    ("MainWindow" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :arguments 
+                          ( ("parent" variable
+                               (:pointer 1
+                                :type ("QWidget" type (:type "class") nil nil))
+                                (reparse-symbol arg-sub-list) [287 304]))                          
+                        :type ("MainWindow" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [276 308])
+                    ("MainWindow" function
+                       (:prototype-flag t
+                        :destructor-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [313 327])
+                    ("private" label nil (reparse-symbol classsubparts) [329 343])
+                    ("appLog" function
+                       (:prototype-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [348 362])
+                    ("private" label nil (reparse-symbol classsubparts) [364 372])
+                    ("creatList" function
+                       (:prototype-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [377 394])
+                    ("creatButtonGroup" function
+                       (:prototype-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [399 423])
+                    ("creatTopGroup" function
+                       (:prototype-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [428 449])
+                    ("creatBotGroup" function
+                       (:prototype-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [454 475])
+                    ("creatCavan" function
+                       (:prototype-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [480 498])
+                    ("creatLog" function
+                       (:prototype-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [503 519])
+                    ("" type
+                       (:members 
+                          ( ("numGridRows" variable
+                               (:constant-flag t
+                                :default-value (545 546)
+                                :type "int")
+                                (reparse-symbol enumsubparts) [531 546])
+                            ("numButtons" variable
+                               (:constant-flag t
+                                :default-value (560 561)
+                                :type "int")
+                                (reparse-symbol enumsubparts) [547 561]))                          
+                        :type "enum")
+                        (reparse-symbol classsubparts) [525 563])
+                    ("m_buttonGroup" variable
+                       (:pointer 1
+                        :type ("QGroupBox" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [612 637])
+                    ("buttons" variable
+                       (:pointer 1
+                        :dereference 1
+                        :type ("QPushButton" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [642 675])
+                    ("m_listView" variable
+                       (:pointer 1
+                        :type ("QListView" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [680 702])
+                    ("m_topGroup" variable
+                       (:pointer 1
+                        :type ("QGroupBox" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [760 782])
+                    ("m_botGroup" variable
+                       (:pointer 1
+                        :type ("QGroupBox" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [787 809])
+                    ("m_log" variable
+                       (:pointer 1
+                        :type ("QTextEdit" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [866 883])
+                    ("m_testLog" variable
+                       (:pointer 1
+                        :type ("QPushButton" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [888 911])
+                    ("_numTestLog" variable (:type "int") (reparse-symbol classsubparts) [916 932]))                  
+                :type "class")
+                nil [201 936]))          
+    :file "mainwindow.h"
+    :pointmax 961
+    :fsize 960
+    :lastmodtime '(21264 63151 772764 554000)
+    :unmatched-syntax '((number 305 . 306) (punctuation 303 . 304) (EXPLICIT 267 . 275) (symbol 245 . 253))
+    :lexical-table 
+        '(("MAINWINDOW_H")
+          )
+
+    )
+   (semanticdb-table "display.h"
+    :major-mode 'c-mode
+    :tags 
+        '( ("DISPLAY_H" variable (:constant-flag t) nil [27 36])
+            ("Display" type
+               (:members 
+                  ( ("public" label nil (reparse-symbol classsubparts) [53 60])
+                    ("Display" function
+                       (:prototype-flag t
+                        :constructor-flag t
+                        :type ("Display" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [62 72])
+                    ("Display" function
+                       (:prototype-flag t
+                        :destructor-flag t
+                        :type "void")
+                        (reparse-symbol classsubparts) [74 85])
+                    ("renderMap" function
+                       (:prototype-flag t
+                        :typemodifiers ("virtual")
+                        :type "void")
+                        (reparse-symbol classsubparts) [87 112])
+                    ("renderPath" function
+                       (:prototype-flag t
+                        :typemodifiers ("virtual")
+                        :type "void")
+                        (reparse-symbol classsubparts) [114 140])
+                    ("run" function
+                       (:prototype-flag t
+                        :typemodifiers ("virtual")
+                        :type "void")
+                        (reparse-symbol classsubparts) [142 161])
+                    ("private" label nil (reparse-symbol classsubparts) [162 170])
+                    ("world_map" variable
+                       (:pointer 1
+                        :type ("Space" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [172 190])
+                    ("currentPath" variable
+                       (:pointer 1
+                        :type ("Path" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [192 211])
+                    ("areaExplored" variable
+                       (:pointer 1
+                        :type ("Path" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [213 233])
+                    ("start" variable
+                       (:pointer 1
+                        :type ("Point" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [235 249])
+                    ("end" variable
+                       (:pointer 1
+                        :type ("Point" type (:type "class") nil nil))
+                        (reparse-symbol classsubparts) [251 263]))                  
+                :type "class")
+                nil [37 266]))          
+    :file "display.h"
+    :pointmax 288
+    :fsize 287
+    :lastmodtime '(21274 4568 289736 381000)
+    :unmatched-syntax 'nil
+    :lexical-table 
+        '(("DISPLAY_H")
+          )
+
+    )
+   (semanticdb-table "main.cpp"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("mainwindow.h" include nil nil [1 24])
+            ("QApplication" include (:system-flag t) nil [25 48])
+            ("iostream" include (:system-flag t) nil [49 68])
+            ("main" function
+               (:arguments 
+                  ( ("argc" variable (:type "int") (reparse-symbol arg-sub-list) [79 88])
+                    ("argv" variable
+                       (:pointer 1
+                        :dereference 1
+                        :type "char")
+                        (reparse-symbol arg-sub-list) [89 102]))                  
+                :type "int")
+                nil [70 194]))          
+    :file "main.cpp"
+    :pointmax 198
+    :fsize 197
+    :lastmodtime '(21274 18637 475510 37000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!ivan!Dropbox!src!VIP!Documentation!PlanningAndControls!src!main!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )
