@@ -21,7 +21,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="saulrh"
+ZSH_THEME="blinks"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -61,8 +61,8 @@ source $ZSH/oh-my-zsh.sh
 bindkey -e
 
 # set up editor variables
-export EDITOR="emacsclient -a \"\""
-export VISUAL="emacsclient -a \"\""
+export EDITOR="$HOME/dotfiles/open-emacsa.sh"
+export VISUAL="emacsclient -c "
 export ALTERNATE_EDITOR="vim"
 
 # Don't duplicate history lines.
@@ -93,7 +93,7 @@ unsetopt correct
 # for gitolite and things from pip
 # note that we put in our local bin files before anything else, which means
 # that we prefer local versions of things
-PATH=/home/saul/bin:/home/saul/.local/bin:$PATH
+PATH=/home/ivan/bin:/home/ivan/.local/bin:$PATH
 
 # for python virtualenvs
 if [[ -x /usr/local/bin/virtualenvwrapper.sh || -x /usr/bin/virtualenvwrapper.sh ]]; then
@@ -138,7 +138,7 @@ export DEBFULLNAME="Saul Reynolds-Haertle"
 ############################### C code tagging ################################
 ###############################################################################
 
-CODEDIR=~/src
+CODEDI_R=~/src
 alias mktags='cd $CODEDIR && etags "`find $CODEDIR -name *.[h|c|py|cpp|cc|hh|hpp|java]`" && cd -'
 alias mktagscurrent='etags `find . -name "*.[h|c|py|cpp|cc|hh|hpp|java]"`'
 
@@ -364,4 +364,4 @@ esac
 ############################ ros setup ########################################
 ###############################################################################
 
-source /opt/ros/groovy/setup.zsh
+source /opt/ros/indigo/setup.zsh

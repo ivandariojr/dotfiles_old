@@ -4,7 +4,6 @@
 
 ;;; require common lisp
 (require 'cl)
-(require 'quack)
 ;;; First, load up some packages
 (require 'package)
 (add-to-list 'package-archives
@@ -19,12 +18,22 @@
    (or (package-installed-p package)
        (if (y-or-n-p (format "Package %s is missing. Install it? " package))
            (package-install package))))
- '(ascope auto-complete desktop-registry elpy find-file-in-project helm
+ '(ascope quack auto-complete desktop-registry elpy find-file-in-project helm
           highlight-indentation idomenu kpm-list minimap nose paredit
           smart-tabs-mode solarized-theme undo-tree virtualenv w3m yasnippet
           dired+ ecb cedet))
 
-(require 'gccsense)
+(require 'quack)
+
+;; ;; ROS things
+;; ;; Load the library and start it up
+;; (require 'rosemacs)
+;; (invoke-rosemacs)
+
+;; ;; Optional but highly recommended: add a prefix for quick access
+;; ;; to the rosemacs commands
+;; (global-set-key "\C-x\C-r" ros-keymap)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;                                                                         ;;
@@ -214,6 +223,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; kpm-list ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -229,7 +240,7 @@
 ;;; (global-set-key (kbd "C-c h") 'helm-mini)
 ;;; (global-set-key (kbd "C-c C-h") 'helm-mini)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+n;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; iswitchb ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; improves buffer-switching

@@ -64,7 +64,7 @@ mkdir -p "$HOME/.vim/backup/"
 mkdir -p "$HOME/.vim/undo/"
 mkdir -p "$HOME/.vim/swap/"
 
-curl -Sso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
+curl -LSso ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/master/autoload/pathogen.vim
 
 echo "Updating vim plugins"
 $HOME/dotfiles/vim-update.sh repos

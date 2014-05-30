@@ -619,11 +619,12 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 --=================================================================================
 
 -- start keyboard shortcut keys
-awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh xbindkeys")
-
+--awful.util.spawn_with_shell("$HOME/.local/bin/run-once.sh xbindkeys")
+--awful.util.spawn_with_shell("xbindkeys")
+os.execute("xbindkeys")
 -- should set caps lock to be a control key
-awful.util.spawn_with_shell("xmodmap ~/.xmodmap.conf")
-
+--awful.util.spawn_with_shell("xmodmap ~/.xmodmap.conf")
+os.execute("xmodmap ~/.xmodmap.conf")
 --start wicd
 
 awful.util.spawn_with_shell("wicd-client")
