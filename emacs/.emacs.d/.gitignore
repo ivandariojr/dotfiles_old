@@ -1,0 +1,15 @@
+# ignore temp files
+auto-save-list/
+session*
+url/cookies
+tramp
+bookmarks
+semanticdb
+eshell/lastdir
+eshell/history
+url/cache/
+ac-comphist.dat
+ido.last
+recentf
+elpa/
+ido.last~

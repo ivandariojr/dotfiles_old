@@ -1,0 +1,7 @@
+(load "rc-files/languages/c-c++-rc.el")
+(load "rc-files/languages/xml-rc.el")
+(load "rc-files/languages/haskell-rc.el")
+(load "rc-files/languages/cl-rc.el")
+(load "rc-files/languages/backus-naur-form-rc.el")
+(load "rc-files/languages/octave-rc.el")
+(matlab-cedet-setup)
