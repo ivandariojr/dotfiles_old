@@ -37,7 +37,7 @@ function handlegitrepo() {
 #################################################
 ########### Install things to $HOME #############
 #################################################
-test=( 'xmodmap.conf' 'bashrc' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc' 'xbindkeysrc.scm' )
+test=('bashrc' 'emacs.d' 'stumpwmrc' 'screenrc' 'tmux.conf' 'vimrc' 'wl' 'folders' 'zshrc' 'xmonad' 'xmobarrc' 'vimperatorrc')
 
 mkdir -p "$HOME/old-dotfiles"
 
@@ -84,10 +84,19 @@ handlegitrepo "git://github.com/cycojesus/awesome-solarized.git" "$HOME/.config/
 
 makebackup "$HOME/.config/awesome/rc.lua"
 
-ln -s "$PWD/awesomerc.lua" "$HOME/.config/awesome/rc.lua"
+#ln -s "$PWD/awesomerc.lua" "$HOME/.config/awesome/rc.lua"
 
 ##########################################################
 ########### Install random things from github ############
 ##########################################################
 
 handlegitrepo "git://github.com/rupa/z.git" "$HOME/src/z" "z"
+
+##########################################################
+########### Install Executables Where Needd   ############
+##########################################################
+
+sudo ln -s "$PWD/superLatex.sh" "/usr/bin/superLatex"
+
+sudo ln -s "$PWD/ical2org.awk" "/usr/bin/ical2org"
+
