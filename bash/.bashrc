@@ -130,7 +130,9 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-export PATH="/usr/lib/ccache:$PATH"
+export PATH="/usr/local/cuda/bin:/usr/lib/ccache:$PATH"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
+export CUDA_HOME=/usr/local/cuda
 ############################################################################
 ######################## Emacs Local Variables #############################
 ############################################################################

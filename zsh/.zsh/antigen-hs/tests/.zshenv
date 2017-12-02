@@ -13,7 +13,7 @@ yes N | source "$TESTDIR/../init.zsh" > /dev/null
 compile-and-source () {
   rm -f $ANTIGEN_HS_OUT/antigen-hs.zsh
   export ANTIGEN_HS_MY="$1"
-  _antigen-hs-compile
+  antigen-hs-compile
   # Now we source to source the file antigen-hs-compile created
   source "$TESTDIR/../init.zsh"
 }

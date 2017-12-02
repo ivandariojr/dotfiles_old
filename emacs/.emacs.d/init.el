@@ -3,7 +3,7 @@
 ;;; code:
 
 (setq debug-on-error t)
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "/usr/share/emacs/24.3/lisp/gnus")
 
 ;;; require common lisp
@@ -169,6 +169,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(doc-view-continuous t)
+ '(org-startup-truncated nil)
+ '(package-selected-packages
+   (quote
+    (web-mode w3m virtualenv undo-tree typing solarized-theme smart-tabs-mode pyvenv projectile pretty-mode-plus pretty-mode pretty-lambdada paredit org-repo-todo org-present org-magit org-grep org-gnome org-gcal org-email org-context org-ac notify nose matlab-mode markdown-mode+ magic-latex-buffer lua-mode latex-preview-pane latex-extra kpm-list idomenu highlight-indentation helm-git helm-flycheck helm-bibtex git-rebase-mode git-commit-mode fuzzy flymd flycheck-tip find-file-in-project ecb ebib dired+ desktop-registry cmake-mode bibretrieve auto-complete-auctex ac-slime ac-math ac-ispell)))
  '(pdf-latex-command "pdflatex")
  '(semantic-idle-truncate-long-summaries nil)
  '(slime-truncate-lines nil)

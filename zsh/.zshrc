@@ -14,43 +14,26 @@ fi
 ###############################################################################
 ############################ zsh Configuration ################################
 ###############################################################################
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
 
-# hopefully disable completion
-DISABLE_CORRECTION="true"
+source ~/.zsh/antigen-hs/init.zsh
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git python svn debian safe-paste rsync)
+###############################################################################
+############################### completion ####################################
+###############################################################################
+# This way the completion script does not have to parse Bazel's options
+# repeatedly.  The directory in cache-path must be created manuallya.
+fpath[1,0]=~/.zsh/completion/
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
-source $ZSH/oh-my-zsh.sh
+# finally, build completion database
+autoload -U compinit
+compinit
+
+# don't autocorrect. just autcomplete.
+unsetopt correct_all
+unsetopt correct
 
 ###############################################################################
 ########################## Environment Variables ##############################
@@ -61,27 +44,25 @@ source $ZSH/oh-my-zsh.sh
 bindkey -e
 
 # set up editor variables
-export EDITOR="$HOME/dotfiles/open-emacsa.sh"
-export VISUAL="emacsclient -c "
+export EDITOR="emacsclient -a \"\""
+export VISUAL="emacsclient -a \"\""
 export ALTERNATE_EDITOR="vim"
 
-# Don't duplicate history lines.
+# configure history - no duplicates, nothing starting with whitespace (for passwords), 10k lines of
+# history file
 setopt hist_ignore_all_dups
 
 # Can now prevent something from being added to history by prepending a space
 setopt hist_ignore_space
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=10000
 
 # more powerful globbing
 setopt extendedglob
 
 # autocmoplete switches even on aliases
 setopt completealiases
-
-# End of lines added by compinstall
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
 
 # don't change into a directory unless I tell you to!
 unsetopt autocd
@@ -127,12 +108,6 @@ compctl -g '~/.teamocil/*(:t:r)' teamocil
 # some variables for building debian packages
 export DEBEMAIL="ijimenez3@gatech.edu"
 export DEBFULLNAME="Ivan Dario Jimenez"
-
-###############################################################################
-################################# Other Junk ##################################
-###############################################################################
-
-. ~/src/z/z.sh
 
 ###############################################################################
 ############################### C code tagging ################################
@@ -365,6 +340,12 @@ esac
 ###############################################################################
 
 #source /opt/ros/indigo/setup.zsh
-export PATH="/usr/lib/ccache:$PATH:$HOME/bin"
+# export PATH="/usr/lib/ccache:$PATH:$HOME/bin"
+export PATH="/usr/local/cuda/bin:$PATH"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/nvidia-384"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/lib64"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64"
 export CUDA_HOME=/usr/local/cuda
+#SNOPT INSTALL STUFF
+export SNOPT7LIB="/home/ivan/libs/snopt/lib"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/ivan/libs/snopt/lib"
